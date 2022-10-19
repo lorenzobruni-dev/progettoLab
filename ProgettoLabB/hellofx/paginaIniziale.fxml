@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane fx:controller="hellofx.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="459.0" fitWidth="462.0" layoutX="-5.0" layoutY="-56.0" pickOnBounds="true" preserveRatio="true">
          <image>

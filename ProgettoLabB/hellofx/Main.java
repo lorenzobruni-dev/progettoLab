@@ -1,4 +1,4 @@
-package classeProgetto;
+package hellofx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +10,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("hellofx.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("paginaIniziale.fxml"));
         primaryStage.setTitle("Benvenuto al centro di controllo vaccinale!");
-        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
