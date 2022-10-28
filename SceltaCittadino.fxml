@@ -24,7 +24,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="UserID" layoutX="222.0" layoutY="86.0" prefHeight="36.0" prefWidth="151.0" promptText="UserId" style="-fx-background-color: white;">
+      <TextField id="UserID" layoutX="222.0" layoutY="86.0" prefHeight="36.0" prefWidth="151.0" promptText="UserID" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
