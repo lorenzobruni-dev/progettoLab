@@ -19,7 +19,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button id="SceltaCentri" layoutX="75.0" layoutY="264.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="166.0" text="Centri Vaccinali">
+      <Button id="SceltaOperatoriVaccinali" layoutX="75.0" layoutY="264.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="166.0" text="Operatori Vaccinali">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
