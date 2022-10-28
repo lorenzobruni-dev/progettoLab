@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SceltaOperatore">
+   <children>
+      <Label layoutX="167.0" layoutY="35.0" text="Area Operatori Vaccinali">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button id="RegistraCittadinoVaccinato" layoutX="193.0" layoutY="178.0" mnemonicParsing="false" onAction="#regVaccinato" prefHeight="45.0" prefWidth="216.0" text="Registra cittadino vaccinato">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button id="IndietroOperatoriVaccinaliScelta" layoutX="270.0" layoutY="251.0" mnemonicParsing="false" onAction="#backToHub" prefHeight="27.0" prefWidth="62.0" text="Indietro" textFill="#221d1d">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button id="RegistraCittadinoVaccinato" layoutX="193.0" layoutY="122.0" mnemonicParsing="false" onAction="#regCentroVaccinale" prefHeight="45.0" prefWidth="216.0" text="Registra centro vaccinale">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

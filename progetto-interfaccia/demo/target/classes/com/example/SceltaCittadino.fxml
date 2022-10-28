@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SceltaCittadino">
+   <children>
+      <Label layoutX="225.0" layoutY="14.0" text="Area Cittadini">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button id="IndietroAreaCittadini" layoutX="30.0" layoutY="18.0" mnemonicParsing="false" onAction="#backToHub" prefHeight="27.0" prefWidth="62.0" text="Indietro">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="221.0" layoutY="50.0" text="Login Eventi Avversi">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField id="UserID" layoutX="222.0" layoutY="86.0" prefHeight="36.0" prefWidth="151.0" promptText="UserID" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <PasswordField id="Password" layoutX="222.0" layoutY="131.0" prefHeight="36.0" prefWidth="151.0" promptText="Password" style="-fx-background-color: White;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></PasswordField>
+      <Button id="AccediAreaCittadini" layoutX="224.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi" textFill="#f2efef">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label id="CheckPassword" layoutX="90.0" layoutY="238.0" prefHeight="22.0" prefWidth="420.0" text="Spiacenti, UserID o Password non sono corretti/Utente non vaccinato!" />
+      <Label layoutX="161.0" layoutY="284.0" text="Non hai un account?">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button id="RegistratiAreaCittadini" layoutX="313.0" layoutY="280.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="Registrati">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="163.0" layoutY="326.0" mnemonicParsing="false" onAction="#ricercaCentroInfo" prefHeight="36.0" prefWidth="302.0" styleClass="RicercaCentriVaccinaliAreaCittadini" text="Ricerca e info centri vaccinali">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="186.0" layoutY="14.0" text="Registrazione utente">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button id="IndietroRegUtente" layoutX="36.0" layoutY="17.0" mnemonicParsing="false" text="Indietro">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextField id="Nome" layoutX="139.0" layoutY="61.0" promptText="Nome" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <TextField id="Cognome" layoutX="307.0" layoutY="61.0" promptText="Cognome" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <DatePicker id="DataNascita" layoutX="139.0" layoutY="96.0" prefHeight="26.0" prefWidth="151.0" promptText="Data di nascita" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></DatePicker>
+      <ComboBox id="Genere" editable="true" layoutX="307.0" layoutY="96.0" prefHeight="26.0" prefWidth="151.0" promptText="Genere" style="-fx-background-color: White;" visibleRowCount="3">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <TextField id="Email" layoutX="140.0" layoutY="130.0" prefHeight="26.0" prefWidth="319.0" promptText="E-Mail" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <TextField id="ComuneCentroVaccinale" layoutX="140.0" layoutY="164.0" prefHeight="26.0" prefWidth="319.0" promptText="Comune Centro Vaccinale Scelto" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <TextField id="CF" layoutX="225.0" layoutY="200.0" prefHeight="26.0" prefWidth="151.0" promptText="Codice Fiscale" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <TextField id="UserID" layoutX="225.0" layoutY="240.0" promptText="UserID" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <PasswordField id="Password" layoutX="139.0" layoutY="283.0" promptText="Password" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></PasswordField>
+      <PasswordField id="RipetiPassword" layoutX="307.0" layoutY="283.0" promptText="Ripeti Password" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></PasswordField>
+      <Label id="CheckRegUtente" layoutX="158.0" layoutY="321.0" text="Campi non compilati/UserID o E-Mail già in uno!" />
+      <Button id="Registrati" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" style="-fx-background-color: Blue;" text="Registrati">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>
