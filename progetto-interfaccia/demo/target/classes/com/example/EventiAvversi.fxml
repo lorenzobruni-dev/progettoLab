@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.example.EventiAvversi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="225.0" layoutY="14.0" text="Eventi avversi">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button id="IndietroEventiAvversi" layoutX="32.0" layoutY="24.0" mnemonicParsing="false" text="Indietro">
+      <Button id="IndietroEventiAvversi" layoutX="32.0" layoutY="24.0" mnemonicParsing="false" text="Indietro" onAction="#backToHub">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

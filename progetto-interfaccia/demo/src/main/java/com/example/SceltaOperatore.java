@@ -17,5 +17,6 @@ public class SceltaOperatore {
     private void regVaccinato() throws IOException {
         App.setRoot("RegistrationFormVaccinato");
     }
+    
 }
 

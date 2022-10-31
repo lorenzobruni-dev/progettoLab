@@ -32,7 +32,7 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></PasswordField>
-      <Button id="AccediAreaCittadini" layoutX="224.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi" textFill="#f2efef">
+      <Button id="AccediAreaCittadini" layoutX="224.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi" textFill="#f2efef" onAction="#loginEventiAvversi">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -42,7 +42,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button id="RegistratiAreaCittadini" layoutX="313.0" layoutY="280.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="Registrati">
+      <Button id="RegistratiAreaCittadini" layoutX="313.0" layoutY="280.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="Registrati" onAction="#registrationButton">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

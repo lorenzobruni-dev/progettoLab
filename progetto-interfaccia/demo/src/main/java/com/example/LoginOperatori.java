@@ -14,30 +14,30 @@ import javafx.stage.Window;
 
 public class LoginOperatori {
     
-    String utente;
-    String password;
-    @FXML
-    TextField  UserIDOperatore = new TextField();
-    @FXML
-    PasswordField PasswordOperatori = new PasswordField();
+    // String utente;
+    // String password;
+    // @FXML
+    // TextField  UserIDOperatore = new TextField();
+    // @FXML
+    // PasswordField PasswordOperatori = new PasswordField();
     @FXML
     private void sceltaOp() throws IOException {
-    try{
-        String utenteCredenziali = "admin";
-        String passwordCredenziali = "admin";
-        UserIDOperatore.setOnAction(e->utente = UserIDOperatore.getText());
-        PasswordOperatori.setOnAction(e->password = PasswordOperatori.getText());
-        System.out.println(UserIDOperatore);
-        System.out.println(PasswordOperatori);
+    // try{
+    //     String utenteCredenziali = "admin";
+    //     String passwordCredenziali = "admin";
+    //     UserIDOperatore.setOnAction(e->utente = UserIDOperatore.getText());
+    //     PasswordOperatori.setOnAction(e->password = PasswordOperatori.getText());
+    //     System.out.println(UserIDOperatore);
+    //     System.out.println(PasswordOperatori);
         
-        if(utente == utenteCredenziali && password == passwordCredenziali)
+    //     if(utente == utenteCredenziali && password == passwordCredenziali)
         App.setRoot("SceltaOperatore");
-    }catch(Exception e)
-    {
-        System.out.println("Errore");
-        System.out.println(UserIDOperatore);
-        System.out.println(PasswordOperatori);
-    }
+    // }catch(Exception e)
+    // {
+    //     System.out.println("Errore");
+    //     System.out.println(UserIDOperatore);
+    //     System.out.println(PasswordOperatori);
+    // }
         
 
     }
