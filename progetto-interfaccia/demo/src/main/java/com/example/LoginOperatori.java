@@ -14,8 +14,6 @@ import javafx.stage.Window;
 
 public class LoginOperatori {
     
-    // String utente;
-    // String password;
     // @FXML
     // TextField  UserIDOperatore = new TextField();
     // @FXML
