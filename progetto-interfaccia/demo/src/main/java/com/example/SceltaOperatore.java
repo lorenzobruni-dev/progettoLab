@@ -3,6 +3,7 @@ package com.example;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+
 public class SceltaOperatore {
 
     @FXML
@@ -11,6 +12,7 @@ public class SceltaOperatore {
     }
     @FXML
     private void regCentroVaccinale() throws IOException {
+
         App.setRoot("RegistrationFormCentroVaccinale");
     }
     @FXML
