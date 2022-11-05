@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class LoginOperatori {
-    
+    String passwordT = "ciao";
+    String userT = "ciao";
     @FXML
     private void sceltaOp() throws IOException {
         App.setRoot("SceltaOperatore");
