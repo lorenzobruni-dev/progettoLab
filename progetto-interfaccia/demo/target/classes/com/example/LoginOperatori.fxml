@@ -10,33 +10,33 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.LoginOperatori">
    <children>
-      <Label layoutX="175.0" layoutY="51.0" text="Area Operatori Vaccinali">
+      <Label layoutX="176.0" layoutY="51.0" text="Area Operatori Vaccinali">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField id="UserIDOperatore" layoutX="233.0" layoutY="140.0" prefHeight="36.0" prefWidth="151.0" promptText="Utente" style="-fx-background-color: white;">
+      <TextField fx:id="usernameOperatore" layoutX="234.0" layoutY="140.0" prefHeight="36.0" prefWidth="151.0" promptText="Utente" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <PasswordField id="PasswordOperatori" layoutX="233.0" layoutY="188.0" prefHeight="36.0" prefWidth="151.0" promptText="Password" style="-fx-background-color: White;">
-         <cursor>
+      <PasswordField fx:id="password" accessibleRole="TEXT_FIELD" layoutX="234.0" layoutY="189.0" prefHeight="36.0" prefWidth="151.0" promptText="Password" style="-fx-background-color: white;">
+      <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </PasswordField>
-      <Button id="AccediAreaCittadini" layoutX="233.0" layoutY="243.0" mnemonicParsing="false" onAction="#sceltaOp" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi" textFill="#f8f7f7">
+      <Button fx:id="AccediAreaCittadini" layoutX="234.0" layoutY="243.0" mnemonicParsing="false" onAction="#sceltaOp" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label id="CheckPassword" layoutX="168.0" layoutY="288.0" prefHeight="22.0" prefWidth="281.0" text="Spiacenti, Utente o Password non sono corretti!" />
-      <Button id="IndietroLoginOperatori" layoutX="277.0" layoutY="323.0" mnemonicParsing="false" onAction="#backToHub" prefHeight="27.0" prefWidth="62.0" text="Indietro">
+      <Label fx:id="CheckPassword" layoutX="200.0" layoutY="288.0" prefHeight="22.0" prefWidth="281.0" text="Spiacenti, Utente o Password non sono corretti!" visible="false" />
+      <Button id="IndietroLoginOperatori" layoutX="278.0" layoutY="323.0" mnemonicParsing="false" onAction="#backToHub" prefHeight="27.0" prefWidth="62.0" text="Indietro">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="283.0" layoutY="99.0" text="Login ">
+      <Label layoutX="284.0" layoutY="99.0" text="Login ">
          <font>
             <Font size="18.0" />
          </font>
