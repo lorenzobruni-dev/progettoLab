@@ -25,7 +25,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </PasswordField>
-      <Button fx:id="AccediAreaCittadini" layoutX="234.0" layoutY="243.0" mnemonicParsing="false" onAction="#sceltaOp" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi">
+      <Button fx:id="AccediAreaCittadini" layoutX="234.0" layoutY="243.0" mnemonicParsing="false" onAction="#sceltaOp" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi" textFill="#f5f0f0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
