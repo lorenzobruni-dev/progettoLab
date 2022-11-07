@@ -38,9 +38,6 @@ public class LoginOperatori {
     }
     private boolean validateLogin(String user, String pwd)
     {   
-        boolean ex1 = userCredential.equals(user);
-        boolean ex2 = passwordCredential.equals(pwd);
-        boolean ex3 = ex1 && ex2;
         if(userCredential.equals(user) && passwordCredential.equals(pwd))
         return true;
         else return false;
