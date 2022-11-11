@@ -2,6 +2,7 @@ package com.example;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 public class SceltaCittadino {
 
@@ -18,6 +19,8 @@ public class SceltaCittadino {
         App.setRoot("RegistrationFormCittadino");
         System.out.println("Pressed");
     }
+    @FXML
+    TextField 
     @FXML
     private void loginEventiAvversi() throws IOException {
         App.setRoot("EventiAvversi");

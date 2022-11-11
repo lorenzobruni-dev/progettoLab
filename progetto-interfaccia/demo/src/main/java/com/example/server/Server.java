@@ -23,9 +23,14 @@ public class Server {
 
     public static void main(String[] args) {
 
-        Server server = new Server();
-        Registry registro = LocateRegistry.createRegistry();
-        registro.rebind("", server);
+        
+        try{
+            Server server = new Server();
+            Registry registro = LocateRegistry.createRegistry(5462);
+            registro.rebind("", registro);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     public boolean ApriConnessioneDB(String url, String username, String password) {
