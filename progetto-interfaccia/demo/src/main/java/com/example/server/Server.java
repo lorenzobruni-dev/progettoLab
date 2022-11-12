@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.example.models.CentroVaccinale;
-import com.example.models.Cittadino;
 import com.example.models.CittadinoVaccinato;
 import com.example.models.Indirizzo;
 import com.example.models.Qualificatore;
@@ -22,8 +21,6 @@ public class Server {
     private static Connection connection = null;
 
     public static void main(String[] args) {
-
-        
         try{
             Server server = new Server();
             Registry registro = LocateRegistry.createRegistry(5462);

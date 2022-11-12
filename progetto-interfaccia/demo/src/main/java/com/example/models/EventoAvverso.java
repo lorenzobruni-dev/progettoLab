@@ -2,10 +2,10 @@ package com.example.models;
 
 public class EventoAvverso {
     String evento;
-    short severità;
+    int severità;
     String noteOpzionali;
     
-    public EventoAvverso(String evento, short severità, String noteOpzionali) {
+    public EventoAvverso(String evento, int severità, String noteOpzionali) {
         this.evento = evento;
         this.severità = severità;
         this.noteOpzionali = noteOpzionali;
@@ -19,11 +19,11 @@ public class EventoAvverso {
         this.evento = evento;
     }
 
-    public short getSeverità() {
+    public int getSeverità() {
         return severità;
     }
 
-    public void setSeverità(short severità) {
+    public void setSeverità(int severità) {
         this.severità = severità;
     }
 
@@ -33,5 +33,10 @@ public class EventoAvverso {
 
     public void setNoteOpzionali(String noteOpzionali) {
         this.noteOpzionali = noteOpzionali;
+    }
+
+    @Override
+    public String toString() {
+        return "EventoAvverso [evento=" + evento + ", severità=" + severità + ", noteOpzionali=" + noteOpzionali + "]";
     }
 }
