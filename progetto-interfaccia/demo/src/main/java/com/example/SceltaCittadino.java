@@ -20,8 +20,6 @@ public class SceltaCittadino {
         System.out.println("Pressed");
     }
     @FXML
-    TextField 
-    @FXML
     private void loginEventiAvversi() throws IOException {
         App.setRoot("EventiAvversi");
         System.out.println("Pressed");

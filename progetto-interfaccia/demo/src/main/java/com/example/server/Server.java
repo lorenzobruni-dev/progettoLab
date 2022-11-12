@@ -27,7 +27,7 @@ public class Server {
         try{
             Server server = new Server();
             Registry registro = LocateRegistry.createRegistry(5462);
-            registro.rebind("", registro);
+            registro.rebind("", server);
         }catch(Exception e){
             System.out.println(e);
         }

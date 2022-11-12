@@ -26,27 +26,27 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField id="Nome" layoutX="36.0" layoutY="109.0" prefHeight="26.0" prefWidth="111.0" promptText="Nome" style="-fx-background-color: white;">
+      <TextField id="Nome" fx:id="nomeVaccinato" layoutX="36.0" layoutY="109.0" prefHeight="26.0" prefWidth="111.0" promptText="Nome" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField id="Cognome" layoutX="164.0" layoutY="109.0" prefHeight="26.0" prefWidth="111.0" promptText="Cognome" style="-fx-background-color: white;">
+      <TextField id="Cognome" fx:id="cognomeVaccinato" layoutX="164.0" layoutY="109.0" prefHeight="26.0" prefWidth="111.0" promptText="Cognome" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <DatePicker id="DataNascita" layoutX="36.0" layoutY="146.0" prefHeight="26.0" prefWidth="146.0" promptText="Data di nascita" style="-fx-background-color: white;">
+      <DatePicker id="DataNascita" fx:id="dataVaccinato" layoutX="36.0" layoutY="146.0" prefHeight="26.0" prefWidth="146.0" promptText="Data di nascita" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </DatePicker>
-      <ComboBox id="Genere" editable="true" layoutX="193.0" layoutY="146.0" prefHeight="26.0" prefWidth="81.0" promptText="Genere" style="-fx-background-color: White;" visibleRowCount="3">
+      <ComboBox id="Genere" fx:id="genereVaccinato" editable="true" layoutX="193.0" layoutY="146.0" prefHeight="26.0" prefWidth="81.0" promptText="Genere" style="-fx-background-color: White;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <TextField id="CF" layoutX="36.0" layoutY="187.0" prefHeight="26.0" prefWidth="146.0" promptText="Codice Fiscale" style="-fx-background-color: white;">
+      <TextField id="CF" fx:id="cfVaccinato" layoutX="36.0" layoutY="187.0" prefHeight="26.0" prefWidth="146.0" promptText="Codice Fiscale" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -56,17 +56,17 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <DatePicker id="DataSomministrazione" layoutX="36.0" layoutY="268.0" prefHeight="26.0" prefWidth="189.0" promptText="Data di somministrazione" style="-fx-background-color: white;">
+      <DatePicker id="DataSomministrazione" fx:id="dataSommVaccinato" layoutX="36.0" layoutY="268.0" prefHeight="26.0" prefWidth="189.0" promptText="Data di somministrazione" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </DatePicker>
-      <ComboBox id="Vaccino" editable="true" layoutX="36.0" layoutY="305.0" prefHeight="26.0" prefWidth="111.0" promptText="Vaccino" style="-fx-background-color: white;" visibleRowCount="3">
+      <ComboBox id="Vaccino" fx:id="nomeVaccino" editable="true" layoutX="36.0" layoutY="305.0" prefHeight="26.0" prefWidth="111.0" promptText="Vaccino" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <TextField id="IDUnivocoVaccinato" editable="false" layoutX="34.0" layoutY="354.0" prefHeight="26.0" prefWidth="226.0" promptText="ID Univoco Vaccinato" style="-fx-background-color: white;">
+      <TextField id="IDUnivocoVaccinato" fx:id="idUnivocoVaccinato" editable="false" layoutX="34.0" layoutY="354.0" prefHeight="26.0" prefWidth="226.0" promptText="ID Univoco Vaccinato" style="-fx-background-color: white;" visible="false">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -76,38 +76,38 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField id="NomeCentroVaccinale" layoutX="331.0" layoutY="109.0" prefHeight="26.0" prefWidth="226.0" promptText="Nome Centro Vaccinale" style="-fx-background-color: white;">
+      <TextField id="NomeCentroVaccinale" fx:id="nomeCentroVaccinale" layoutX="331.0" layoutY="109.0" prefHeight="26.0" prefWidth="226.0" promptText="Nome Centro Vaccinale" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField id="ComuneCentroVaccinale" layoutX="331.0" layoutY="146.0" prefHeight="26.0" prefWidth="167.0" promptText="Comune Centro Vaccinale" style="-fx-background-color: white;">
+      <TextField id="ComuneCentroVaccinale" fx:id="comuneCentroVaccinale" layoutX="331.0" layoutY="146.0" prefHeight="26.0" prefWidth="167.0" promptText="Comune Centro Vaccinale" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField id="CAPCentroVaccinale" layoutX="509.0" layoutY="146.0" prefHeight="26.0" prefWidth="52.0" promptText="CAP" style="-fx-background-color: white;">
+      <TextField id="CAPCentroVaccinale" fx:id="capCentroVaccinale" layoutX="509.0" layoutY="146.0" prefHeight="26.0" prefWidth="52.0" promptText="CAP" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField id="IndirizzoCentroVaccinale" layoutX="331.0" layoutY="186.0" prefHeight="26.0" prefWidth="226.0" promptText="Indirizzo" style="-fx-background-color: white;">
+      <TextField id="IndirizzoCentroVaccinale" fx:id="indirizzoCentroVaccinale" layoutX="331.0" layoutY="186.0" prefHeight="26.0" prefWidth="226.0" promptText="Indirizzo" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <ComboBox id="TipologiaCentroVaccinale" editable="true" layoutX="331.0" layoutY="227.0" prefHeight="26.0" prefWidth="126.0" promptText="Tipologia" style="-fx-background-color: white;" visibleRowCount="3">
+      <ComboBox id="TipologiaCentroVaccinale" fx:id="tipologiaCentroVaccinale" editable="true" layoutX="331.0" layoutY="227.0" prefHeight="26.0" prefWidth="126.0" promptText="Tipologia" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <ComboBox id="ProvinciaCentroVaccinale" editable="true" layoutX="466.0" layoutY="227.0" prefHeight="26.0" prefWidth="94.0" promptText="Provincia" style="-fx-background-color: white;" visibleRowCount="3">
+      <ComboBox id="ProvinciaCentroVaccinale" fx:id="provinciaCentroVaccinale" editable="true" layoutX="466.0" layoutY="227.0" prefHeight="26.0" prefWidth="94.0" promptText="Provincia" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <Label id="CheckRegUtente" layoutX="392.0" layoutY="285.0" text="Campi non compilati!" />
-      <Button id="RegistraVaccinato" layoutX="386.0" layoutY="318.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="137.0" style="-fx-background-color: Blue;" text="Registra vaccinato" textFill="#f8f7f7">
+      <Label id="CheckRegUtente" fx:id="checkCampi" layoutX="392.0" layoutY="285.0" text="Campi non compilati!" visible="false" />
+      <Button id="RegistraVaccinato" layoutX="386.0" layoutY="318.0" mnemonicParsing="false" onAction="#registraVaccinato" prefHeight="36.0" prefWidth="137.0" style="-fx-background-color: Blue;" text="Registra vaccinato" textFill="#f8f7f7">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
