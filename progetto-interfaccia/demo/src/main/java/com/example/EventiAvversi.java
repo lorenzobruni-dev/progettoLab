@@ -2,17 +2,14 @@ package com.example;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import com.example.models.EventoAvverso;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Window;
 
 public class EventiAvversi {
 
