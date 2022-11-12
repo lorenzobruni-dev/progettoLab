@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SceltaCittadino">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SceltaCittadino">
    <children>
       <Label layoutX="225.0" layoutY="14.0" text="Area Cittadini">
          <font>
@@ -24,29 +24,29 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="UserID" layoutX="222.0" layoutY="86.0" prefHeight="36.0" prefWidth="151.0" promptText="UserID" style="-fx-background-color: white;">
+      <TextField fx:id="userid" layoutX="222.0" layoutY="86.0" prefHeight="36.0" prefWidth="151.0" promptText="UserID" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <PasswordField id="Password" layoutX="222.0" layoutY="131.0" prefHeight="36.0" prefWidth="151.0" promptText="Password" style="-fx-background-color: White;">
+      <PasswordField fx:id="password" layoutX="222.0" layoutY="131.0" prefHeight="36.0" prefWidth="151.0" promptText="Password" style="-fx-background-color: White;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></PasswordField>
-      <Button id="AccediAreaCittadini" layoutX="224.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi" textFill="#f2efef" onAction="#loginEventiAvversi">
+      <Button fx:id="loginButton" layoutX="224.0" layoutY="185.0" mnemonicParsing="false" onAction="#loginEventiAvversi" prefHeight="30.0" prefWidth="151.0" style="-fx-background-color: Blue;" text="Accedi" textFill="#f2efef">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label id="CheckPassword" layoutX="90.0" layoutY="238.0" prefHeight="22.0" prefWidth="420.0" text="Spiacenti, UserID o Password non sono corretti/Utente non vaccinato!" />
-      <Label layoutX="161.0" layoutY="284.0" text="Non hai un account?">
+      <Label fx:id="checkCredentials" layoutX="114.0" layoutY="238.0" prefHeight="22.0" prefWidth="373.0" text="Spiacenti, UserID o Password non sono corretti/Utente non vaccinato!" visible="false" />
+      <Label fx:id="accountText" layoutX="150.0" layoutY="285.0" text="Non hai un account?">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button id="RegistratiAreaCittadini" layoutX="313.0" layoutY="280.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="Registrati" onAction="#registrationButton">
+      <Button fx:id="registrationButton" layoutX="300.0" layoutY="281.0" mnemonicParsing="false" onAction="#registrationButton" prefHeight="30.0" prefWidth="151.0" text="Registrati">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="163.0" layoutY="326.0" mnemonicParsing="false" onAction="#ricercaCentroInfo" prefHeight="36.0" prefWidth="302.0" styleClass="RicercaCentriVaccinaliAreaCittadini" text="Ricerca e info centri vaccinali">
+      <Button fx:id="searchInfoCentri" layoutX="150.0" layoutY="326.0" mnemonicParsing="false" onAction="#ricercaCentroInfo" prefHeight="36.0" prefWidth="302.0" styleClass="RicercaCentriVaccinaliAreaCittadini" text="Ricerca e info centri vaccinali">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

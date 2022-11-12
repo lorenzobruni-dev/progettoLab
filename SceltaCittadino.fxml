@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="225.0" layoutY="14.0" text="Area Cittadini">
          <font>
@@ -36,7 +36,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label id="CheckPassword" layoutX="90.0" layoutY="238.0" prefHeight="22.0" prefWidth="420.0" text="Spiacenti, UserID o Password non sono corretti/Utente non vaccinato!" />
+      <Label id="CheckPassword" layoutX="90.0" layoutY="238.0" prefHeight="22.0" prefWidth="420.0" text="Spiacenti, UserID o Password non sono corretti/Utente non vaccinato!" visible="false" />
       <Label layoutX="161.0" layoutY="284.0" text="Non hai un account?">
          <font>
             <Font size="15.0" />
