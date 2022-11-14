@@ -65,7 +65,7 @@ public class RegistrationFormVaccinato implements Initializable{
             || datiVaccinato[7].equals("")|| datiVaccinato[8].equals("")|| datiVaccinato[9].equals("")|| datiVaccinato[10].equals("")|| datiVaccinato[11].equals("")
             || datiVaccinato[12].equals("")|| datiVaccinato[13].equals("")|| datiVaccinato[14].equals("")){
                 checkCampi.setVisible(true);
-            }else{
+            }else{                
                 idUnivocoVaccinato.setVisible(true);
                 checkCampi.setVisible(false);
                 idUnivocoVaccinato.setText(datiVaccinato[3].toString());
@@ -74,9 +74,6 @@ public class RegistrationFormVaccinato implements Initializable{
                 datiVaccinato[6] +" - " +datiVaccinato[7] +" - " +datiVaccinato[8] +" - " +datiVaccinato[9] +" - " +datiVaccinato[10] +" - " +datiVaccinato[11] +" - " +datiVaccinato[12] +" - "+datiVaccinato[13]+" - "+
                 datiVaccinato[14]);
             }
-                
-            
-        
     }
     private Object [] getDati(){
         String nomeVaccinato = this.nomeVaccinato.getText();
