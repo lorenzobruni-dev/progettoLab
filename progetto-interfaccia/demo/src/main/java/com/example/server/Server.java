@@ -1,7 +1,9 @@
 package com.example.server;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,8 +18,11 @@ import com.example.models.Qualificatore;
 import com.example.models.TipoCentro;
 import com.example.models.TipoVaccino;
 
-public class Server {
+public class Server extends UnicastRemoteObject implements interfacciaServer{
     
+    public Server() throws RemoteException{
+        super();
+    }
     private static Connection connection = null;
 
     public static void main(String[] args) {

@@ -1,5 +1,9 @@
 package com.example;
 import java.io.IOException;
+import java.sql.SQLException;
+
+import com.example.server.istanzaServer;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,14 +19,16 @@ public class LoginOperatori {
     @FXML
     TextField password = new TextField();
     @FXML
-    private void sceltaOp() throws IOException {
+    private void sceltaOp() throws IOException, SQLException {
+        istanzaServer.server.ApriConnessioneDB(passwordCredential, userCredential, passwordCredential);
         
         String user = usernameOperatore.getText();
         String pwd = password.getText();
         System.out.println("Username: " + user + " - " + "Password : " + pwd);
         loginConfirm = validateLogin(user,pwd);
         if(loginConfirm)
-        App.setRoot("SceltaOperatore");
+        {App.setRoot("SceltaOperatore");
+        istanzaServer.server.ChiudiConnessioneDB();}
         else 
         CheckPassword.setVisible(true);
     }
