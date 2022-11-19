@@ -1,7 +1,12 @@
 package com.example;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.rmi.NotBoundException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.sql.SQLException;
 
+import com.example.server.interfacciaServer;
 import com.example.server.istanzaServer;
 
 import javafx.fxml.FXML;
@@ -21,9 +26,13 @@ public class LoginOperatori {
     TextField password = new TextField();
 
     @FXML
-    private void sceltaOp() throws IOException, SQLException {        
+    private void sceltaOp() throws IOException, SQLException, ClassNotFoundException, NotBoundException {        
         String user = usernameOperatore.getText();
         String pwd = password.getText();
+        InetAddress address = InetAddress.getByName("13.49.141.18");
+        Registry registro = LocateRegistry.getRegistry("13.49.141.18",5432);
+        istanzaServer.server = (interfacciaServer) registro.lookup("ServerCentro");
+        istanzaServer.server.ApriConnessioneDB("mouse.db.elephantsql.com","czofsewc","sK90CQy9Jjx3gA_En10TfRZbquo33E62");
         System.out.println("Username: " + user + " - " + "Password : " + pwd);
         loginConfirm = validateLogin(user,pwd);
         if(loginConfirm)

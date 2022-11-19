@@ -31,16 +31,17 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         try{
             Server server = new Server();
             Registry registro = LocateRegistry.createRegistry(5462);
-            registro.rebind("", server);
+            registro.rebind("ServerCentro", server);
         }catch(Exception e){
             System.out.println(e);
         }
     }
-
-    public boolean ApriConnessioneDB(String url, String username, String password) {
+    
+    public boolean ApriConnessioneDB(String url,String user,String password) throws ClassNotFoundException {
         System.out.println("Provo a connettermi al db...");
         try {
-            connection = DriverManager.getConnection(url, username, password);
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(url,user,password);
             System.out.println("Connesso al db con successo...");
         } catch (SQLException e) {
             System.out.println(e.getMessage());

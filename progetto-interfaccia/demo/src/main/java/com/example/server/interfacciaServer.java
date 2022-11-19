@@ -11,7 +11,7 @@ import com.example.models.loginCentro;
 
 public interface interfacciaServer extends Remote{
     
-    boolean ApriConnessioneDB(String url, String username, String password) throws RemoteException;
+    boolean ApriConnessioneDB(String url, String username, String password) throws RemoteException, ClassNotFoundException;
     void ChiudiConnessioneDB() throws RemoteException, SQLException;
     ArrayList<CittadinoVaccinato> getCittadiniVaccinati(String centro) throws RemoteException;
     ArrayList<CentroVaccinale> getCentriVaccinali() throws RemoteException;
