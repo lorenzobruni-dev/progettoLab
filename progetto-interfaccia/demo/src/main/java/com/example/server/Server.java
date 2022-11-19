@@ -16,7 +16,9 @@ import com.example.models.CittadinoVaccinato;
 import com.example.models.Indirizzo;
 import com.example.models.Qualificatore;
 import com.example.models.TipoCentro;
+import com.example.models.TipoRuolo;
 import com.example.models.TipoVaccino;
+import com.example.models.loginCentro;
 
 public class Server extends UnicastRemoteObject implements interfacciaServer{
     
@@ -95,5 +97,24 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
 
         System.out.println(cittadiniVaccinati);
         return cittadiniVaccinati;
+    }
+    public ArrayList<loginCentro> getDatiLogin(){
+        System.out.println("Recupero dati login...");
+        ArrayList<loginCentro> loginCentro = new ArrayList<>();
+
+        String query = "INSERT INTO public.Login (username, password, ruolo) VALUES ('{admin}', '{admin}', '{operatore}');";
+
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+
+            while(rs.next()){
+                loginCentro.add(new loginCentro(rs.getString(0), rs.getString(1),TipoRuolo.valueOf(rs.getString(2))));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        System.out.println(loginCentro);
+        return loginCentro;
     }
 }

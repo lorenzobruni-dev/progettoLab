@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.example.models.CentroVaccinale;
 import com.example.models.CittadinoVaccinato;
+import com.example.models.loginCentro;
 
 public interface interfacciaServer extends Remote{
     
@@ -14,5 +15,6 @@ public interface interfacciaServer extends Remote{
     void ChiudiConnessioneDB() throws RemoteException, SQLException;
     ArrayList<CittadinoVaccinato> getCittadiniVaccinati(String centro) throws RemoteException;
     ArrayList<CentroVaccinale> getCentriVaccinali() throws RemoteException;
+    ArrayList <loginCentro> getDatiLogin() throws RemoteException;
 
 }
