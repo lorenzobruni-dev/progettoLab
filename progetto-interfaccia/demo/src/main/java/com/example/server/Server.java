@@ -56,11 +56,33 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         connection.close();
     }
 
-    public ArrayList<CentroVaccinale> getCentriVaccinali() {
+    public ArrayList<CentroVaccinale> getCentriVaccinaliByName(String nomeCentro) {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM CentriVaccinali";
+        String query = "SELECT * FROM CentriVaccinali WHERE nome ='" + nomeCentro + "'";
+
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+
+            while(rs.next()){
+                centriVaccinali.add(new CentroVaccinale(rs.getString(1), new Indirizzo(Qualificatore.valueOf(rs.getString(2)), rs.getString(3),
+                rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8))));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(centriVaccinali);
+        return centriVaccinali;
+    }
+
+    public ArrayList<CentroVaccinale> getCentriVaccinaliByType(String comune, TipoCentro tipoCentro) {
+        ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
+        System.out.println("Recupero elenco centri vaccinali...");
+
+        String query = "SELECT * FROM CentriVaccinali WHERE ???";
 
         try{
             Statement statement = connection.createStatement();
