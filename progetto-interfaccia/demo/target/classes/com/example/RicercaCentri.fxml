@@ -5,48 +5,63 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="866.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RicercaCentri">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RicercaCentri">
    <children>
-      <Label layoutX="309.0" layoutY="14.0" text="Ricerca centri vaccinali">
+      <Label layoutX="176.0" layoutY="14.0" text="Ricerca centri vaccinali">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="nomeCentroVaccinale" layoutX="24.0" layoutY="253.0" prefHeight="26.0" prefWidth="234.0" promptText="Nome Centro vaccinale" style="-fx-background-color: white;">
+      <Button id="IndietroRicerca" layoutX="29.0" layoutY="17.0" mnemonicParsing="false" onAction="#backToHub" text="Indietro">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField id="NomeCentroVaccinale" layoutX="24.0" layoutY="115.0" prefHeight="26.0" prefWidth="234.0" promptText="Nome Centro vaccinale" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField fx:id="comuneCentroVaccinale" layoutX="24.0" layoutY="253.0" prefHeight="26.0" prefWidth="234.0" promptText="Comune" style="-fx-background-color: white;" visible="false">
+      <TextField id="ComuneCentroVaccinale" layoutX="24.0" layoutY="158.0" prefHeight="26.0" prefWidth="130.0" promptText="Comune" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <ComboBox fx:id="tipologiaCentroVaccinale" editable="true" layoutX="24.0" layoutY="301.0" prefHeight="26.0" prefWidth="130.0" promptText="Tipologia" style="-fx-background-color: white;" visible="false" visibleRowCount="3">
+      <ComboBox id="ProvinciaCentroVaccinale" editable="true" layoutX="165.0" layoutY="158.0" prefHeight="26.0" prefWidth="96.0" promptText="Provincia" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <Separator layoutX="270.0" layoutY="57.0" orientation="VERTICAL" prefHeight="546.0" prefWidth="14.0" />
-      <TableView fx:id="tabellaCentri" layoutX="291.0" layoutY="57.0" prefHeight="546.0" prefWidth="545.0">
-        <columns>
-          <TableColumn prefWidth="544.0" text="Nome Centro" />
-        </columns>
+      <TextField id="IndirizzoCentroVaccinale" layoutX="24.0" layoutY="200.0" prefHeight="26.0" prefWidth="176.0" promptText="Indirizzo" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <TextField id="CAPCentroVaccinale" layoutX="211.0" layoutY="200.0" prefHeight="26.0" prefWidth="49.0" promptText="CAP" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <ComboBox id="TipologiaCentroVaccinale" editable="true" layoutX="24.0" layoutY="241.0" prefHeight="26.0" prefWidth="130.0" promptText="Tipologia" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </TableView>
-      <Label layoutX="23.0" layoutY="219.0" text="Nome centro" />
-      <Label layoutX="154.0" layoutY="219.0" text="Comune e tipologia" />
-      <Button id="indietro" layoutX="23.0" layoutY="20.0" mnemonicParsing="false" onAction="#backToHub" text="Indietro" />
-      <Button fx:id="cercaCentri" layoutX="23.0" layoutY="302.0" mnemonicParsing="false" onAction="#cercaCentri" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: Blue;" text="Cerca" textFill="#ffffff" />
-      <Slider fx:id="slider" blockIncrement="1.0" layoutX="107.0" layoutY="221.0" majorTickUnit="1.0" max="1.0" minorTickCount="0" onScrollFinished="#valueChanged" prefHeight="14.0" prefWidth="14.0" snapToTicks="true" />
+      </ComboBox>
+      <Button id="CercaCentro" layoutX="24.0" layoutY="284.0" mnemonicParsing="false" onAction="#ricercaCentro" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: Blue;" text="Cerca" textFill="#f8f3f3">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextArea id="AreaVisualizzazioneRicerca" layoutX="300.0" layoutY="84.0" prefHeight="282.0" prefWidth="286.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextArea>
+      <Separator layoutX="277.0" layoutY="85.0" orientation="VERTICAL" prefHeight="282.0" prefWidth="14.0" />
    </children>
 </AnchorPane>

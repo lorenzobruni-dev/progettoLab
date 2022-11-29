@@ -4,11 +4,7 @@ public class CentroVaccinale {
     String nome;
     Indirizzo indirizzo;
     TipoCentro tipoCentro;
-
-    public CentroVaccinale(String nome) {
-        this.nome = nome;
-    }
-
+    
     public CentroVaccinale(String nome, Indirizzo indirizzo, TipoCentro tipoCentro) {
         this.nome = nome;
         this.indirizzo = indirizzo;
