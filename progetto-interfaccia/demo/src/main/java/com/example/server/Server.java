@@ -24,14 +24,17 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
     
     public Server() throws RemoteException{
         super();
+        System.setProperty("java.rmi.server.hostname", "localhost");
     }
     private static Connection connection = null;
 
     public static void main(String[] args) {
         try{
+            final int PORT = 9090;
+            
             Server server = new Server();
-            Registry registro = LocateRegistry.createRegistry(5462);
-            registro.rebind("ServerCentro", server);
+            Registry registro = LocateRegistry.createRegistry(PORT);
+            registro.rebind("server", server);
         }catch(Exception e){
             System.out.println(e);
         }
