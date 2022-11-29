@@ -26,7 +26,6 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
     
     public Server() throws RemoteException{
         super();
-        System.setProperty("java.rmi.server.hostname", "localhost");
     }
     private static Connection connection = null;
 
@@ -36,7 +35,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
             
             Server server = new Server();
             Registry registro = LocateRegistry.createRegistry(PORT);
-            registro.rebind("server", server);
+            registro.rebind("ServerCentro", server);
         }catch(Exception e){
             System.out.println(e);
         }
