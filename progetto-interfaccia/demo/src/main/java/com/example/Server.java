@@ -1,4 +1,4 @@
-package com.example.server;
+package com.example;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -20,6 +20,8 @@ import com.example.models.TipoRuolo;
 import com.example.models.TipoVaccino;
 import com.example.models.loginCentro;
 
+
+
 public class Server extends UnicastRemoteObject implements interfacciaServer{
     
     public Server() throws RemoteException{
@@ -27,17 +29,17 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
     }
     private static Connection connection = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         try{
             Server server = new Server();
-            Registry registro = LocateRegistry.createRegistry(1099);
+            Registry registro = LocateRegistry.createRegistry(9090);
             registro.rebind("ServerCentro", server);
         }catch(Exception e){
             System.out.println(e);
         }
     }
     
-    public boolean ApriConnessioneDB(String url,String user,String password) throws ClassNotFoundException {
+    public synchronized boolean ApriConnessioneDB(String url,String user,String password) throws ClassNotFoundException, RemoteException {
         System.out.println("Provo a connettermi al db...");
         try {
             Class.forName("org.postgresql.Driver");
@@ -51,12 +53,12 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         return true;
     }
 
-    public void ChiudiConnessioneDB() throws SQLException {
+    public synchronized void ChiudiConnessioneDB() throws SQLException, RemoteException {
         System.out.println("Chiudo connessione db...");
         connection.close();
     }
 
-    public ArrayList<CentroVaccinale> getCentriVaccinaliByName(String nomeCentro) {
+    public synchronized ArrayList<CentroVaccinale> getCentriVaccinaliByName(String nomeCentro) throws RemoteException {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
@@ -78,7 +80,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         return centriVaccinali;
     }
 
-    public ArrayList<CentroVaccinale> getCentriVaccinaliByType(String comune, TipoCentro tipoCentro) {
+    public synchronized ArrayList<CentroVaccinale> getCentriVaccinaliByType(String comune, TipoCentro tipoCentro) throws RemoteException {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
@@ -100,7 +102,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         return centriVaccinali;
     }
 
-    public ArrayList<CittadinoVaccinato> getCittadiniVaccinati(String centro) {
+    public synchronized ArrayList<CittadinoVaccinato> getCittadiniVaccinati(String centro) throws RemoteException {
         ArrayList<CittadinoVaccinato> cittadiniVaccinati = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
@@ -121,7 +123,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         System.out.println(cittadiniVaccinati);
         return cittadiniVaccinati;
     }
-    public ArrayList<loginCentro> getDatiLogin(){
+    public synchronized ArrayList<loginCentro> getDatiLogin() throws RemoteException {
         System.out.println("Recupero dati login...");
         ArrayList<loginCentro> loginCentro = new ArrayList<>();
 

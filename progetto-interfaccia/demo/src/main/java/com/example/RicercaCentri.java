@@ -7,7 +7,6 @@ import com.example.models.CentroVaccinale;
 import com.example.models.Indirizzo;
 import com.example.models.Qualificatore;
 import com.example.models.TipoCentro;
-import com.example.server.istanzaServer;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

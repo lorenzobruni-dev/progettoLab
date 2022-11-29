@@ -1,4 +1,4 @@
-package com.example.server;
+package com.example;
 
 public class istanzaServer {
     
