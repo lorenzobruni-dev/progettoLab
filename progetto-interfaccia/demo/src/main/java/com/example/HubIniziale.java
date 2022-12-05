@@ -23,9 +23,9 @@ public class HubIniziale implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try{
-            Registry registro = LocateRegistry.getRegistry("192.168.1.101", 9090);
+            Registry registro = LocateRegistry.getRegistry("localhost", 9090);
             istanzaServer.server = (interfacciaServer) registro.lookup("ServerCentro");
-            istanzaServer.server.ApriConnessioneDB("mouse.db.elephantsql.com","czofsewc","sK90CQy9Jjx3gA_En10TfRZbquo33E62");
+            istanzaServer.server.ApriConnessioneDB("jdbc:postgresql://mouse.db.elephantsql.com","czofsewc","sK90CQy9Jjx3gA_En10TfRZbquo33E62");
         }catch(Exception e){
             System.out.println("Errore : "+e);
         }
