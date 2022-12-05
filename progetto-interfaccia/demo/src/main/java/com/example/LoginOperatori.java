@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.sql.SQLException;
 
+import com.example.models.TipoRuolo;
+import com.example.models.loginCentro;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,6 +26,7 @@ public class LoginOperatori {
     private void sceltaOp() throws IOException, SQLException, ClassNotFoundException, NotBoundException {        
         String user = usernameOperatore.getText();
         String pwd = password.getText();
+        loginCentro login = new loginCentro(user, pwd ,TipoRuolo.OPERATORE);
         System.out.println("Username: " + user + " - " + "Password : " + pwd);
         loginConfirm = validateLogin(user,pwd);
         if(loginConfirm)
@@ -44,3 +48,4 @@ public class LoginOperatori {
         else return false;
     }
 }
+
