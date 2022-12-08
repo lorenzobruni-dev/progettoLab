@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.example.models.CentroVaccinale;
+import com.example.models.CittadinoRegistrato;
 import com.example.models.CittadinoVaccinato;
 import com.example.models.Indirizzo;
 import com.example.models.Qualificatore;
@@ -123,6 +124,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         System.out.println(cittadiniVaccinati);
         return cittadiniVaccinati;
     }
+
     public synchronized ArrayList<loginCentro> getDatiLogin() throws RemoteException {
         System.out.println("Recupero dati login...");
         ArrayList<loginCentro> loginCentro = new ArrayList<>();
@@ -141,5 +143,27 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         }
         System.out.println(loginCentro);
         return loginCentro;
+    }
+
+    public synchronized ArrayList<CittadinoRegistrato> getCittadiniRegistrati() throws RemoteException {
+        System.out.println("Recupero dati registrati...");
+        ArrayList<CittadinoRegistrato> cittadiniRegistrati = new ArrayList<>();
+
+        String query = "SELECT * FROM public.\"CittadiniRegistrati\";";
+
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+
+            while(rs.next()){
+                cittadiniRegistrati.add(new CittadinoRegistrato(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4),
+                rs.getString(5), rs.getString(6), rs.getString(7)));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        System.out.println(cittadiniRegistrati);
+        return cittadiniRegistrati;
     }
 }

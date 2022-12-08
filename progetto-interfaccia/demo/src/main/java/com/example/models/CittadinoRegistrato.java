@@ -41,4 +41,10 @@ public class CittadinoRegistrato extends Cittadino{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "CittadinoRegistrato: [nome=" + nome + ", cognome=" + cognome + ", codice fiscale=" + codiceFiscale + ", id=" + idVaccinazione + 
+        ", email=" + email + ", userid=" + userid + ", password=" + password + "]";
+    }
 }

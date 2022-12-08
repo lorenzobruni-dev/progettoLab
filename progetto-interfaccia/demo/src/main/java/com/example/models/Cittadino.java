@@ -1,6 +1,8 @@
 package com.example.models;
 
-public class Cittadino {
+import java.io.Serializable;
+
+public class Cittadino implements Serializable{
     String nome;
     String cognome;
     String codiceFiscale;
