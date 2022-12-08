@@ -1,18 +1,23 @@
 package com.example.models;
 
-public class loginCentro {
+import java.io.Serializable;
+
+public class loginCentro implements Serializable{
     String user;
     String password;
-    TipoRuolo tipoRuolo;
     
-    public loginCentro(String user, String password, TipoRuolo tipoRuolo) {
+    public loginCentro(String user, String password) {
         this.user = user;
         this.password = password;
-        this.tipoRuolo = tipoRuolo;
     }
 
     public String getUser() {
         return user;
+    }
+
+    @Override
+    public String toString() {
+        return "loginCentro [user=" + user + ", password=" + password + "]";
     }
 
     public void setUser(String user) {
@@ -25,13 +30,5 @@ public class loginCentro {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public TipoRuolo getTipoRuolo() {
-        return tipoRuolo;
-    }
-
-    public void setTipoRuolo(TipoRuolo tipoRuolo) {
-        this.tipoRuolo = tipoRuolo;
     }
 }

@@ -17,7 +17,6 @@ import com.example.models.CittadinoVaccinato;
 import com.example.models.Indirizzo;
 import com.example.models.Qualificatore;
 import com.example.models.TipoCentro;
-import com.example.models.TipoRuolo;
 import com.example.models.TipoVaccino;
 import com.example.models.loginCentro;
 
@@ -34,7 +33,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         try{
             Server server = new Server();
             Registry registro = LocateRegistry.createRegistry(9090);
-            registro.rebind("server", server);
+            registro.rebind("ServerCentro", server);
         }catch(Exception e){
             System.out.println(e);
         }
@@ -45,7 +44,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url,user,password);
-            System.out.println("Connesso al db con successo...");
+            System.out.println("Connesso al db con successo");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -129,14 +128,14 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         System.out.println("Recupero dati login...");
         ArrayList<loginCentro> loginCentro = new ArrayList<>();
 
-        String query = "INSERT INTO public.Login (username, password, ruolo) VALUES ('{admin}', '{admin}', '{operatore}');";
+        String query = "SELECT * FROM public.\"Login\";";
 
         try{
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
             while(rs.next()){
-                loginCentro.add(new loginCentro(rs.getString(0), rs.getString(1),TipoRuolo.valueOf(rs.getString(2))));
+                loginCentro.add(new loginCentro(rs.getString(1), rs.getString(2)));
             }
         }catch(SQLException e){
             e.printStackTrace();

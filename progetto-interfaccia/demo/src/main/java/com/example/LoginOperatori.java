@@ -2,8 +2,8 @@ package com.example;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import com.example.models.TipoRuolo;
 import com.example.models.loginCentro;
 
 import javafx.fxml.FXML;
@@ -11,10 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LoginOperatori {
-    String userCredential = "admin";
-    String passwordCredential = "admin";
-    boolean loginConfirm = false;
-
     @FXML
     Label CheckPassword = new Label();
     @FXML
@@ -26,13 +22,11 @@ public class LoginOperatori {
     private void sceltaOp() throws IOException, SQLException, ClassNotFoundException, NotBoundException {        
         String user = usernameOperatore.getText();
         String pwd = password.getText();
-        loginCentro login = new loginCentro(user, pwd ,TipoRuolo.OPERATORE);
+        ArrayList <loginCentro> loginOperatoriCentro = new ArrayList<>();
+        loginOperatoriCentro = istanzaServer.server.getDatiLogin();
+        System.out.println(loginOperatoriCentro.toString());
         System.out.println("Username: " + user + " - " + "Password : " + pwd);
-        loginConfirm = validateLogin(user,pwd);
-        if(loginConfirm)
-        {App.setRoot("SceltaOperatore");}
-        else 
-        CheckPassword.setVisible(true);
+        validateLogin(user,pwd,loginOperatoriCentro);        
     }
 
     @FXML
@@ -40,12 +34,20 @@ public class LoginOperatori {
         App.setRoot("HubIniziale");
     }
 
-    //Metodi integrati all'FXML
-    private boolean validateLogin(String user, String pwd)
+    
+    private void validateLogin(String user, String pwd, ArrayList<loginCentro> loginOperatoriCentro)
     {   
-        if(userCredential.equals(user) && passwordCredential.equals(pwd))
-        return true;
-        else return false;
+        if(!loginOperatoriCentro.isEmpty())
+        {loginOperatoriCentro.forEach((e)->{
+            if(e.getUser().toString().equals("{"+ user + "}") && e.getPassword().toString().equals("{"+ pwd + "}"))
+                try {
+                    App.setRoot("SceltaOperatore");
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            else CheckPassword.setVisible(true);
+    });}
+        
     }
 }
-

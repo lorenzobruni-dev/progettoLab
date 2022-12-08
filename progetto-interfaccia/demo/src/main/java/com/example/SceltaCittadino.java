@@ -65,7 +65,7 @@ public class SceltaCittadino {
                     accountText.setVisible(true);
                     registrationButton.setVisible(true);
                 }
-            });;
+            });
         } else {
             System.out.println("nessun cittadino registrato");
         }
