@@ -10,9 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 public class HubIniziale implements Initializable{
-
+    
     @FXML
     private void apriSezioneOperatore() throws IOException {
+
         App.setRoot("LoginOperatori");
     }
     @FXML

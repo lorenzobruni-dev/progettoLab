@@ -2,6 +2,7 @@ package com.example;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -35,14 +36,22 @@ public class RegistrationFormCentroVaccinale implements Initializable{
     
     @FXML
     private void registraCentroVaccinale() throws IOException {
-        String []datiCentro = getDati();
+        ArrayList <String> datiCentro = new ArrayList<>();
+        datiCentro = getDati();
         try{
-            if(datiCentro[0].equals("") || datiCentro[1].equals("")|| datiCentro[2].equals("")|| 
-            datiCentro[3].equals("")|| datiCentro[4].equals("")|| datiCentro[5].equals(""))
+            if(datiCentro.get(0).equals("") || datiCentro.get(1).equals("")|| datiCentro.get(2).equals("")|| 
+            datiCentro.get(3).equals("")|| datiCentro.get(4).equals("")|| datiCentro.get(5).equals(""))
                 CheckCampi.setVisible(true);
             else{
-                System.out.print("Dati Centro :");
-                System.out.print(datiCentro[0] +" - " + datiCentro[1] +" - " + datiCentro[2] +" - " + datiCentro[3] +" - " + datiCentro[4] +" - " + datiCentro[5] +" - ");
+                // System.out.print("Dati Centro :");
+                // datiCentro.forEach((d.) -> System.out.println(d));
+                System.out.print("Client : " + (datiCentro.get(0).substring(0,1).toUpperCase() + datiCentro.get(0).substring(1).toLowerCase())
+                                                +" - " + datiCentro.get(1).substring(0,1).toUpperCase() + datiCentro.get(1).substring(1).toLowerCase() 
+                                                +" - " + datiCentro.get(2)
+                                                +" - " + datiCentro.get(3).substring(0,1).toUpperCase() + datiCentro.get(2).substring(1).toLowerCase()
+                                                +" - " + datiCentro.get(4) 
+                                                +" - " + datiCentro.get(5));
+
             }
         }catch(Exception e){
             System.out.print("Errore : " +e);
@@ -50,15 +59,17 @@ public class RegistrationFormCentroVaccinale implements Initializable{
     }
 
 
-    public String[] getDati(){
-        String nomecentro =  NomeCentroVaccinale.getText();
-        String comuneCentro = ComuneCentroVaccinale.getText();
-        String provinciaCentro = ProvinciaCentroVaccinale.getValue();
-        String indirizzoCentro = IndirizzoCentroVaccinale.getText();
-        String capCentro = CAPCentroVaccinale.getText();
-        String tipologiaCentro = TipologiaCentroVaccinale.getValue();
-        String [] arrayCentro = {nomecentro,comuneCentro,provinciaCentro,indirizzoCentro,capCentro,tipologiaCentro};
-        return arrayCentro;
+    public ArrayList<String> getDati(){
+
+        ArrayList<String> dati = new ArrayList<>();
+
+        dati.add(NomeCentroVaccinale.getText());
+        dati.add(ComuneCentroVaccinale.getText());
+        dati.add(ProvinciaCentroVaccinale.getValue());
+        dati.add(IndirizzoCentroVaccinale.getText());
+        dati.add(CAPCentroVaccinale.getText());
+        dati.add(TipologiaCentroVaccinale.getValue());
+        return dati;
     }
 
 
