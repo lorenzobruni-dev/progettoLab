@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.example.models.CentroVaccinale;
 import com.example.models.SigleProvince;
 
 import javafx.collections.FXCollections;

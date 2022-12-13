@@ -3,8 +3,11 @@ package com.example;
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import com.example.models.SigleProvince;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -47,7 +50,7 @@ public class RegistrationFormVaccinato implements Initializable{
     @FXML
     ComboBox <String> nomeVaccino;
     @FXML
-    ComboBox <String> provinciaCentroVaccinale;
+    ComboBox <SigleProvince> provinciaCentroVaccinale;
     @FXML
     ComboBox <String> tipologiaCentroVaccinale;
     @FXML
@@ -58,45 +61,58 @@ public class RegistrationFormVaccinato implements Initializable{
     @FXML
     private void registraVaccinato() throws IOException {
         
-        Object [] datiVaccinato = getDati();
-            if(datiVaccinato[0].equals("") || datiVaccinato[1].equals("")|| datiVaccinato[2].equals("")|| 
-            datiVaccinato[3].equals("")|| datiVaccinato[4].equals("")|| datiVaccinato[5].equals("")|| datiVaccinato[6].equals("")
-            || datiVaccinato[7].equals("")|| datiVaccinato[8].equals("")|| datiVaccinato[9].equals("")|| datiVaccinato[10].equals("")|| datiVaccinato[11].equals("")
-            || datiVaccinato[12].equals("")|| datiVaccinato[13].equals("")|| datiVaccinato[14].equals("")){
+        ArrayList<String> datiVaccinato = getDati();
+        ArrayList<SigleProvince> datoSigla = getDatiProvincia();
+            if(datiVaccinato.get(0).equals("") || 
+               datiVaccinato.get(1).equals("") || 
+               datiVaccinato.get(2).equals("") ||
+               datiVaccinato.get(3).equals("") ||
+               datiVaccinato.get(4).equals("") ||
+               datiVaccinato.get(5).equals("") ||
+               datiVaccinato.get(6).equals("") ||
+               datiVaccinato.get(7).equals("") ||
+               datiVaccinato.get(8).equals("") ||
+               datiVaccinato.get(9).equals("") ||
+               datiVaccinato.get(10).equals("") ||
+               datiVaccinato.get(11).equals("") ||
+               datiVaccinato.get(12).equals("") ||
+               datiVaccinato.get(13).equals("") ||
+               datiVaccinato.get(14).equals("") || 
+               datoSigla.get(0).toString().equals("")){
                 checkCampi.setVisible(true);
             }else{                
                 idUnivocoVaccinato.setVisible(true);
                 checkCampi.setVisible(false);
-                idUnivocoVaccinato.setText(datiVaccinato[3].toString());
-                System.out.print("Dati Centro :");
-                System.out.print(datiVaccinato[0] +" - " + datiVaccinato[1] +" - " + datiVaccinato[2] +" - " + datiVaccinato[3] +" - " + datiVaccinato[4] +" - " + datiVaccinato[5] +" - " +
-                datiVaccinato[6] +" - " +datiVaccinato[7] +" - " +datiVaccinato[8] +" - " +datiVaccinato[9] +" - " +datiVaccinato[10] +" - " +datiVaccinato[11] +" - " +datiVaccinato[12] +" - "+datiVaccinato[13]+" - "+
-                datiVaccinato[14]);
+                idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
+                System.out.println("Dati Centro :");
+                System.out.println(datiVaccinato);
+                System.out.println(datoSigla);
             }
     }
-    private Object [] getDati(){
-        String nomeVaccinato = this.nomeVaccinato.getText();
-        String cognomeVaccinato = this.cognomeVaccinato.getText();
-        String cfVaccinato = this.cfVaccinato.getText();
-        String idUnivocoVaccinato = generazioneIDUnivoco();
-        String nomeCentroVaccinale = this.nomeCentroVaccinale.getText();
-        String comuneCentroVaccinale = this.comuneCentroVaccinale.getText();
-        String capCentroVaccinale = this.capCentroVaccinale.getText();
-        String indirizzoCentroVaccinale = this.indirizzoCentroVaccinale.getText();
-
-        String dataVaccinato = this.dataVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));;
-        String dataSommVaccinato = this.dataSommVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));;
-
-        String genereVaccinato = this.genereVaccinato.getValue();
-        String nomeVaccino = this.nomeVaccino.getValue();
-        String tipologiaCentroVaccinale = this.tipologiaCentroVaccinale.getValue();
-        String provinciaCentroVaccinale = this.provinciaCentroVaccinale.getValue();
-
-        Object [] datiVaccinato = {nomeVaccinato,cognomeVaccinato,cfVaccinato,idUnivocoVaccinato,nomeCentroVaccinale,
-        comuneCentroVaccinale,capCentroVaccinale,capCentroVaccinale,indirizzoCentroVaccinale,dataVaccinato,
-        dataSommVaccinato,genereVaccinato,nomeVaccino,tipologiaCentroVaccinale,provinciaCentroVaccinale};
-
-        return datiVaccinato;
+    public ArrayList<SigleProvince> getDatiProvincia(){
+        ArrayList<SigleProvince> dati = new ArrayList<>();
+        dati.add(provinciaCentroVaccinale.getValue());
+        return dati;
+    }
+    public ArrayList<String> getDati(){
+        ArrayList<String> dati = new ArrayList<>();
+        String IdUnivoco = generazioneIDUnivoco();
+        dati.add(nomeVaccinato.getText());
+        dati.add(cognomeVaccinato.getText());
+        dati.add(dataVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString());
+        dati.add(genereVaccinato.getValue());
+        dati.add(cfVaccinato.getText());
+        dati.add(dataSommVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString());
+        dati.add(nomeVaccino.getValue());
+        dati.add(IdUnivoco);
+        dati.add(nomeCentroVaccinale.getText());
+        dati.add(comuneCentroVaccinale.getText());
+        dati.add(comuneCentroVaccinale.getText());
+        dati.add(capCentroVaccinale.getText());
+        dati.add(indirizzoCentroVaccinale.getText());
+        dati.add(comuneCentroVaccinale.getText());
+        dati.add(tipologiaCentroVaccinale.getValue());
+        return dati;
     }
 
     private String generazioneIDUnivoco(){
@@ -115,7 +131,7 @@ public class RegistrationFormVaccinato implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         genereVaccinato.setItems(FXCollections.observableArrayList("Male","Female","Altro/a","MUCCA"));
         nomeVaccino.setItems(FXCollections.observableArrayList("AstraZeneca","J&J","Pfizer", "Moderna"));
-        provinciaCentroVaccinale.setItems(FXCollections.observableArrayList("VA","MI","BE"));
+        provinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
         tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("Hub","Ospedale","Centro"));
     }
 
