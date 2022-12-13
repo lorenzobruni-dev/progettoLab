@@ -34,7 +34,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         try{
             Server server = new Server();
             Registry registro = LocateRegistry.createRegistry(9090);
-            registro.rebind("server", server);
+            registro.rebind("ServerCentro", server);
         }catch(Exception e){
             System.out.println(e);
         }
