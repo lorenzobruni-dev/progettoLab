@@ -41,7 +41,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </DatePicker>
-      <ComboBox id="Genere" fx:id="genereVaccinato" editable="true" layoutX="193.0" layoutY="146.0" prefHeight="26.0" prefWidth="81.0" promptText="Genere" style="-fx-background-color: White;" visibleRowCount="3">
+      <ComboBox id="Genere" fx:id="genereVaccinato" layoutX="193.0" layoutY="146.0" prefHeight="26.0" prefWidth="81.0" promptText="Genere" style="-fx-background-color: White;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -61,7 +61,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </DatePicker>
-      <ComboBox id="Vaccino" fx:id="nomeVaccino" editable="true" layoutX="36.0" layoutY="305.0" prefHeight="26.0" prefWidth="111.0" promptText="Vaccino" style="-fx-background-color: white;" visibleRowCount="3">
+      <ComboBox id="Vaccino" fx:id="nomeVaccino" layoutX="36.0" layoutY="305.0" prefHeight="26.0" prefWidth="111.0" promptText="Vaccino" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -96,12 +96,12 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <ComboBox id="TipologiaCentroVaccinale" fx:id="tipologiaCentroVaccinale" editable="true" layoutX="331.0" layoutY="227.0" prefHeight="26.0" prefWidth="126.0" promptText="Tipologia" style="-fx-background-color: white;" visibleRowCount="3">
+      <ComboBox id="TipologiaCentroVaccinale" fx:id="tipologiaCentroVaccinale" layoutX="331.0" layoutY="227.0" prefHeight="26.0" prefWidth="126.0" promptText="Tipologia" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <ComboBox id="ProvinciaCentroVaccinale" fx:id="provinciaCentroVaccinale" editable="true" layoutX="466.0" layoutY="227.0" prefHeight="26.0" prefWidth="94.0" promptText="Provincia" style="-fx-background-color: white;" visibleRowCount="3">
+      <ComboBox id="ProvinciaCentroVaccinale" fx:id="provinciaCentroVaccinale" layoutX="466.0" layoutY="227.0" prefHeight="26.0" prefWidth="94.0" promptText="Provincia" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
