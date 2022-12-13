@@ -58,16 +58,18 @@ public class RegistrationFormCittadino {
         ArrayList<String> dati = getDati();
 
         dati.forEach((d) -> {
-            if(d == "" || d == null) {
+            if(d.equals("")) {
                 isInvalid = true;
             }
         });
 
-        if((dati.get(6) != "" && dati.get(6) != "")){
-            if (!dati.get(6).equals(dati.get(7))) {
+        if((dati.get(6) != "" && dati.get(7) != "")){
+            if (!(dati.get(6).equals(dati.get(7)))) {
                 isInvalid = true;
             }
         }
+
+        System.out.println(isInvalid);
 
         if (isInvalid) {
             campoCheckRegUtente.setVisible(true);
@@ -75,6 +77,8 @@ public class RegistrationFormCittadino {
             campoCheckRegUtente.setVisible(false);
 
             cittadino = new CittadinoRegistrato(dati.get(0), dati.get(1), dati.get(2), dati.get(3), dati.get(4), dati.get(5), dati.get(6));
+
+            istanzaServer.server.registraCittadino(cittadino);
             
             dati.forEach((d) -> System.out.println(d));
 

@@ -22,4 +22,5 @@ public interface interfacciaServer extends Remote{
     ArrayList<CentroVaccinale> getCentriVaccinaliByType(String comune, TipoCentro tipoCentro) throws RemoteException;
     ArrayList <loginCentro> getDatiLogin() throws RemoteException;
     ArrayList<CittadinoRegistrato> getCittadiniRegistrati() throws RemoteException;
+    void registraCittadino(CittadinoRegistrato registrato) throws RemoteException;
 }

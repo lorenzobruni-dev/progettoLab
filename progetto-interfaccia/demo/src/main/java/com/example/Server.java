@@ -166,4 +166,18 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         System.out.println(cittadiniRegistrati);
         return cittadiniRegistrati;
     }
+
+    public synchronized void registraCittadino(CittadinoRegistrato registrato) throws RemoteException {
+
+        System.out.println("Registro cittadino...");
+
+        String query = "INSERT INTO public.\"CittadiniRegistrati\" (codice_fiscale, nome, cognome, id_vaccinazione, email, \"user\", password) VALUES ('{" + registrato.getCodiceFiscale() + "}'::character varying[], \'{" + registrato.getNome() + "}\'::character varying[], '{" + registrato.getCognome() + "}'::character varying[], '{" + registrato.getIdVaccinazione() + "}', '{" + registrato.getEmail() + "}'::character varying[], '{" + registrato.getUserid() + "}'::character varying[], '{" + registrato.getPassword() + "}'::character varying[]);";
+
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
