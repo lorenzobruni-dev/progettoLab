@@ -82,7 +82,9 @@ public class RegistrationFormVaccinato implements Initializable{
             datiVaccinato.get(13).equals("") ||
             datiVaccinato.get(14).equals("") || 
             datoSigla.get(0).toString().equals("")){
+
              checkCampi.setVisible(true);
+
          }else{                
              idUnivocoVaccinato.setVisible(true);
              checkCampi.setVisible(false);
@@ -92,18 +94,19 @@ public class RegistrationFormVaccinato implements Initializable{
              System.out.println(datoSigla);
          }
         }catch(Exception e){
-            System.out.println(datiVaccinato.get(2));
-            System.out.println(datiVaccinato.get(5));
             System.out.println(e);
         }
             
     }
     public ArrayList<SigleProvince> getDatiProvincia(){
+
         ArrayList<SigleProvince> dati = new ArrayList<>();
+
         dati.add(provinciaCentroVaccinale.getValue());
         return dati;
     }
     public ArrayList<String> getDati(){
+
         ArrayList<String> datiTemp = new ArrayList<>();
 
         String IdUnivoco = generazioneIDUnivoco();
@@ -152,7 +155,7 @@ public class RegistrationFormVaccinato implements Initializable{
         genereVaccinato.setItems(FXCollections.observableArrayList("Male","Female","Altro/a","MUCCA"));
         nomeVaccino.setItems(FXCollections.observableArrayList("AstraZeneca","J&J","Pfizer", "Moderna"));
         provinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
-        tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("Hub","Ospedale","Centro"));
+        tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("OSPEDALIERO","AZIENDALE","HUB"));
     }
 
 }

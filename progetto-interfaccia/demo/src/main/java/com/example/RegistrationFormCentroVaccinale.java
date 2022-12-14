@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.example.models.SigleProvince;
+import com.example.models.TipoCentro;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -19,7 +20,7 @@ public class RegistrationFormCentroVaccinale implements Initializable{
     @FXML 
     private ComboBox<SigleProvince> ProvinciaCentroVaccinale;
     @FXML
-    private ComboBox<String> TipologiaCentroVaccinale;
+    private ComboBox<TipoCentro> TipologiaCentroVaccinale;
     @FXML
     private TextField NomeCentroVaccinale;
     @FXML
@@ -40,21 +41,25 @@ public class RegistrationFormCentroVaccinale implements Initializable{
     private void registraCentroVaccinale() throws IOException {
         ArrayList <String> datiCentro = new ArrayList<>();
         ArrayList <SigleProvince> datiCentroProvincia = new ArrayList<>();
+        ArrayList <TipoCentro> datiTipoCentro = new ArrayList<>();
+
         datiCentroProvincia = getDatiProvincia();
         datiCentro = getDati();
+        datiTipoCentro = getDatoTipoCentro();
+
         try{
             if(datiCentro.get(0).equals("") || datiCentro.get(1).equals("")|| datiCentro.get(2).equals("")|| 
-            datiCentro.get(3).equals("")|| datiCentro.get(4).equals("")|| datiCentroProvincia.get(0).toString().equals(""))
+            datiCentro.get(3).equals("")|| datiTipoCentro.get(0).toString().equals("")|| datiCentroProvincia.get(0).toString().equals(""))
                 CheckCampi.setVisible(true);
             else{
                 // System.out.print("Dati Centro :");
                 // datiCentro.forEach((d.) -> System.out.println(d));
-                System.out.print("Client : " + (datiCentro.get(0).substring(0,1).toUpperCase() + datiCentro.get(0).substring(1).toLowerCase())
-                                                +" - " + datiCentro.get(1).substring(0,1).toUpperCase() + datiCentro.get(1).substring(1).toLowerCase() 
+                System.out.print("Client : " + (datiCentro.get(0))
+                                                +" - " + datiCentro.get(1)
                                                 +" - " + datiCentroProvincia.get(0)
                                                 +" - " + datiCentro.get(2)
                                                 +" - " + datiCentro.get(3) 
-                                                +" - " + datiCentro.get(4));
+                                                +" - " + datiTipoCentro.get(0));
             }
         }catch(Exception e){
             System.out.print("Errore : " +e);
@@ -64,27 +69,35 @@ public class RegistrationFormCentroVaccinale implements Initializable{
     public ArrayList<SigleProvince> getDatiProvincia(){
 
         ArrayList<SigleProvince> dati = new ArrayList<>();
+
         dati.add(ProvinciaCentroVaccinale.getValue());
         return dati;
     }
 
     public ArrayList<String> getDati(){
 
-        ArrayList<String> dati = new ArrayList<>();
+        ArrayList<String> datiTemp = new ArrayList<>();
 
-        dati.add(NomeCentroVaccinale.getText());
-        dati.add(ComuneCentroVaccinale.getText());
-        dati.add(IndirizzoCentroVaccinale.getText());
-        dati.add(CAPCentroVaccinale.getText());
-        dati.add(TipologiaCentroVaccinale.getValue());
-        return dati;
+        datiTemp.add(NomeCentroVaccinale.getText());
+        datiTemp.add(ComuneCentroVaccinale.getText());
+        datiTemp.add(IndirizzoCentroVaccinale.getText());
+        datiTemp.add(CAPCentroVaccinale.getText());
+        return datiTemp;
+    }
+
+    public ArrayList<TipoCentro> getDatoTipoCentro(){
+
+        ArrayList<TipoCentro> datiTemp = new ArrayList<>();
+
+        datiTemp.add(TipologiaCentroVaccinale.getValue());
+        return datiTemp;
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ProvinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
-        TipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("Hub","Ospedale","Centro"));
+        TipologiaCentroVaccinale.setItems(FXCollections.observableArrayList(TipoCentro.values()));
         
     }
 }
