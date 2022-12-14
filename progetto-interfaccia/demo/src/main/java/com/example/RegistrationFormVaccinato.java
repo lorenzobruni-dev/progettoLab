@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -63,31 +64,39 @@ public class RegistrationFormVaccinato implements Initializable{
         
         ArrayList<String> datiVaccinato = getDati();
         ArrayList<SigleProvince> datoSigla = getDatiProvincia();
+
+        try{
             if(datiVaccinato.get(0).equals("") || 
-               datiVaccinato.get(1).equals("") || 
-               datiVaccinato.get(2).equals("") ||
-               datiVaccinato.get(3).equals("") ||
-               datiVaccinato.get(4).equals("") ||
-               datiVaccinato.get(5).equals("") ||
-               datiVaccinato.get(6).equals("") ||
-               datiVaccinato.get(7).equals("") ||
-               datiVaccinato.get(8).equals("") ||
-               datiVaccinato.get(9).equals("") ||
-               datiVaccinato.get(10).equals("") ||
-               datiVaccinato.get(11).equals("") ||
-               datiVaccinato.get(12).equals("") ||
-               datiVaccinato.get(13).equals("") ||
-               datiVaccinato.get(14).equals("") || 
-               datoSigla.get(0).toString().equals("")){
-                checkCampi.setVisible(true);
-            }else{                
-                idUnivocoVaccinato.setVisible(true);
-                checkCampi.setVisible(false);
-                idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
-                System.out.println("Dati Centro :");
-                System.out.println(datiVaccinato);
-                System.out.println(datoSigla);
-            }
+            datiVaccinato.get(1).equals("") || 
+            datiVaccinato.get(2).equals("-" + "-" + "-") ||
+            datiVaccinato.get(3).equals("") ||
+            datiVaccinato.get(4).equals("") ||
+            datiVaccinato.get(5).equals("-" + "-" + "-") ||
+            datiVaccinato.get(6).equals("") ||
+            datiVaccinato.get(7).equals("") ||
+            datiVaccinato.get(8).equals("") ||
+            datiVaccinato.get(9).equals("") ||
+            datiVaccinato.get(10).equals("") ||
+            datiVaccinato.get(11).equals("") ||
+            datiVaccinato.get(12).equals("") ||
+            datiVaccinato.get(13).equals("") ||
+            datiVaccinato.get(14).equals("") || 
+            datoSigla.get(0).toString().equals("")){
+             checkCampi.setVisible(true);
+         }else{                
+             idUnivocoVaccinato.setVisible(true);
+             checkCampi.setVisible(false);
+             idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
+             System.out.println("Dati Centro :");
+             System.out.println(datiVaccinato);
+             System.out.println(datoSigla);
+         }
+        }catch(Exception e){
+            System.out.println(datiVaccinato.get(2));
+            System.out.println(datiVaccinato.get(5));
+            System.out.println(e);
+        }
+            
     }
     public ArrayList<SigleProvince> getDatiProvincia(){
         ArrayList<SigleProvince> dati = new ArrayList<>();
@@ -95,24 +104,35 @@ public class RegistrationFormVaccinato implements Initializable{
         return dati;
     }
     public ArrayList<String> getDati(){
-        ArrayList<String> dati = new ArrayList<>();
+        ArrayList<String> datiTemp = new ArrayList<>();
+
         String IdUnivoco = generazioneIDUnivoco();
-        dati.add(nomeVaccinato.getText());
-        dati.add(cognomeVaccinato.getText());
-        dati.add(dataVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString());
-        dati.add(genereVaccinato.getValue());
-        dati.add(cfVaccinato.getText());
-        dati.add(dataSommVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString());
-        dati.add(nomeVaccino.getValue());
-        dati.add(IdUnivoco);
-        dati.add(nomeCentroVaccinale.getText());
-        dati.add(comuneCentroVaccinale.getText());
-        dati.add(comuneCentroVaccinale.getText());
-        dati.add(capCentroVaccinale.getText());
-        dati.add(indirizzoCentroVaccinale.getText());
-        dati.add(comuneCentroVaccinale.getText());
-        dati.add(tipologiaCentroVaccinale.getValue());
-        return dati;
+        datiTemp.add(nomeVaccinato.getText());
+        datiTemp.add(cognomeVaccinato.getText());
+
+        if(dataVaccinato.getValue() == null)
+            datiTemp.add("");
+        else
+            datiTemp.add(dataVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        
+        datiTemp.add(genereVaccinato.getValue());
+        datiTemp.add(cfVaccinato.getText());
+
+        if(dataSommVaccinato.getValue() == null)
+            datiTemp.add("");
+        else
+            datiTemp.add(dataSommVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        
+        datiTemp.add(nomeVaccino.getValue());
+        datiTemp.add(IdUnivoco);
+        datiTemp.add(nomeCentroVaccinale.getText());
+        datiTemp.add(comuneCentroVaccinale.getText());
+        datiTemp.add(comuneCentroVaccinale.getText());
+        datiTemp.add(capCentroVaccinale.getText());
+        datiTemp.add(indirizzoCentroVaccinale.getText());
+        datiTemp.add(comuneCentroVaccinale.getText());
+        datiTemp.add(tipologiaCentroVaccinale.getValue());
+        return datiTemp;
     }
 
     private String generazioneIDUnivoco(){
