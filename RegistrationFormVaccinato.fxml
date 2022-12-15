@@ -112,12 +112,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ComboBox id="Genere" editable="true" layoutX="336.0" layoutY="187.0" prefHeight="26.0" prefWidth="68.0" promptText="Via" style="-fx-background-color: White;" visibleRowCount="3">
+      <ComboBox id="ViaBox" editable="true" layoutX="336.0" layoutY="187.0" prefHeight="26.0" prefWidth="68.0" promptText="Via" style="-fx-background-color: White;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <TextField id="CAPCentroVaccinale" layoutX="336.0" layoutY="227.0" prefHeight="26.0" prefWidth="60.0" promptText="Civico" style="-fx-background-color: white;">
+      <TextField id="Civico" layoutX="336.0" layoutY="227.0" prefHeight="26.0" prefWidth="60.0" promptText="Civico" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
