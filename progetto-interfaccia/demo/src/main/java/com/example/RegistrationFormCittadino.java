@@ -76,7 +76,7 @@ public class RegistrationFormCittadino {
 
             cittadino = new CittadinoRegistrato(dati.get(0), dati.get(1), dati.get(2), dati.get(3), dati.get(4), dati.get(5), dati.get(6));
             
-            dati.forEach((d) -> System.out.println(d));
+            System.out.println(dati);
 
             App.setRoot("HubIniziale");
         }

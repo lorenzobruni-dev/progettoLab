@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 import com.example.models.loginCentro;
 
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LoginOperatori{
+
     @FXML
     Label CheckPassword = new Label();
     @FXML
@@ -19,7 +21,7 @@ public class LoginOperatori{
     TextField password = new TextField();
 
     @FXML
-    private void sceltaOp() throws IOException, SQLException, ClassNotFoundException, NotBoundException {        
+    private void sceltaOp() throws IOException, SQLException, ClassNotFoundException, NotBoundException {       
         String user = usernameOperatore.getText();
         String pwd = password.getText();
         ArrayList <loginCentro> loginOperatoriCentro = new ArrayList<>();

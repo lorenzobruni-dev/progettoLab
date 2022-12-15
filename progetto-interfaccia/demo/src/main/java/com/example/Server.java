@@ -29,7 +29,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
     }
     private static Connection connection = null;
 
-    public static void main(String [] args) throws RemoteException {
+    public static void main(String[] args) throws RemoteException {
         try{
             Server server = new Server();
             Registry registro = LocateRegistry.createRegistry(9090);
