@@ -76,41 +76,51 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField id="NomeCentroVaccinale" layoutX="331.0" layoutY="109.0" prefHeight="26.0" prefWidth="226.0" promptText="Nome Centro Vaccinale" style="-fx-background-color: white;">
+      <TextField id="NomeCentroVaccinale" layoutX="336.0" layoutY="109.0" prefHeight="26.0" prefWidth="238.0" promptText="Nome Centro Vaccinale" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField id="ComuneCentroVaccinale" layoutX="331.0" layoutY="146.0" prefHeight="26.0" prefWidth="167.0" promptText="Comune Centro Vaccinale" style="-fx-background-color: white;">
+      <TextField id="ComuneCentroVaccinale" layoutX="336.0" layoutY="146.0" prefHeight="26.0" prefWidth="178.0" promptText="Comune Centro Vaccinale" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField id="CAPCentroVaccinale" layoutX="509.0" layoutY="146.0" prefHeight="26.0" prefWidth="52.0" promptText="CAP" style="-fx-background-color: white;">
+      <TextField id="CAPCentroVaccinale" layoutX="524.0" layoutY="146.0" prefHeight="26.0" prefWidth="49.0" promptText="CAP" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextField id="IndirizzoCentroVaccinale" layoutX="331.0" layoutY="186.0" prefHeight="26.0" prefWidth="226.0" promptText="Indirizzo" style="-fx-background-color: white;">
+      <TextField id="IndirizzoCentroVaccinale" layoutX="409.0" layoutY="187.0" prefHeight="26.0" prefWidth="167.0" promptText="Nome via" style="-fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <ComboBox id="TipologiaCentroVaccinale" editable="true" layoutX="331.0" layoutY="227.0" prefHeight="26.0" prefWidth="126.0" promptText="Tipologia" style="-fx-background-color: white;" visibleRowCount="3">
+      <ComboBox id="TipologiaCentroVaccinale" editable="true" layoutX="336.0" layoutY="268.0" prefHeight="26.0" prefWidth="126.0" promptText="Tipologia" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <ComboBox id="ProvinciaCentroVaccinale" editable="true" layoutX="466.0" layoutY="227.0" prefHeight="26.0" prefWidth="94.0" promptText="Provincia" style="-fx-background-color: white;" visibleRowCount="3">
+      <ComboBox id="ProvinciaCentroVaccinale" editable="true" layoutX="407.0" layoutY="227.0" prefHeight="26.0" prefWidth="111.0" promptText="Provincia" style="-fx-background-color: white;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <Label id="CheckRegUtente" layoutX="392.0" layoutY="285.0" text="Campi non compilati!" />
-      <Button id="RegistraVaccinato" layoutX="386.0" layoutY="318.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="137.0" style="-fx-background-color: Blue;" text="Registra vaccinato">
+      <Label id="CheckRegUtente" layoutX="399.0" layoutY="305.0" text="Campi non compilati!" />
+      <Button id="RegistraVaccinato" layoutX="386.0" layoutY="331.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="137.0" style="-fx-background-color: Blue;" text="Registra vaccinato">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <ComboBox id="Genere" editable="true" layoutX="336.0" layoutY="187.0" prefHeight="26.0" prefWidth="68.0" promptText="Via" style="-fx-background-color: White;" visibleRowCount="3">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ComboBox>
+      <TextField id="CAPCentroVaccinale" layoutX="336.0" layoutY="227.0" prefHeight="26.0" prefWidth="60.0" promptText="Civico" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
    </children>
 </AnchorPane>
