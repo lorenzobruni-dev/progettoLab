@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.example.models.Qualificatore;
 import com.example.models.SigleProvince;
 import com.example.models.TipoCentro;
 
@@ -22,6 +23,9 @@ public class RegistrationFormCentroVaccinale implements Initializable{
     @FXML
     private ComboBox<TipoCentro> TipologiaCentroVaccinale;
     @FXML
+    private ComboBox<Qualificatore> ViaCentro;
+
+    @FXML
     private TextField NomeCentroVaccinale;
     @FXML
     private TextField ComuneCentroVaccinale;
@@ -29,6 +33,10 @@ public class RegistrationFormCentroVaccinale implements Initializable{
     private TextField IndirizzoCentroVaccinale;
     @FXML
     private TextField CAPCentroVaccinale;
+    @FXML
+    private TextField CivicoCentro;
+
+
     @FXML
     private Label CheckCampi;
     
@@ -42,24 +50,30 @@ public class RegistrationFormCentroVaccinale implements Initializable{
         ArrayList <String> datiCentro = new ArrayList<>();
         ArrayList <SigleProvince> datiCentroProvincia = new ArrayList<>();
         ArrayList <TipoCentro> datiTipoCentro = new ArrayList<>();
+        ArrayList <Qualificatore> datiQualificatore = new ArrayList<>();
 
         datiCentroProvincia = getDatiProvincia();
         datiCentro = getDati();
         datiTipoCentro = getDatoTipoCentro();
+        datiQualificatore = getDatoQualificatore();
 
         try{
             if(datiCentro.get(0).equals("") || datiCentro.get(1).equals("")|| datiCentro.get(2).equals("")|| 
-            datiCentro.get(3).equals("")|| datiTipoCentro.get(0).toString().equals("")|| datiCentroProvincia.get(0).toString().equals(""))
+            datiCentro.get(3).equals("")|| datiCentro.get(4).equals("")|| datiQualificatore.get(0).toString().equals("")||datiTipoCentro.get(0).toString().equals("")
+            || datiCentroProvincia.get(0).toString().equals(""))
                 CheckCampi.setVisible(true);
             else{
                 // System.out.print("Dati Centro :");
                 // datiCentro.forEach((d.) -> System.out.println(d));
                 System.out.print("Client : " + (datiCentro.get(0))
                                                 +" - " + datiCentro.get(1)
-                                                +" - " + datiCentroProvincia.get(0)
+                                                +" - " + datiQualificatore.get(0)
                                                 +" - " + datiCentro.get(2)
                                                 +" - " + datiCentro.get(3) 
+                                                +" - " + datiCentroProvincia.get(0)
+                                                +" - " + datiCentro.get(4) 
                                                 +" - " + datiTipoCentro.get(0));
+                
             }
         }catch(Exception e){
             System.out.print("Errore : " +e);
@@ -81,6 +95,7 @@ public class RegistrationFormCentroVaccinale implements Initializable{
         datiTemp.add(NomeCentroVaccinale.getText());
         datiTemp.add(ComuneCentroVaccinale.getText());
         datiTemp.add(IndirizzoCentroVaccinale.getText());
+        datiTemp.add(CivicoCentro.getText());
         datiTemp.add(CAPCentroVaccinale.getText());
         return datiTemp;
     }
@@ -92,11 +107,19 @@ public class RegistrationFormCentroVaccinale implements Initializable{
         datiTemp.add(TipologiaCentroVaccinale.getValue());
         return datiTemp;
     }
+    public ArrayList<Qualificatore> getDatoQualificatore(){
+
+        ArrayList<Qualificatore> datiTemp = new ArrayList<>();
+
+        datiTemp.add(ViaCentro.getValue());
+        return datiTemp;
+    }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ProvinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
+        ViaCentro.setItems(FXCollections.observableArrayList(Qualificatore.values()));
         TipologiaCentroVaccinale.setItems(FXCollections.observableArrayList(TipoCentro.values()));
         
     }

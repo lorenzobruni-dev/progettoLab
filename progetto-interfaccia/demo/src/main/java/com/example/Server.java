@@ -165,25 +165,24 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         System.out.println(cittadiniRegistrati);
         return cittadiniRegistrati;
     }
-    public synchronized ArrayList<CittadinoRegistrato> setCentroVaccinale() throws RemoteException {
+    public synchronized ArrayList<CentroVaccinale> setCentroVaccinale() throws RemoteException {
         System.out.println("I'm setting up Center Data...");
-        ArrayList<CittadinoRegistrato> cittadiniRegistrati = new ArrayList<>();
+        ArrayList<CentroVaccinale> centriRegList = new ArrayList<>();
 
-        String query = "INSERT INTO public.\"CentriVaccinali\" (username, password) VALUES ('{admin}', '{admin}')";
+        String query = "INSERT INTO public.\"CittadiniRegistrati\" (nome,indirizzo,tipologia) VALUES ()";
 
         try{
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
             while(rs.next()){
-                cittadiniRegistrati.add(new CittadinoRegistrato(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4),
-                rs.getString(5), rs.getString(6), rs.getString(7)));
+                centriRegList.add(new CentroVaccinale(query))    ;
             }
         }catch(SQLException e){
             e.printStackTrace();
         }
 
-        System.out.println(cittadiniRegistrati);
-        return cittadiniRegistrati;
+        System.out.println(centriRegList);
+        return centriRegList;
     }
 }

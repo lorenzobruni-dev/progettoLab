@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import com.example.models.CentroVaccinale;
+import com.example.models.Qualificatore;
 import com.example.models.SigleProvince;
 
 import javafx.collections.FXCollections;
@@ -40,6 +42,8 @@ public class RegistrationFormVaccinato implements Initializable{
     TextField capCentroVaccinale;
     @FXML
     TextField indirizzoCentroVaccinale;
+    @FXML
+    TextField CivicoCentro;
 
     @FXML
     DatePicker dataVaccinato;
@@ -55,6 +59,9 @@ public class RegistrationFormVaccinato implements Initializable{
     @FXML
     ComboBox <String> tipologiaCentroVaccinale;
     @FXML
+    ComboBox <Qualificatore> ViaCentro;
+
+    @FXML
     Label checkCampi;
 
 
@@ -64,6 +71,7 @@ public class RegistrationFormVaccinato implements Initializable{
         
         ArrayList<String> datiVaccinato = getDati();
         ArrayList<SigleProvince> datoSigla = getDatiProvincia();
+        ArrayList<Qualificatore> datiQualificatore = getDatoQualificatore();
 
         try{
             if(datiVaccinato.get(0).equals("") || 
@@ -81,13 +89,14 @@ public class RegistrationFormVaccinato implements Initializable{
             datiVaccinato.get(12).equals("") ||
             datiVaccinato.get(13).equals("") ||
             datiVaccinato.get(14).equals("") || 
-            datoSigla.get(0).toString().equals("")){
+            datoSigla.get(0).toString().equals("")||
+            datiQualificatore.get(0).toString().equals("")){
 
              checkCampi.setVisible(true);
 
          }else{                
-             idUnivocoVaccinato.setVisible(true);
              checkCampi.setVisible(false);
+             idUnivocoVaccinato.setVisible(true);
              idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
              System.out.println("Dati Centro :");
              System.out.println(datiVaccinato);
@@ -97,6 +106,13 @@ public class RegistrationFormVaccinato implements Initializable{
             System.out.println(e);
         }
             
+    }
+    public ArrayList<Qualificatore> getDatoQualificatore(){
+
+        ArrayList<Qualificatore> datiTemp = new ArrayList<>();
+
+        datiTemp.add(ViaCentro.getValue());
+        return datiTemp;
     }
     public ArrayList<SigleProvince> getDatiProvincia(){
 
@@ -130,7 +146,7 @@ public class RegistrationFormVaccinato implements Initializable{
         datiTemp.add(IdUnivoco);
         datiTemp.add(nomeCentroVaccinale.getText());
         datiTemp.add(comuneCentroVaccinale.getText());
-        datiTemp.add(comuneCentroVaccinale.getText());
+        datiTemp.add(CivicoCentro.getText());
         datiTemp.add(capCentroVaccinale.getText());
         datiTemp.add(indirizzoCentroVaccinale.getText());
         datiTemp.add(comuneCentroVaccinale.getText());
@@ -156,6 +172,7 @@ public class RegistrationFormVaccinato implements Initializable{
         nomeVaccino.setItems(FXCollections.observableArrayList("AstraZeneca","J&J","Pfizer", "Moderna"));
         provinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
         tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("OSPEDALIERO","AZIENDALE","HUB"));
+        ViaCentro.setItems(FXCollections.observableArrayList(Qualificatore.values()));
     }
 
 }
