@@ -3,19 +3,20 @@ package com.example;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.example.models.CentroVaccinale;
 import com.example.models.CittadinoRegistrato;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class RegistrationFormCittadino {
 
     boolean isInvalid = false;
     CittadinoRegistrato cittadino;
-    CentroVaccinale centro;
+    Alert a = new Alert(AlertType.INFORMATION);
 
     @FXML
     TextField campoNome;
@@ -81,6 +82,9 @@ public class RegistrationFormCittadino {
             istanzaServer.server.registraCittadino(cittadino);
             
             dati.forEach((d) -> System.out.println(d));
+
+            a.setContentText("Registrato con successo!");
+            a.show();
 
             App.setRoot("HubIniziale");
         }

@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 
 public class SceltaCittadino {
 
+    public static String codice_fiscale;
+
     @FXML
     TextField userid = new TextField();
     @FXML
@@ -53,7 +55,8 @@ public class SceltaCittadino {
             registrati.forEach((r) -> {
                 System.out.println(r);
 
-                if(r.getUserid().toString().equals("{" + id + "}") && r.getPassword().toString().equals("{" + psw + "}")){
+                if(r.getUserid().toString().equals(id) && r.getPassword().toString().equals(psw)){
+                    codice_fiscale = r.getCodiceFiscale();
                     try {
                         App.setRoot("EventiAvversi");
                     } catch (IOException e) {
