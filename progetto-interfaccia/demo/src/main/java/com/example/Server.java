@@ -16,6 +16,7 @@ import com.example.models.CittadinoRegistrato;
 import com.example.models.CittadinoVaccinato;
 import com.example.models.Indirizzo;
 import com.example.models.Qualificatore;
+import com.example.models.SigleProvince;
 import com.example.models.TipoCentro;
 import com.example.models.TipoVaccino;
 import com.example.models.loginCentro;
@@ -165,24 +166,15 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         System.out.println(cittadiniRegistrati);
         return cittadiniRegistrati;
     }
-    public synchronized ArrayList<CentroVaccinale> setCentroVaccinale() throws RemoteException {
+    public synchronized void setCentroVaccinale(String nomCentro , String comuneCentro , String indirizzoCentroString , 
+    String civicoCentro , String capCentro , Qualificatore qualCentro , SigleProvince siglaCentro , TipoCentro tipoCentro ) throws RemoteException {
         System.out.println("I'm setting up Center Data...");
-        ArrayList<CentroVaccinale> centriRegList = new ArrayList<>();
-
-        String query = "INSERT INTO public.\"CittadiniRegistrati\" (nome,indirizzo,tipologia) VALUES ()";
-
+        String query = "INSERT INTO public.\"CentriVaccinali\" (nome,indirizzo.via,indirizzo.nome,indirizzo.numero_civico,indirizzo.comune,indirizzo.sigla_provincia,indirizzo.\"CAP\",tipologia) VALUES ('{"+ nomCentro +"}'::character varying[], '{"+ qualCentro +"}'::character varying[], '{"+ indirizzoCentroString +"}' ::character varying[], '"+ civicoCentro +"' , '{"+ comuneCentro +"}'::character varying[], '{"+ siglaCentro +"}'::character[], '"+ capCentro +"','{"+tipoCentro+"}'::character varying[]);";
         try{
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-
-            while(rs.next()){
-                centriRegList.add(new CentroVaccinale(query))    ;
-            }
+            statement.executeUpdate(query);
         }catch(SQLException e){
             e.printStackTrace();
         }
-
-        System.out.println(centriRegList);
-        return centriRegList;
     }
 }

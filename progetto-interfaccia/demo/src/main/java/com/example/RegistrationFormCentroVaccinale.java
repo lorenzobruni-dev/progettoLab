@@ -73,6 +73,10 @@ public class RegistrationFormCentroVaccinale implements Initializable{
                                                 +" - " + datiCentroProvincia.get(0)
                                                 +" - " + datiCentro.get(4) 
                                                 +" - " + datiTipoCentro.get(0));
+
+                istanzaServer.server.setCentroVaccinale(datiCentro.get(0),datiCentro.get(1),datiCentro.get(2),
+                                                        datiCentro.get(3),datiCentro.get(4),datiQualificatore.get(0),datiCentroProvincia.get(0),
+                                                        datiTipoCentro.get(0));
                 
             }
         }catch(Exception e){
