@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.example.models.CentroVaccinale;
 import com.example.models.TipoCentro;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -28,25 +29,27 @@ public class RicercaCentri {
     @FXML
     TableView tabellaCentri;
 
-    @FXML
-    private void backToHub() throws IOException {
-        App.setRoot("SceltaCittadino");
+    public void initialize() {
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("slide");
+            if (slider.getValue() == 0) {
+                nomeCentroVaccinale.setVisible(true);
+                comuneCentroVaccinale.setVisible(false);
+                tipologiaCentroVaccinale.setVisible(false);
+                cercaCentri.setLayoutY(299.0);
+            } else if (slider.getValue() == 1) {
+                nomeCentroVaccinale.setVisible(false);
+                comuneCentroVaccinale.setVisible(true);
+                tipologiaCentroVaccinale.setVisible(true);
+                cercaCentri.setLayoutY(350.0);
+                tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("HUB","OSPEDALIERO","AZIENDALE"));
+            }
+        });
     }
 
     @FXML
-    private void valueChanged() throws IOException {
-        System.out.println("slide");
-        if (slider.getValue() == 0) {
-            nomeCentroVaccinale.setVisible(true);
-            comuneCentroVaccinale.setVisible(false);
-            tipologiaCentroVaccinale.setVisible(false);
-            cercaCentri.setLayoutY(299.0);
-        } else if (slider.getValue() == 1) {
-            nomeCentroVaccinale.setVisible(false);
-            comuneCentroVaccinale.setVisible(true);
-            tipologiaCentroVaccinale.setVisible(true);
-            cercaCentri.setLayoutY(350.0);
-        }
+    private void backToHub() throws IOException {
+        App.setRoot("SceltaCittadino");
     }
 
     @FXML
