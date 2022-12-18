@@ -48,6 +48,7 @@ public class EventiAvversi {
       @FXML
       private void confirm() throws IOException {
          ArrayList<EventoAvverso> eventiAvversi = fillEventi();
+         istanzaServer.server.registraEventiAvversi(eventiAvversi, SceltaCittadino.codice_fiscale);
          a.setContentText("Eventi avversi aggiunti con successo!");
          a.show();
          for (int i = 0; i < 6; i++){

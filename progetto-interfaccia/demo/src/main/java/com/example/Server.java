@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import com.example.models.CentroVaccinale;
 import com.example.models.CittadinoRegistrato;
 import com.example.models.CittadinoVaccinato;
+import com.example.models.EventoAvverso;
 import com.example.models.Indirizzo;
 import com.example.models.Qualificatore;
 import com.example.models.TipoCentro;
@@ -62,7 +63,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM CentriVaccinali WHERE nome ='" + nomeCentro + "'";
+        String query = "SELECT * FROM public.\"CentriVaccinali\" WHERE nome='" + nomeCentro + "'";
 
         try{
             Statement statement = connection.createStatement();
@@ -84,7 +85,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM CentriVaccinali WHERE ???";
+        String query = "SELECT * FROM public.\"CentriVaccinali\" WHERE tipologia='" + tipoCentro + "' AND Indirizzo.comune='" + comune + "'";
 
         try{
             Statement statement = connection.createStatement();
@@ -165,6 +166,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         System.out.println(cittadiniRegistrati);
         return cittadiniRegistrati;
     }
+    
     public synchronized ArrayList<CittadinoRegistrato> setCentroVaccinale() throws RemoteException {
         System.out.println("I'm setting up Center Data...");
         ArrayList<CittadinoRegistrato> cittadiniRegistrati = new ArrayList<>();
@@ -185,5 +187,35 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
 
         System.out.println(cittadiniRegistrati);
         return cittadiniRegistrati;
+    }
+
+    public synchronized void registraCittadino(CittadinoRegistrato registrato) throws RemoteException {
+
+        System.out.println("Registro cittadino...");
+
+        String query = "INSERT INTO public.\"CittadiniRegistrati\" (codice_fiscale, nome, cognome, id_vaccinazione, email, \"user\", password) VALUES ('" + registrato.getCodiceFiscale() + "'::character varying[], \'" + registrato.getNome() + "\'::character varying[], '" + registrato.getCognome() + "'::character varying[], '" + registrato.getIdVaccinazione() + "', '" + registrato.getEmail() + "'::character varying[], '" + registrato.getUserid() + "'::character varying[], '" + registrato.getPassword() + "'::character varying[]);";
+
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void registraEventiAvversi(ArrayList<EventoAvverso> eventiAvversi, String codiceFiscale) throws RemoteException {
+
+        System.out.println("Registro eventi avversi...");
+
+        eventiAvversi.forEach((ev) -> {
+            String query = "INSERT INTO public.\"EventiAvversi\" (evento, note, \"severità\", codice_fiscale) VALUES ('" + ev.getEvento() + "'::character varying, '" + ev.getNoteOpzionali() + "'::character varying, '" + ev.getSeverità() + "'::integer, '" + codiceFiscale + "'::character varying);";
+
+            try{
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(query);
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
     }
 }

@@ -1,6 +1,8 @@
 package com.example.models;
 
-public class EventoAvverso {
+import java.io.Serializable;
+
+public class EventoAvverso implements Serializable {
     String evento;
     int severità;
     String noteOpzionali;
