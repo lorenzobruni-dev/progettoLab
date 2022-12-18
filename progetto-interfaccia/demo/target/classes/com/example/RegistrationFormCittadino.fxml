@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RegistrationFormCittadino">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LightBlue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.RegistrationFormCittadino">
    <children>
       <Label layoutX="186.0" layoutY="11.0" text="Registrazione utente">
          <font>
@@ -47,8 +47,8 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></PasswordField>
-      <Label fx:id="campoCheckRegUtente" layoutX="105.0" layoutY="331.0" text="Campi non compilati/UserID o E-Mail già in uso/ID Univoco non corretto!" visible="false" />
-      <Button fx:id="campoRegistrati" layoutX="250.0" layoutY="313.0" mnemonicParsing="false" onAction="#registraCittadino" prefHeight="36.0" prefWidth="96.0" style="-fx-background-color: Blue;" text="Registrati" textFill="WHITE">
+      <Label fx:id="campoCheckRegUtente" layoutX="116.0" layoutY="312.0" prefHeight="16.0" prefWidth="377.0" text="Campi non compilati/UserID o E-Mail già in uso/ID Univoco non corretto!" visible="false" />
+      <Button fx:id="campoRegistrati" layoutX="252.0" layoutY="329.0" mnemonicParsing="false" onAction="#registraCittadino" prefHeight="36.0" prefWidth="96.0" style="-fx-background-color: Blue;" text="Registrati" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
