@@ -64,7 +64,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM CentriVaccinali WHERE nome ='" + nomeCentro + "'";
+        String query = "SELECT * FROM public.\"CentriVaccinali\" WHERE nome='" + nomeCentro + "'";
 
         try{
             Statement statement = connection.createStatement();
@@ -86,7 +86,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM CentriVaccinali WHERE ???";
+        String query = "SELECT * FROM public.\"CentriVaccinali\" WHERE tipologia='" + tipoCentro + "' AND Indirizzo.comune='" + comune + "'";
 
         try{
             Statement statement = connection.createStatement();

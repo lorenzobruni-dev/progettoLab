@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.example.models.CentroVaccinale;
-import com.example.models.Indirizzo;
-import com.example.models.Qualificatore;
 import com.example.models.TipoCentro;
 
 import javafx.fxml.FXML;
