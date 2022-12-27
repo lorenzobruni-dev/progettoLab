@@ -18,6 +18,9 @@ import javafx.scene.control.TextField;
 
 public class RegistrationFormCentroVaccinale implements Initializable {
 
+    boolean controlloCampoProvincia = false;
+    boolean controlloCampoCentro = false;
+    boolean controlloCampoQualificatore = false;
     @FXML
     private ComboBox<SigleProvince> ProvinciaCentroVaccinale;
     @FXML
@@ -58,9 +61,24 @@ public class RegistrationFormCentroVaccinale implements Initializable {
         datiQualificatore = getDatoQualificatore();
 
         try {
-            if (datiCentro.get(0).equals("") || datiCentro.get(1).equals("") || datiCentro.get(2).equals("") ||
-                    datiCentro.get(3).equals("") || datiCentro.get(4).equals("") || datiQualificatore.get(0).toString().equals("") || datiTipoCentro.get(0).toString().equals("")
-                    || datiCentroProvincia.get(0).toString().equals(""))
+            datiCentroProvincia.forEach((e) -> {
+                if (e == null || e.equals(""))
+                    controlloCampoProvincia = true;
+            });
+            datiCentro.forEach((e) -> {
+                if (e == null || e.equals(""))
+                    controlloCampoCentro = true;
+            });
+            datiTipoCentro.forEach((e) -> {
+                if (e == null || e.equals(""))
+                    controlloCampoQualificatore = true;
+            });
+            datiQualificatore.forEach((e) -> {
+                if (e == null || e.equals(""))
+                    controlloCampoQualificatore = true;
+            });
+    
+            if(controlloCampoProvincia || controlloCampoCentro || controlloCampoQualificatore)
                 CheckCampi.setVisible(true);
             else {
                 // System.out.print("Dati Centro :");

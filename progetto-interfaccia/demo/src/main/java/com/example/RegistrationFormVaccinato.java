@@ -76,29 +76,34 @@ public class RegistrationFormVaccinato implements Initializable {
         ArrayList<SigleProvince> datoSigla = getDatiProvincia();
         ArrayList<Qualificatore> datiQualificatore = getDatoQualificatore();
 
-        datiVaccinato.forEach((e) -> {
-            if (e == null || e.equals(""))
-                controlloCampoDatiVaccinato = true;
-        });
-        datoSigla.forEach((e) -> {
-            if (e == null || e.equals(""))
-                controlloCampoSigla = true;
-        });
-        datiQualificatore.forEach((e) -> {
-            if (e == null || e.equals(""))
-                controlloCampoQualificatore = true;
-        });
-
-        if(controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoQualificatore)
-            checkCampi.setVisible(true);
-        else {
-            checkCampi.setVisible(false);
-            idUnivocoVaccinato.setVisible(true);
-            idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
-            System.out.println("Dati Centro :");
-            System.out.println(datiVaccinato);
-            System.out.println(datoSigla);
+        try{
+            datiVaccinato.forEach((e) -> {
+                if (e == null || e.equals(""))
+                    controlloCampoDatiVaccinato = true;
+            });
+            datoSigla.forEach((e) -> {
+                if (e == null || e.equals(""))
+                    controlloCampoSigla = true;
+            });
+            datiQualificatore.forEach((e) -> {
+                if (e == null || e.equals(""))
+                    controlloCampoQualificatore = true;
+            });
+    
+            if(controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoQualificatore)
+                checkCampi.setVisible(true);
+            else {
+                checkCampi.setVisible(false);
+                idUnivocoVaccinato.setVisible(true);
+                idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
+                System.out.println("Dati Centro :");
+                System.out.println(datiVaccinato);
+                System.out.println(datoSigla);
+            }
+        }catch(Exception e){
+            System.out.println(e);
         }
+        
 
     }
 
