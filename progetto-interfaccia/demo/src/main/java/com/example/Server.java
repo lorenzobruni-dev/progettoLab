@@ -63,15 +63,15 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM public.\"CentriVaccinali\" WHERE nome='" + nomeCentro + "'";
+        String query = "SELECT nome, (indirizzo).via, (indirizzo).nome, (indirizzo).numero_civico, (indirizzo).comune, (indirizzo).sigla_provincia, (indirizzo).\"CAP\", tipologia FROM public.\"CentriVaccinali\" WHERE nome='{" + nomeCentro + "}'";
 
         try{
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
             while(rs.next()){
-                centriVaccinali.add(new CentroVaccinale(rs.getString(1), new Indirizzo(Qualificatore.valueOf(rs.getString(2)), rs.getString(3),
-                rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8))));
+                centriVaccinali.add(new CentroVaccinale(rs.getString(1), new Indirizzo(Qualificatore.valueOf(rs.getString(2).substring(1,rs.getString(2).length()-1)), rs.getString(3),
+                rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8).substring(1,rs.getString(8).length()-1))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,15 +85,15 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM public.\"CentriVaccinali\" WHERE tipologia='" + tipoCentro + "' AND Indirizzo.comune='" + comune + "'";
+        String query = "SELECT nome, (indirizzo).via, (indirizzo).nome, (indirizzo).numero_civico, (indirizzo).comune, (indirizzo).sigla_provincia, (indirizzo).\"CAP\", tipologia FROM public.\"CentriVaccinali\" WHERE tipologia='{" + tipoCentro + "}' AND (indirizzo).comune='{" + comune + "}'";
 
         try{
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
             while(rs.next()){
-                centriVaccinali.add(new CentroVaccinale(rs.getString(1), new Indirizzo(Qualificatore.valueOf(rs.getString(2)), rs.getString(3),
-                rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8))));
+                centriVaccinali.add(new CentroVaccinale(rs.getString(1), new Indirizzo(Qualificatore.valueOf(rs.getString(2).substring(1,rs.getString(2).length()-1)), rs.getString(3),
+                rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8).substring(1,rs.getString(8).length()-1))));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,6 +1,8 @@
 package com.example.models;
 
-public class Indirizzo {
+import java.io.Serializable;
+
+public class Indirizzo implements Serializable {
     Qualificatore qualificatore;
     String nome;
     String numeroCivico;
@@ -64,5 +66,11 @@ public class Indirizzo {
 
     public void setCap(String cap) {
         this.cap = cap;
+    }
+
+    @Override
+    public String toString() {
+        return "Indirizzo [qualificatore=" + qualificatore + ", nome=" + nome + ", numeroCivico=" + numeroCivico
+                + ", comune=" + comune + ", provincia=" + provincia + ", cap=" + cap + "]";
     }
 }

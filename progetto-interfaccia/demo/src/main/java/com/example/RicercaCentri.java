@@ -58,11 +58,11 @@ public class RicercaCentri {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
 
         if (slider.getValue() == 0) {
-            //centriVaccinali = istanzaServer.server.getCentriVaccinaliByName(nomeCentroVaccinale.getText());
+            centriVaccinali = istanzaServer.server.getCentriVaccinaliByName(nomeCentroVaccinale.getText());
         } else if (slider.getValue() == 1) {
             comuneCentroVaccinale.setVisible(true);
             tipologiaCentroVaccinale.setVisible(true);
-            //centriVaccinali = istanzaServer.server.getCentriVaccinaliByType(comuneCentroVaccinale.getText(), TipoCentro.valueOf(tipologiaCentroVaccinale.getValue().toString()));
+            centriVaccinali = istanzaServer.server.getCentriVaccinaliByType(comuneCentroVaccinale.getText(), TipoCentro.valueOf(tipologiaCentroVaccinale.getValue().toString()));
         }
 
         centriVaccinali.add(new CentroVaccinale("nome"));
