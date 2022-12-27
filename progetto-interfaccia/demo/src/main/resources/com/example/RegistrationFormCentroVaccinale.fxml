@@ -55,7 +55,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label id="CheckCampi" fx:id="CheckCampi" layoutX="232.0" layoutY="258.0" prefHeight="22.0" prefWidth="138.0" text="Campi non compilati e/o errati" visible="false" />
+      <Label id="CheckCampi" fx:id="CheckCampi" alignment="CENTER" layoutX="135.0" layoutY="258.0" prefHeight="22.0" prefWidth="341.0" text="Campi non compilati e/o errati" visible="false" />
       <ComboBox id="Genere" fx:id="ViaCentro" layoutX="183.0" layoutY="138.0" prefHeight="26.0" prefWidth="74.0" promptText="Via" style="-fx-background-color: White;" visibleRowCount="3">
          <cursor>
             <Cursor fx:constant="HAND" />
