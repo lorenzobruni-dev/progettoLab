@@ -16,9 +16,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class RegistrationFormCentroVaccinale implements Initializable{
-    
-    @FXML 
+public class RegistrationFormCentroVaccinale implements Initializable {
+
+    @FXML
     private ComboBox<SigleProvince> ProvinciaCentroVaccinale;
     @FXML
     private ComboBox<TipoCentro> TipologiaCentroVaccinale;
@@ -39,52 +39,52 @@ public class RegistrationFormCentroVaccinale implements Initializable{
 
     @FXML
     private Label CheckCampi;
-    
+
     @FXML
     private void backToHub() throws IOException {
         App.setRoot("SceltaOperatore");
     }
-    
+
     @FXML
     private void registraCentroVaccinale() throws IOException {
-        ArrayList <String> datiCentro = new ArrayList<>();
-        ArrayList <SigleProvince> datiCentroProvincia = new ArrayList<>();
-        ArrayList <TipoCentro> datiTipoCentro = new ArrayList<>();
-        ArrayList <Qualificatore> datiQualificatore = new ArrayList<>();
+        ArrayList<String> datiCentro = new ArrayList<>();
+        ArrayList<SigleProvince> datiCentroProvincia = new ArrayList<>();
+        ArrayList<TipoCentro> datiTipoCentro = new ArrayList<>();
+        ArrayList<Qualificatore> datiQualificatore = new ArrayList<>();
 
         datiCentroProvincia = getDatiProvincia();
         datiCentro = getDati();
         datiTipoCentro = getDatoTipoCentro();
         datiQualificatore = getDatoQualificatore();
 
-        try{
-            if(datiCentro.get(0).equals("") || datiCentro.get(1).equals("")|| datiCentro.get(2).equals("")|| 
-            datiCentro.get(3).equals("")|| datiCentro.get(4).equals("")|| datiQualificatore.get(0).toString().equals("")||datiTipoCentro.get(0).toString().equals("")
-            || datiCentroProvincia.get(0).toString().equals(""))
+        try {
+            if (datiCentro.get(0).equals("") || datiCentro.get(1).equals("") || datiCentro.get(2).equals("") ||
+                    datiCentro.get(3).equals("") || datiCentro.get(4).equals("") || datiQualificatore.get(0).toString().equals("") || datiTipoCentro.get(0).toString().equals("")
+                    || datiCentroProvincia.get(0).toString().equals(""))
                 CheckCampi.setVisible(true);
-            else{
+            else {
                 // System.out.print("Dati Centro :");
                 // datiCentro.forEach((d.) -> System.out.println(d));
                 System.out.print("Client : " + (datiCentro.get(0))
-                                                +" - " + datiCentro.get(1)
-                                                +" - " + datiQualificatore.get(0)
-                                                +" - " + datiCentro.get(2)
-                                                +" - " + datiCentro.get(3) 
-                                                +" - " + datiCentroProvincia.get(0)
-                                                +" - " + datiCentro.get(4) 
-                                                +" - " + datiTipoCentro.get(0));
+                        + " - " + datiCentro.get(1)
+                        + " - " + datiQualificatore.get(0)
+                        + " - " + datiCentro.get(2)
+                        + " - " + datiCentro.get(3)
+                        + " - " + datiCentroProvincia.get(0)
+                        + " - " + datiCentro.get(4)
+                        + " - " + datiTipoCentro.get(0));
 
-                istanzaServer.server.setCentroVaccinale(datiCentro.get(0),datiCentro.get(1),datiCentro.get(2),
-                                                        datiCentro.get(3),datiCentro.get(4),datiQualificatore.get(0),datiCentroProvincia.get(0),
-                                                        datiTipoCentro.get(0));
-                
+                istanzaServer.server.setCentroVaccinale(datiCentro.get(0), datiCentro.get(1), datiCentro.get(2),
+                        datiCentro.get(3), datiCentro.get(4), datiQualificatore.get(0), datiCentroProvincia.get(0),
+                        datiTipoCentro.get(0));
+
             }
-        }catch(Exception e){
-            System.out.print("Errore : " +e);
+        } catch (Exception e) {
+            System.out.print("Errore : " + e);
         }
     }
 
-    public ArrayList<SigleProvince> getDatiProvincia(){
+    public ArrayList<SigleProvince> getDatiProvincia() {
 
         ArrayList<SigleProvince> dati = new ArrayList<>();
 
@@ -92,7 +92,7 @@ public class RegistrationFormCentroVaccinale implements Initializable{
         return dati;
     }
 
-    public ArrayList<String> getDati(){
+    public ArrayList<String> getDati() {
 
         ArrayList<String> datiTemp = new ArrayList<>();
 
@@ -104,14 +104,15 @@ public class RegistrationFormCentroVaccinale implements Initializable{
         return datiTemp;
     }
 
-    public ArrayList<TipoCentro> getDatoTipoCentro(){
+    public ArrayList<TipoCentro> getDatoTipoCentro() {
 
         ArrayList<TipoCentro> datiTemp = new ArrayList<>();
 
         datiTemp.add(TipologiaCentroVaccinale.getValue());
         return datiTemp;
     }
-    public ArrayList<Qualificatore> getDatoQualificatore(){
+
+    public ArrayList<Qualificatore> getDatoQualificatore() {
 
         ArrayList<Qualificatore> datiTemp = new ArrayList<>();
 
@@ -119,13 +120,11 @@ public class RegistrationFormCentroVaccinale implements Initializable{
         return datiTemp;
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ProvinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
         ViaCentro.setItems(FXCollections.observableArrayList(Qualificatore.values()));
         TipologiaCentroVaccinale.setItems(FXCollections.observableArrayList(TipoCentro.values()));
-        
     }
 }
 

@@ -22,29 +22,29 @@ import com.example.models.TipoVaccino;
 import com.example.models.loginCentro;
 
 
+public class Server extends UnicastRemoteObject implements interfacciaServer {
 
-public class Server extends UnicastRemoteObject implements interfacciaServer{
-    
-    public Server() throws RemoteException{
+    public Server() throws RemoteException {
         super();
     }
+
     private static Connection connection = null;
 
     public static void main(String[] args) throws RemoteException {
-        try{
+        try {
             Server server = new Server();
             Registry registro = LocateRegistry.createRegistry(9090);
             registro.rebind("ServerCentro", server);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
-    
-    public synchronized boolean ApriConnessioneDB(String url,String user,String password) throws ClassNotFoundException, RemoteException {
+
+    public synchronized boolean ApriConnessioneDB(String url, String user, String password) throws ClassNotFoundException, RemoteException {
         System.out.println("Provo a connettermi al db...");
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(url,user,password);
+            connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connesso al db con successo");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -65,13 +65,13 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
 
         String query = "SELECT * FROM CentriVaccinali WHERE nome ='" + nomeCentro + "'";
 
-        try{
+        try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
-            while(rs.next()){
+            while (rs.next()) {
                 centriVaccinali.add(new CentroVaccinale(rs.getString(1), new Indirizzo(Qualificatore.valueOf(rs.getString(2)), rs.getString(3),
-                rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8))));
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,13 +87,13 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
 
         String query = "SELECT * FROM CentriVaccinali WHERE ???";
 
-        try{
+        try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
-            while(rs.next()){
+            while (rs.next()) {
                 centriVaccinali.add(new CentroVaccinale(rs.getString(1), new Indirizzo(Qualificatore.valueOf(rs.getString(2)), rs.getString(3),
-                rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8))));
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8))));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,13 +109,13 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
 
         String query = "SELECT * FROM CittadiniVaccinati WHERE nome_centro='" + centro + "'";
 
-        try{
+        try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
-            while(rs.next()){
-                cittadiniVaccinati.add(new CittadinoVaccinato(rs.getString(5), rs.getString(6), rs.getString(1), rs.getString(7), 
-                rs.getString(3), TipoVaccino.valueOf(rs.getString(2)), rs.getString(4)));
+            while (rs.next()) {
+                cittadiniVaccinati.add(new CittadinoVaccinato(rs.getString(5), rs.getString(6), rs.getString(1), rs.getString(7),
+                        rs.getString(3), TipoVaccino.valueOf(rs.getString(2)), rs.getString(4)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -131,14 +131,14 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
 
         String query = "SELECT * FROM public.\"Login\";";
 
-        try{
+        try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
-            while(rs.next()){
+            while (rs.next()) {
                 loginCentro.add(new loginCentro(rs.getString(1), rs.getString(2)));
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println(loginCentro);
@@ -151,30 +151,64 @@ public class Server extends UnicastRemoteObject implements interfacciaServer{
 
         String query = "SELECT * FROM public.\"CittadiniRegistrati\";";
 
-        try{
+        try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
-            while(rs.next()){
+            while (rs.next()) {
                 cittadiniRegistrati.add(new CittadinoRegistrato(rs.getString(2), rs.getString(3), rs.getString(1), rs.getString(4),
-                rs.getString(5), rs.getString(6), rs.getString(7)));
+                        rs.getString(5), rs.getString(6), rs.getString(7)));
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         System.out.println(cittadiniRegistrati);
         return cittadiniRegistrati;
     }
-    public synchronized void setCentroVaccinale(String nomCentro , String comuneCentro , String indirizzoCentroString , 
-    String civicoCentro , String capCentro , Qualificatore qualCentro , SigleProvince siglaCentro , TipoCentro tipoCentro ) throws RemoteException {
+
+    public synchronized void setCentroVaccinale(String nomCentro, String comuneCentro, String indirizzoCentroString,
+                                                String civicoCentro, String capCentro, Qualificatore qualCentro, SigleProvince siglaCentro, TipoCentro tipoCentro) throws RemoteException {
         System.out.println("I'm setting up Center Data...");
-        String query = "INSERT INTO public.\"CentriVaccinali\" (nome,indirizzo.via,indirizzo.nome,indirizzo.numero_civico,indirizzo.comune,indirizzo.sigla_provincia,indirizzo.\"CAP\",tipologia) VALUES ('{"+ nomCentro +"}'::character varying[], '{"+ qualCentro +"}'::character varying[], '{"+ indirizzoCentroString +"}' ::character varying[], '"+ civicoCentro +"' , '{"+ comuneCentro +"}'::character varying[], '{"+ siglaCentro +"}'::character[], '"+ capCentro +"','{"+tipoCentro+"}'::character varying[]);";
-        try{
+        String query = "INSERT INTO public.\"CentriVaccinali\" (nome,indirizzo.via,indirizzo.nome,indirizzo.numero_civico,indirizzo.comune,indirizzo.sigla_provincia,indirizzo.\"CAP\",tipologia) VALUES ('{" + nomCentro + "}'::character varying[], '{" + qualCentro + "}'::character varying[], '{" + indirizzoCentroString + "}' ::character varying[], '" + civicoCentro + "' , '{" + comuneCentro + "}'::character varying[], '{" + siglaCentro + "}'::character[], '" + capCentro + "','{" + tipoCentro + "}'::character varying[]);";
+        try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public synchronized void setCittadino(String nomCentro, String comuneCentro, String indirizzoCentroString,
+                                          String civicoCentro, String capCentro, Qualificatore qualCentro, SigleProvince siglaCentro, TipoCentro tipoCentro) throws RemoteException {
+        System.out.println("I'm setting up Center Data...");
+        String query = "INSERT INTO public.\"CentriVaccinali\" (nome,indirizzo.via,indirizzo.nome,indirizzo.numero_civico,indirizzo.comune,indirizzo.sigla_provincia,indirizzo.\"CAP\",tipologia) VALUES ('{" + nomCentro + "}'::character varying[], '{" + qualCentro + "}'::character varying[], '{" + indirizzoCentroString + "}' ::character varying[], '" + civicoCentro + "' , '{" + comuneCentro + "}'::character varying[], '{" + siglaCentro + "}'::character[], '" + capCentro + "','{" + tipoCentro + "}'::character varying[]);";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized ArrayList<CentroVaccinale> getCentriVaccinali() throws RemoteException {
+        ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
+        System.out.println("Recupero elenco centri vaccinali...");
+
+        String query = "SELECT * FROM CentriVaccinali";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                centriVaccinali.add(new CentroVaccinale(rs.getString(1), new Indirizzo(Qualificatore.valueOf(rs.getString(2)), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)), TipoCentro.valueOf(rs.getString(8))));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(centriVaccinali);
+        return centriVaccinali;
     }
 }

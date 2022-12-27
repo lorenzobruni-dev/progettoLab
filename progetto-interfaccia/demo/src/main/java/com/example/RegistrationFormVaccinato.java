@@ -20,12 +20,16 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class RegistrationFormVaccinato implements Initializable{
+public class RegistrationFormVaccinato implements Initializable {
 
     @FXML
     private void backToHub() throws IOException {
         App.setRoot("SceltaOperatore");
     }
+
+    boolean controlloCampoDatiVaccinato = false;
+    boolean controlloCampoSigla = false;
+    boolean controlloCampoQualificatore = false;
     @FXML
     TextField nomeVaccinato;
     @FXML
@@ -51,99 +55,91 @@ public class RegistrationFormVaccinato implements Initializable{
     DatePicker dataSommVaccinato;
 
     @FXML
-    ComboBox <String> genereVaccinato;
+    ComboBox<String> genereVaccinato;
     @FXML
-    ComboBox <String> nomeVaccino;
+    ComboBox<String> nomeVaccino;
     @FXML
-    ComboBox <SigleProvince> provinciaCentroVaccinale;
+    ComboBox<SigleProvince> provinciaCentroVaccinale;
     @FXML
-    ComboBox <String> tipologiaCentroVaccinale;
+    ComboBox<String> tipologiaCentroVaccinale;
     @FXML
-    ComboBox <Qualificatore> ViaCentro;
+    ComboBox<Qualificatore> ViaCentro;
 
     @FXML
     Label checkCampi;
 
 
-    
     @FXML
     private void registraVaccinato() throws IOException {
-        
+
         ArrayList<String> datiVaccinato = getDati();
         ArrayList<SigleProvince> datoSigla = getDatiProvincia();
         ArrayList<Qualificatore> datiQualificatore = getDatoQualificatore();
 
-        try{
-            if(datiVaccinato.get(0).equals("") || 
-            datiVaccinato.get(1).equals("") || 
-            datiVaccinato.get(2).equals("-" + "-" + "-") ||
-            datiVaccinato.get(3).equals("") ||
-            datiVaccinato.get(4).equals("") ||
-            datiVaccinato.get(5).equals("-" + "-" + "-") ||
-            datiVaccinato.get(6).equals("") ||
-            datiVaccinato.get(7).equals("") ||
-            datiVaccinato.get(8).equals("") ||
-            datiVaccinato.get(9).equals("") ||
-            datiVaccinato.get(10).equals("") ||
-            datiVaccinato.get(11).equals("") ||
-            datiVaccinato.get(12).equals("") ||
-            datiVaccinato.get(13).equals("") ||
-            datiVaccinato.get(14).equals("") || 
-            datoSigla.get(0).toString().equals("")||
-            datiQualificatore.get(0).toString().equals("")){
+        datiVaccinato.forEach((e) -> {
+            if (e == null || e.equals(""))
+                controlloCampoDatiVaccinato = true;
+        });
+        datoSigla.forEach((e) -> {
+            if (e == null || e.equals(""))
+                controlloCampoSigla = true;
+        });
+        datiQualificatore.forEach((e) -> {
+            if (e == null || e.equals(""))
+                controlloCampoQualificatore = true;
+        });
 
-             checkCampi.setVisible(true);
-
-         }else{                
-             checkCampi.setVisible(false);
-             idUnivocoVaccinato.setVisible(true);
-             idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
-             System.out.println("Dati Centro :");
-             System.out.println(datiVaccinato);
-             System.out.println(datoSigla);
-         }
-        }catch(Exception e){
-            System.out.println(e);
+        if(controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoQualificatore)
+            checkCampi.setVisible(true);
+        else {
+            checkCampi.setVisible(false);
+            idUnivocoVaccinato.setVisible(true);
+            idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
+            System.out.println("Dati Centro :");
+            System.out.println(datiVaccinato);
+            System.out.println(datoSigla);
         }
-            
+
     }
-    public ArrayList<Qualificatore> getDatoQualificatore(){
+
+    public ArrayList<Qualificatore> getDatoQualificatore() {
 
         ArrayList<Qualificatore> datiTemp = new ArrayList<>();
 
         datiTemp.add(ViaCentro.getValue());
         return datiTemp;
     }
-    public ArrayList<SigleProvince> getDatiProvincia(){
+
+    public ArrayList<SigleProvince> getDatiProvincia() {
 
         ArrayList<SigleProvince> dati = new ArrayList<>();
 
         dati.add(provinciaCentroVaccinale.getValue());
         return dati;
     }
-    public ArrayList<String> getDati(){
+
+    public ArrayList<String> getDati() {
 
         ArrayList<String> datiTemp = new ArrayList<>();
 
-        String IdUnivoco = generazioneIDUnivoco();
         datiTemp.add(nomeVaccinato.getText());
         datiTemp.add(cognomeVaccinato.getText());
 
-        if(dataVaccinato.getValue() == null)
+        if (dataVaccinato.getValue() == null)
             datiTemp.add("");
         else
             datiTemp.add(dataVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        
+
         datiTemp.add(genereVaccinato.getValue());
         datiTemp.add(cfVaccinato.getText());
 
-        if(dataSommVaccinato.getValue() == null)
+        if (dataSommVaccinato.getValue() == null)
             datiTemp.add("");
         else
             datiTemp.add(dataSommVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        
+
         datiTemp.add(nomeVaccino.getValue());
-        datiTemp.add(IdUnivoco);
+        datiTemp.add(generazioneIDUnivoco());
         datiTemp.add(nomeCentroVaccinale.getText());
         datiTemp.add(comuneCentroVaccinale.getText());
         datiTemp.add(CivicoCentro.getText());
@@ -154,24 +150,25 @@ public class RegistrationFormVaccinato implements Initializable{
         return datiTemp;
     }
 
-    private String generazioneIDUnivoco(){
-				String carId = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-				String randString = " ";
-				int length = 20;
-				Random rand = new Random();
-				char [] text = new char [length];
-				for(int i=0;i < length ;i++)
-					text[i] = carId.charAt(rand.nextInt(carId.length()));
-				for(int i=0 ; i<text.length ; i++)
-					randString += text[i];
-                return randString;
+    private String generazioneIDUnivoco() {
+        String carId = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String randString = " ";
+        int length = 20;
+        Random rand = new Random();
+        char[] text = new char[length];
+        for (int i = 0; i < length; i++)
+            text[i] = carId.charAt(rand.nextInt(carId.length()));
+        for (int i = 0; i < text.length; i++)
+            randString += text[i];
+        return randString;
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        genereVaccinato.setItems(FXCollections.observableArrayList("Male","Female","Altro/a","MUCCA"));
-        nomeVaccino.setItems(FXCollections.observableArrayList("AstraZeneca","J&J","Pfizer", "Moderna"));
+        genereVaccinato.setItems(FXCollections.observableArrayList("Male", "Female", "Altro/a", "MUCCA"));
+        nomeVaccino.setItems(FXCollections.observableArrayList("AstraZeneca", "J&J", "Pfizer", "Moderna"));
         provinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
-        tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("OSPEDALIERO","AZIENDALE","HUB"));
+        tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("OSPEDALIERO", "AZIENDALE", "HUB"));
         ViaCentro.setItems(FXCollections.observableArrayList(Qualificatore.values()));
     }
 

@@ -50,20 +50,21 @@ public class RegistrationFormCittadino {
     private void backToHub() throws IOException {
         App.setRoot("HubIniziale");
     }
+
     @FXML
-    private void registraCittadino() throws IOException { 
+    private void registraCittadino() throws IOException {
 
         isInvalid = false;
 
         ArrayList<String> dati = getDati();
 
         dati.forEach((d) -> {
-            if(d == "" || d == null) {
+            if (d == "" || d == null) {
                 isInvalid = true;
             }
         });
 
-        if((dati.get(6) != "" && dati.get(6) != "")){
+        if ((dati.get(6) != "" && dati.get(6) != "")) {
             if (!dati.get(6).equals(dati.get(7))) {
                 isInvalid = true;
             }
@@ -75,7 +76,7 @@ public class RegistrationFormCittadino {
             campoCheckRegUtente.setVisible(false);
 
             cittadino = new CittadinoRegistrato(dati.get(0), dati.get(1), dati.get(2), dati.get(3), dati.get(4), dati.get(5), dati.get(6));
-            
+
             System.out.println(dati);
 
             App.setRoot("HubIniziale");
