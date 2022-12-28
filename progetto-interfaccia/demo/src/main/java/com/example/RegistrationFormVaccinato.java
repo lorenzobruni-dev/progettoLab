@@ -118,10 +118,11 @@ public class RegistrationFormVaccinato implements Initializable {
                 
                 checkPresenzaDB = validateCentro(controlloDatiCentro,datiCentroDB,datoSigla,datiQualificatore,datiTipoCentro);
     
-            if(controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoDatiTipoCentro || controlloCampoQualificatore || !checkPresenzaDB)
+            if((controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoDatiTipoCentro || controlloCampoQualificatore) || !checkPresenzaDB)
                 checkCampi.setVisible(true);
             else {
-
+                istanzaServer.server.setVaccinato(datiVaccinato);
+                istanzaServer.server.createTableDinamica(datiVaccinato);
                 RegistraVaccinato.setDisable(true);
                 checkCampi.setVisible(false);
                 idUnivocoVaccinato.setVisible(true);
@@ -183,7 +184,7 @@ public class RegistrationFormVaccinato implements Initializable {
         if (dataVaccinato.getValue() == null)
             datiTemp.add("");
         else
-            datiTemp.add(dataVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            datiTemp.add(dataVaccinato.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
         datiTemp.add(genereVaccinato.getValue());
         datiTemp.add(cfVaccinato.getText());
@@ -191,7 +192,7 @@ public class RegistrationFormVaccinato implements Initializable {
         if (dataSommVaccinato.getValue() == null)
             datiTemp.add("");
         else
-            datiTemp.add(dataSommVaccinato.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            datiTemp.add(dataSommVaccinato.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
         datiTemp.add(nomeVaccino.getValue());
         datiTemp.add(generazioneIDUnivoco());

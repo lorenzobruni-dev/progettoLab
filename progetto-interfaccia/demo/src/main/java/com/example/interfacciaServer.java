@@ -26,4 +26,6 @@ public interface interfacciaServer extends Remote{
     ArrayList<CittadinoRegistrato> getCittadiniRegistrati() throws RemoteException;
     void setCentroVaccinale(String string, String string2, String string3, String string4, String string5, Qualificatore qualificatore, SigleProvince sigleProvince, TipoCentro tipoCentro) throws RemoteException;
     ArrayList <CentroVaccinale> getCentriVaccinali() throws RemoteException;
+    void setVaccinato(ArrayList<String> datiVaccinato) throws RemoteException;
+    void createTableDinamica(ArrayList<String> datiVaccinato) throws RemoteException;
 }

@@ -179,10 +179,18 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         }
     }
 
-    public synchronized void setVaccinato(String nomCentro, String comuneCentro, String indirizzoCentroString,
-                                          String civicoCentro, String capCentro, Qualificatore qualCentro, SigleProvince siglaCentro, TipoCentro tipoCentro) throws RemoteException {
+    public synchronized void setVaccinato(ArrayList<String> datiVaccinato) throws RemoteException {
         System.out.println("I'm setting up Center Data...");
-        String query = "INSERT INTO public.\"CentriVaccinali\" (nome,indirizzo.via,indirizzo.nome,indirizzo.numero_civico,indirizzo.comune,indirizzo.sigla_provincia,indirizzo.\"CAP\",tipologia) VALUES ('{" + nomCentro + "}'::character varying[], '{" + qualCentro + "}'::character varying[], '{" + indirizzoCentroString + "}' ::character varying[], '" + civicoCentro + "' , '{" + comuneCentro + "}'::character varying[], '{" + siglaCentro + "}'::character[], '" + capCentro + "','{" + tipoCentro + "}'::character varying[]);";
+        String query = "INSERT INTO public.\"CittadiniRegistrati_"+datiVaccinato.get(8)+"\"(nome,cognome,data_nascita,genere,cod_fiscale,data_somministrazione,nome_vaccino,nome_centro,id_vaccinazione)"+
+                       "VALUES ('"+ datiVaccinato.get(0) +"'::character varying," + 
+                                "'"+ datiVaccinato.get(1) +"'::character varying," + 
+                                "'"+ datiVaccinato.get(2) +"'::date," + 
+                                "'"+ datiVaccinato.get(3) +"'::character varying," + 
+                                "'"+ datiVaccinato.get(4) +"'::character varying," + 
+                                "'"+ datiVaccinato.get(5) +"'::date," + 
+                                "'"+ datiVaccinato.get(6) +"'::character varying," + 
+                                "'"+ datiVaccinato.get(7) +"'::character varying," + 
+                                "'"+ datiVaccinato.get(8) +"'::character varying)";
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -190,6 +198,32 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
             e.printStackTrace();
         }
     } //TODO: Da inserire i dati del Vaccinato
+
+    public synchronized void createTableDinamica(ArrayList<String> datiVaccinato) throws RemoteException {
+        System.out.println("I'm setting up Center Data...");
+        String query = "CREATE TABLE IF NOT EXISTS public.\"CittadiniRegistrati_"+datiVaccinato.get(8)+"\""+
+                       "( nome character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
+                       "  cognome character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
+                       "  data_nascita date NOT NULL," +
+                       "  genere character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
+                       "  cod_fiscale character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
+                       "  data_somministrazione date NOT NULL," +
+                       "  nome_vaccino character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
+                       "  nome_centro character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
+                       "  id_vaccinazione character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
+                       "  CONSTRAINT \"CittadiniRegistrati"+datiVaccinato.get(8)+"p_key\" PRIMARY KEY(id_vaccinazione),"+
+                       "  CONSTRAINT \"CittadiniRegistratiNome"+datiVaccinato.get(8)+"p_key\" FOREIGN KEY(nome_centro) REFERENCES public.\"CentriVaccinali\" (nome),"+
+                       "  CONSTRAINT \"CittadiniRegistratiCF"+datiVaccinato.get(8)+"p_key\" FOREIGN KEY(cod_fiscale) REFERENCES public.\"CittadiniRegistrati\" (codice_fiscale))"+
+                       "TABLESPACE pg_default;"+
+                       "ALTER TABLE IF EXISTS public.\"CittadiniRegistrati_"+datiVaccinato.get(8)+"\"" + 
+                       "OWNER to czofsewc;"; 
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } 
 
     public synchronized ArrayList<CentroVaccinale> getCentriVaccinali() throws RemoteException {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
@@ -211,4 +245,5 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         System.out.println(centriVaccinali);
         return centriVaccinali;
     }
+
 }
