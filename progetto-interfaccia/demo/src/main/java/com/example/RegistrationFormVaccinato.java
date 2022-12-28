@@ -16,6 +16,7 @@ import com.example.models.TipoCentro;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -71,6 +72,8 @@ public class RegistrationFormVaccinato implements Initializable {
 
     @FXML
     Label checkCampi;
+    @FXML
+    Button RegistraVaccinato;
 
 
     @FXML
@@ -119,6 +122,7 @@ public class RegistrationFormVaccinato implements Initializable {
                 checkCampi.setVisible(true);
             else {
 
+                RegistraVaccinato.setDisable(true);
                 checkCampi.setVisible(false);
                 idUnivocoVaccinato.setVisible(true);
                 idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
