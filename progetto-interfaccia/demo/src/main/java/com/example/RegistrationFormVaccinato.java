@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import com.example.models.CentroVaccinale;
 import com.example.models.Qualificatore;
 import com.example.models.SigleProvince;
+import com.example.models.TipoCentro;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -28,8 +29,11 @@ public class RegistrationFormVaccinato implements Initializable {
     }
 
     boolean controlloCampoDatiVaccinato = false;
+    boolean controlloCampoDatiTipoCentro = false;
     boolean controlloCampoSigla = false;
     boolean controlloCampoQualificatore = false;
+    boolean checkPresenzaDB = false;
+
     @FXML
     TextField nomeVaccinato;
     @FXML
@@ -61,7 +65,7 @@ public class RegistrationFormVaccinato implements Initializable {
     @FXML
     ComboBox<SigleProvince> provinciaCentroVaccinale;
     @FXML
-    ComboBox<String> tipologiaCentroVaccinale;
+    ComboBox<TipoCentro> tipologiaCentroVaccinale;
     @FXML
     ComboBox<Qualificatore> ViaCentro;
 
@@ -75,12 +79,22 @@ public class RegistrationFormVaccinato implements Initializable {
         ArrayList<String> datiVaccinato = getDati();
         ArrayList<SigleProvince> datoSigla = getDatiProvincia();
         ArrayList<Qualificatore> datiQualificatore = getDatoQualificatore();
+        ArrayList<TipoCentro> datiTipoCentro = getDatiTipoCentro();
 
+        ArrayList <CentroVaccinale> datiCentroDB = new ArrayList<>();
+        ArrayList <String> controlloDatiCentro = new ArrayList<>();
+
+            
         try{
             datiVaccinato.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoDatiVaccinato = true;
             });
+            datiTipoCentro.forEach((e) -> {
+                if (e == null || e.equals(""))
+                    controlloCampoDatiTipoCentro = true;
+            });
+            
             datoSigla.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoSigla = true;
@@ -89,10 +103,22 @@ public class RegistrationFormVaccinato implements Initializable {
                 if (e == null || e.equals(""))
                     controlloCampoQualificatore = true;
             });
+
+                controlloDatiCentro.add(datiVaccinato.get(8)); //nomeCentro
+                controlloDatiCentro.add(datiVaccinato.get(12)); //nomeVia
+                controlloDatiCentro.add(datiVaccinato.get(10)); //numeroCivico
+                controlloDatiCentro.add(datiVaccinato.get(9)); //comuneCentro
+                controlloDatiCentro.add(datiVaccinato.get(11)); //capCentro
+
+                //chiamata DB per getDatiCentro
+                datiCentroDB = istanzaServer.server.getCentriVaccinali();
+                
+                checkPresenzaDB = validateCentro(controlloDatiCentro,datiCentroDB,datoSigla,datiQualificatore,datiTipoCentro);
     
-            if(controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoQualificatore)
+            if(controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoDatiTipoCentro || controlloCampoQualificatore || !checkPresenzaDB)
                 checkCampi.setVisible(true);
             else {
+
                 checkCampi.setVisible(false);
                 idUnivocoVaccinato.setVisible(true);
                 idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
@@ -103,10 +129,32 @@ public class RegistrationFormVaccinato implements Initializable {
         }catch(Exception e){
             System.out.println(e);
         }
+    }
+    private boolean validateCentro(ArrayList<String> controlloDatiCentro, ArrayList<CentroVaccinale> datiCentroDB, ArrayList<SigleProvince> datoSigla, ArrayList<Qualificatore> datiQualificatore, ArrayList<TipoCentro> datiTipoCentro) {
         
-
+        if(!datiCentroDB.isEmpty()){
+            datiCentroDB.forEach((datiDB)->{
+                if(datiDB.getNome().equals(controlloDatiCentro.get(0))&&
+                datiDB.getIndirizzo().getQualificatore().equals(datiQualificatore.get(0))&&
+                datiDB.getIndirizzo().getNome().equals(""+controlloDatiCentro.get(1))&&
+                datiDB.getIndirizzo().getNumeroCivico().equals(""+controlloDatiCentro.get(2))&&
+                datiDB.getIndirizzo().getComune().equals(""+controlloDatiCentro.get(3))&&
+                datiDB.getIndirizzo().getProvincia().equals(""+datoSigla.get(0))&&
+                datiDB.getIndirizzo().getCap().equals(""+controlloDatiCentro.get(4))&&
+                datiDB.getTipoCentro().equals(datiTipoCentro.get(0)))
+                    checkPresenzaDB = true;
+                });
+        }
+        return checkPresenzaDB;
     }
 
+    public ArrayList <TipoCentro> getDatiTipoCentro(){
+
+        ArrayList<TipoCentro> datiTemp = new ArrayList<>();
+
+        datiTemp.add(tipologiaCentroVaccinale.getValue());
+        return datiTemp;
+    }
     public ArrayList<Qualificatore> getDatoQualificatore() {
 
         ArrayList<Qualificatore> datiTemp = new ArrayList<>();
@@ -114,7 +162,6 @@ public class RegistrationFormVaccinato implements Initializable {
         datiTemp.add(ViaCentro.getValue());
         return datiTemp;
     }
-
     public ArrayList<SigleProvince> getDatiProvincia() {
 
         ArrayList<SigleProvince> dati = new ArrayList<>();
@@ -122,7 +169,6 @@ public class RegistrationFormVaccinato implements Initializable {
         dati.add(provinciaCentroVaccinale.getValue());
         return dati;
     }
-
     public ArrayList<String> getDati() {
 
         ArrayList<String> datiTemp = new ArrayList<>();
@@ -145,13 +191,11 @@ public class RegistrationFormVaccinato implements Initializable {
 
         datiTemp.add(nomeVaccino.getValue());
         datiTemp.add(generazioneIDUnivoco());
-        datiTemp.add(nomeCentroVaccinale.getText());
-        datiTemp.add(comuneCentroVaccinale.getText());
-        datiTemp.add(CivicoCentro.getText());
-        datiTemp.add(capCentroVaccinale.getText());
-        datiTemp.add(indirizzoCentroVaccinale.getText());
-        datiTemp.add(comuneCentroVaccinale.getText());
-        datiTemp.add(tipologiaCentroVaccinale.getValue());
+        datiTemp.add(nomeCentroVaccinale.getText()); //8
+        datiTemp.add(comuneCentroVaccinale.getText()); //9
+        datiTemp.add(CivicoCentro.getText()); //10
+        datiTemp.add(capCentroVaccinale.getText()); //11
+        datiTemp.add(indirizzoCentroVaccinale.getText()); //12
         return datiTemp;
     }
 
@@ -173,7 +217,7 @@ public class RegistrationFormVaccinato implements Initializable {
         genereVaccinato.setItems(FXCollections.observableArrayList("Male", "Female", "Altro/a", "MUCCA"));
         nomeVaccino.setItems(FXCollections.observableArrayList("AstraZeneca", "J&J", "Pfizer", "Moderna"));
         provinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
-        tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList("OSPEDALIERO", "AZIENDALE", "HUB"));
+        tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList(TipoCentro.values()));
         ViaCentro.setItems(FXCollections.observableArrayList(Qualificatore.values()));
     }
 

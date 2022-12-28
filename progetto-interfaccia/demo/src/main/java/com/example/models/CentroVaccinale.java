@@ -1,6 +1,8 @@
 package com.example.models;
 
-public class CentroVaccinale {
+import java.io.Serializable;
+
+public class CentroVaccinale implements Serializable {
     String nome;
     Indirizzo indirizzo;
     TipoCentro tipoCentro;
@@ -37,5 +39,9 @@ public class CentroVaccinale {
 
     public void setTipoCentro(TipoCentro tipoCentro) {
         this.tipoCentro = tipoCentro;
+    }
+    @Override
+    public String toString() {
+        return "CentroVaccinale: [nome=" + nome + ", " + indirizzo + ", tipo centro=" + tipoCentro + "]";
     }
 }

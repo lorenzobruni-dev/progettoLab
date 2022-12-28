@@ -21,6 +21,8 @@ public class RegistrationFormCentroVaccinale implements Initializable {
     boolean controlloCampoProvincia = false;
     boolean controlloCampoCentro = false;
     boolean controlloCampoQualificatore = false;
+    boolean controlloCampoTipoCentro = false;
+    boolean controlloTipo = false;
     @FXML
     private ComboBox<SigleProvince> ProvinciaCentroVaccinale;
     @FXML
@@ -71,14 +73,14 @@ public class RegistrationFormCentroVaccinale implements Initializable {
             });
             datiTipoCentro.forEach((e) -> {
                 if (e == null || e.equals(""))
-                    controlloCampoQualificatore = true;
+                    controlloCampoTipoCentro = true;
             });
             datiQualificatore.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoQualificatore = true;
             });
     
-            if(controlloCampoProvincia || controlloCampoCentro || controlloCampoQualificatore)
+            if(controlloCampoProvincia || controlloCampoCentro || controlloCampoTipoCentro ||controlloCampoQualificatore)
                 CheckCampi.setVisible(true);
             else {
                 // System.out.print("Dati Centro :");
@@ -91,7 +93,7 @@ public class RegistrationFormCentroVaccinale implements Initializable {
                         + " - " + datiCentroProvincia.get(0)
                         + " - " + datiCentro.get(4)
                         + " - " + datiTipoCentro.get(0));
-
+                System.out.println(datiCentroProvincia.get(0));
                 istanzaServer.server.setCentroVaccinale(datiCentro.get(0), datiCentro.get(1), datiCentro.get(2),
                         datiCentro.get(3), datiCentro.get(4), datiQualificatore.get(0), datiCentroProvincia.get(0),
                         datiTipoCentro.get(0));

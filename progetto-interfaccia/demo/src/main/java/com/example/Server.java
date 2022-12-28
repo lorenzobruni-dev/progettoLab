@@ -170,7 +170,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
     public synchronized void setCentroVaccinale(String nomCentro, String comuneCentro, String indirizzoCentroString,
                                                 String civicoCentro, String capCentro, Qualificatore qualCentro, SigleProvince siglaCentro, TipoCentro tipoCentro) throws RemoteException {
         System.out.println("I'm setting up Center Data...");
-        String query = "INSERT INTO public.\"CentriVaccinali\" (nome,indirizzo.via,indirizzo.nome,indirizzo.numero_civico,indirizzo.comune,indirizzo.sigla_provincia,indirizzo.\"CAP\",tipologia) VALUES ('{" + nomCentro + "}'::character varying[], '{" + qualCentro + "}'::character varying[], '{" + indirizzoCentroString + "}' ::character varying[], '" + civicoCentro + "' , '{" + comuneCentro + "}'::character varying[], '{" + siglaCentro + "}'::character[], '" + capCentro + "','{" + tipoCentro + "}'::character varying[]);";
+        String query = "INSERT INTO public.\"CentriVaccinali\" (nome,indirizzo.via,indirizzo.nome,indirizzo.numero_civico,indirizzo.comune,indirizzo.sigla_provincia,indirizzo.\"CAP\",tipologia) VALUES ('"+ nomCentro +"'::character varying, '"+ qualCentro +"'::character varying, '"+ indirizzoCentroString +"' ::character varying, '"+ civicoCentro +"' , '"+ comuneCentro +"'::character varying, '"+ siglaCentro +"'::character varying, '"+ capCentro +"','"+ tipoCentro +"'::character varying);";
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -179,7 +179,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         }
     }
 
-    public synchronized void setCittadino(String nomCentro, String comuneCentro, String indirizzoCentroString,
+    public synchronized void setVaccinato(String nomCentro, String comuneCentro, String indirizzoCentroString,
                                           String civicoCentro, String capCentro, Qualificatore qualCentro, SigleProvince siglaCentro, TipoCentro tipoCentro) throws RemoteException {
         System.out.println("I'm setting up Center Data...");
         String query = "INSERT INTO public.\"CentriVaccinali\" (nome,indirizzo.via,indirizzo.nome,indirizzo.numero_civico,indirizzo.comune,indirizzo.sigla_provincia,indirizzo.\"CAP\",tipologia) VALUES ('{" + nomCentro + "}'::character varying[], '{" + qualCentro + "}'::character varying[], '{" + indirizzoCentroString + "}' ::character varying[], '" + civicoCentro + "' , '{" + comuneCentro + "}'::character varying[], '{" + siglaCentro + "}'::character[], '" + capCentro + "','{" + tipoCentro + "}'::character varying[]);";
@@ -189,13 +189,13 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    } //TODO: Da inserire i dati del Vaccinato
 
     public synchronized ArrayList<CentroVaccinale> getCentriVaccinali() throws RemoteException {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM CentriVaccinali";
+        String query = "SELECT nome, (indirizzo).via, (indirizzo).nome, (indirizzo).numero_civico, (indirizzo).comune, (indirizzo).sigla_provincia, (indirizzo).\"CAP\", tipologia FROM public.\"CentriVaccinali\"";
 
         try {
             Statement statement = connection.createStatement();
