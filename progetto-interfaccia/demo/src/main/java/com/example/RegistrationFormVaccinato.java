@@ -92,19 +92,27 @@ public class RegistrationFormVaccinato implements Initializable {
             datiVaccinato.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoDatiVaccinato = true;
+                else 
+                    controlloCampoDatiVaccinato = false;
             });
             datiTipoCentro.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoDatiTipoCentro = true;
+                else 
+                    controlloCampoDatiTipoCentro = false;
             });
             
             datoSigla.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoSigla = true;
+                else 
+                    controlloCampoSigla = false;
             });
             datiQualificatore.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoQualificatore = true;
+                else 
+                    controlloCampoQualificatore = false;
             });
 
                 controlloDatiCentro.add(datiVaccinato.get(8)); //nomeCentro
