@@ -189,8 +189,8 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
                                 "'"+ datiVaccinato.get(4) +"'::character varying," + 
                                 "'"+ datiVaccinato.get(5) +"'::date," + 
                                 "'"+ datiVaccinato.get(6) +"'::character varying," + 
-                                "'"+ datiVaccinato.get(7) +"'::character varying," + 
-                                "'"+ datiVaccinato.get(8) +"'::character varying)";
+                                "'"+ datiVaccinato.get(8) +"'::character varying," + 
+                                "'"+ datiVaccinato.get(7) +"'::character varying)";
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -212,8 +212,7 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
                        "  nome_centro character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
                        "  id_vaccinazione character varying(30) COLLATE pg_catalog.\"default\" NOT NULL," +
                        "  CONSTRAINT \"CittadiniRegistrati"+datiVaccinato.get(8)+"p_key\" PRIMARY KEY(id_vaccinazione),"+
-                       "  CONSTRAINT \"CittadiniRegistratiNome"+datiVaccinato.get(8)+"p_key\" FOREIGN KEY(nome_centro) REFERENCES public.\"CentriVaccinali\" (nome),"+
-                       "  CONSTRAINT \"CittadiniRegistratiCF"+datiVaccinato.get(8)+"p_key\" FOREIGN KEY(cod_fiscale) REFERENCES public.\"CittadiniRegistrati\" (codice_fiscale))"+
+                       "  CONSTRAINT \"CittadiniRegistratiNome"+datiVaccinato.get(8)+"p_key\" FOREIGN KEY(nome_centro) REFERENCES public.\"CentriVaccinali\" (nome) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION)"+
                        "TABLESPACE pg_default;"+
                        "ALTER TABLE IF EXISTS public.\"CittadiniRegistrati_"+datiVaccinato.get(8)+"\"" + 
                        "OWNER to czofsewc;"; 

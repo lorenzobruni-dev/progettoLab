@@ -34,6 +34,7 @@ public class RegistrationFormVaccinato implements Initializable {
     boolean controlloCampoSigla = false;
     boolean controlloCampoQualificatore = false;
     boolean checkPresenzaDB = false;
+    boolean loopCampiVuoti = false;
 
     @FXML
     TextField nomeVaccinato;
@@ -92,19 +93,27 @@ public class RegistrationFormVaccinato implements Initializable {
             datiVaccinato.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoDatiVaccinato = true;
+                else 
+                    controlloCampoDatiVaccinato = false;
             });
             datiTipoCentro.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoDatiTipoCentro = true;
+                else 
+                    controlloCampoDatiTipoCentro = false;
             });
             
             datoSigla.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoSigla = true;
+                else 
+                    controlloCampoSigla = false;
             });
             datiQualificatore.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoQualificatore = true;
+                else 
+                    controlloCampoQualificatore = false;
             });
 
                 controlloDatiCentro.add(datiVaccinato.get(8)); //nomeCentro
@@ -117,9 +126,13 @@ public class RegistrationFormVaccinato implements Initializable {
                 datiCentroDB = istanzaServer.server.getCentriVaccinali();
                 
                 checkPresenzaDB = validateCentro(controlloDatiCentro,datiCentroDB,datoSigla,datiQualificatore,datiTipoCentro);
-    
-            if((controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoDatiTipoCentro || controlloCampoQualificatore) || !checkPresenzaDB)
-                checkCampi.setVisible(true);
+                System.out.println(controlloCampoDatiVaccinato);
+                System.out.println(controlloCampoSigla);
+                System.out.println(controlloCampoDatiTipoCentro);
+                System.out.println(controlloCampoQualificatore);
+                System.out.println(!checkPresenzaDB);
+                if(controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoDatiTipoCentro || controlloCampoQualificatore || !checkPresenzaDB)
+                    checkCampi.setVisible(true);
             else {
                 istanzaServer.server.setVaccinato(datiVaccinato);
                 istanzaServer.server.createTableDinamica(datiVaccinato);
@@ -131,6 +144,8 @@ public class RegistrationFormVaccinato implements Initializable {
                 System.out.println(datiVaccinato);
                 System.out.println(datoSigla);
             }
+            
+            
         }catch(Exception e){
             System.out.println(e);
         }
