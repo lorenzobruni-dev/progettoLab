@@ -35,9 +35,16 @@
          </cursor>
       </ComboBox>
       <Separator layoutX="270.0" layoutY="57.0" orientation="VERTICAL" prefHeight="546.0" prefWidth="14.0" />
-      <TableView fx:id="tabellaCentri" layoutX="291.0" layoutY="57.0" prefHeight="546.0" prefWidth="545.0">
+      <TableView fx:id="tabellaCentri" layoutX="291.0" layoutY="57.0" prefHeight="546.0" prefWidth="850.0">
         <columns>
-          <TableColumn prefWidth="544.0" text="Nome Centro" />
+          <TableColumn fx:id="colonnaNome" prefWidth="150.0" text="Nome" />
+          <TableColumn fx:id="colonnaQualificatore" prefWidth="100.0" text="Qualificatore" />
+          <TableColumn fx:id="colonnaIndirizzo" prefWidth="150.0" text="Indirizzo" />
+          <TableColumn fx:id="colonnaNumCivico" prefWidth="30.0" text="Nº" />
+          <TableColumn fx:id="colonnaComune" prefWidth="120.0" text="Comune" />
+          <TableColumn fx:id="colonnaProvincia" prefWidth="100.0" text="Provincia" />
+          <TableColumn fx:id="colonnaCAP" prefWidth="100.0" text="CAP" />
+          <TableColumn fx:id="colonnaTipologia" prefWidth="100.0" text="Tipologia" />
         </columns>
          <cursor>
             <Cursor fx:constant="HAND" />
