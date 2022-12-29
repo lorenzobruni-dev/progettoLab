@@ -5,6 +5,7 @@ import java.net.URL;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ResourceBundle;
+import java.util.concurrent.Semaphore;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,7 +14,6 @@ public class HubIniziale implements Initializable{
     
     @FXML
     private void apriSezioneOperatore() throws IOException {
-
         App.setRoot("LoginOperatori");
     }
     @FXML

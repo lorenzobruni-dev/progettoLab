@@ -9,6 +9,8 @@ import com.example.models.CentroVaccinale;
 import com.example.models.CittadinoRegistrato;
 import com.example.models.CittadinoVaccinato;
 import com.example.models.EventoAvverso;
+import com.example.models.Qualificatore;
+import com.example.models.SigleProvince;
 import com.example.models.TipoCentro;
 import com.example.models.loginCentro;
 
@@ -25,4 +27,8 @@ public interface interfacciaServer extends Remote{
     ArrayList<CittadinoRegistrato> getCittadiniRegistrati() throws RemoteException;
     void registraCittadino(CittadinoRegistrato registrato) throws RemoteException;
     void registraEventiAvversi(ArrayList<EventoAvverso> eventiAvversi, String codiceFiscale) throws RemoteException;
+    void setCentroVaccinale(String string, String string2, String string3, String string4, String string5, Qualificatore qualificatore, SigleProvince sigleProvince, TipoCentro tipoCentro) throws RemoteException;
+    ArrayList <CentroVaccinale> getCentriVaccinali() throws RemoteException;
+    void setVaccinato(ArrayList<String> datiVaccinato) throws RemoteException;
+    void createTableDinamica(ArrayList<String> datiVaccinato) throws RemoteException;
 }

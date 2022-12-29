@@ -74,3 +74,4 @@ public class Indirizzo implements Serializable {
                 + ", comune=" + comune + ", provincia=" + provincia + ", cap=" + cap + "]";
     }
 }
+

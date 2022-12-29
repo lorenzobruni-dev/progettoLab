@@ -106,8 +106,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ComboBox>
-      <Label id="CheckRegUtente" fx:id="checkCampi" layoutX="392.0" layoutY="285.0" text="Campi non compilati!" visible="false" />
-      <Button id="RegistraVaccinato" layoutX="386.0" layoutY="318.0" mnemonicParsing="false" onAction="#registraVaccinato" prefHeight="36.0" prefWidth="137.0" style="-fx-background-color: Blue;" text="Registra vaccinato" textFill="#f8f7f7">
+      <Label id="CheckRegUtente" fx:id="checkCampi" layoutX="392.0" layoutY="308.0" prefHeight="17.0" prefWidth="119.0" text="Campi non compilati!" visible="false" />
+      <Button id="RegistraVaccinato" fx:id="RegistraVaccinato" layoutX="383.0" layoutY="336.0" mnemonicParsing="false" onAction="#registraVaccinato" prefHeight="36.0" prefWidth="137.0" style="-fx-background-color: Blue;" text="Registra vaccinato" textFill="#f8f7f7">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -51,21 +51,22 @@ public class RegistrationFormCittadino {
     private void backToHub() throws IOException {
         App.setRoot("HubIniziale");
     }
+
     @FXML
-    private void registraCittadino() throws IOException { 
+    private void registraCittadino() throws IOException {
 
         isInvalid = false;
 
         ArrayList<String> dati = getDati();
 
         dati.forEach((d) -> {
-            if(d.equals("")) {
+            if (d == "" || d == null) {
                 isInvalid = true;
             }
         });
 
-        if((dati.get(6) != "" && dati.get(7) != "")){
-            if (!(dati.get(6).equals(dati.get(7)))) {
+        if ((dati.get(6) != "" && dati.get(6) != "")) {
+            if (!dati.get(6).equals(dati.get(7))) {
                 isInvalid = true;
             }
         }
