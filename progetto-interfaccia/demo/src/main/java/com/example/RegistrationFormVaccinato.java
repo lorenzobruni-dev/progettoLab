@@ -90,31 +90,49 @@ public class RegistrationFormVaccinato implements Initializable {
 
             
         try{
-            datiVaccinato.forEach((e) -> {
-                if (e == null || e.equals(""))
-                    controlloCampoDatiVaccinato = true;
-                else 
-                    controlloCampoDatiVaccinato = false;
-            });
-            datiTipoCentro.forEach((e) -> {
-                if (e == null || e.equals(""))
-                    controlloCampoDatiTipoCentro = true;
-                else 
-                    controlloCampoDatiTipoCentro = false;
-            });
+            // datiVaccinato.forEach((e) -> {
+            //     if (e == null || e.equals(""))
+            //         controlloCampoDatiVaccinato = true;
+            //     else 
+            //         controlloCampoDatiVaccinato = false;
+            // });
+            // datiTipoCentro.forEach((e) -> {
+            //     if (e == null || e.equals(""))
+            //         controlloCampoDatiTipoCentro = true;
+            //     else 
+            //         controlloCampoDatiTipoCentro = false;
+            // });
             
-            datoSigla.forEach((e) -> {
-                if (e == null || e.equals(""))
-                    controlloCampoSigla = true;
-                else 
-                    controlloCampoSigla = false;
-            });
-            datiQualificatore.forEach((e) -> {
-                if (e == null || e.equals(""))
-                    controlloCampoQualificatore = true;
-                else 
-                    controlloCampoQualificatore = false;
-            });
+            // datoSigla.forEach((e) -> {
+            //     if (e == null || e.equals(""))
+            //         controlloCampoSigla = true;
+            //     else 
+            //         controlloCampoSigla = false;
+            // });
+            // datiQualificatore.forEach((e) -> {
+            //     if (e == null || e.equals(""))
+            //         controlloCampoQualificatore = true;
+            //     else 
+            //         controlloCampoQualificatore = false;
+            // });
+            if(datiVaccinato.get(0).equals("") || 
+            datiVaccinato.get(1).equals("") || 
+            datiVaccinato.get(2).equals("-" + "-" + "-") ||
+            datiVaccinato.get(3).equals("") ||
+            datiVaccinato.get(4).equals("") ||
+            datiVaccinato.get(5).equals("-" + "-" + "-") ||
+            datiVaccinato.get(6).equals("") ||
+            datiVaccinato.get(7).equals("") ||
+            datiVaccinato.get(8).equals("") ||
+            datiVaccinato.get(9).equals("") ||
+            datiVaccinato.get(10).equals("") ||
+            datiVaccinato.get(11).equals("") ||
+            datiVaccinato.get(12).equals("") ||
+            datoSigla.get(0).toString().equals("")||
+            datiQualificatore.get(0).toString().equals(""))
+                controlloCampoDatiVaccinato = true;
+            else
+                controlloCampoDatiVaccinato = false;
 
                 controlloDatiCentro.add(datiVaccinato.get(8)); //nomeCentro
                 controlloDatiCentro.add(datiVaccinato.get(12)); //nomeVia
@@ -131,7 +149,7 @@ public class RegistrationFormVaccinato implements Initializable {
                 System.out.println(controlloCampoDatiTipoCentro);
                 System.out.println(controlloCampoQualificatore);
                 System.out.println(!checkPresenzaDB);
-                if(controlloCampoDatiVaccinato || controlloCampoSigla || controlloCampoDatiTipoCentro || controlloCampoQualificatore || !checkPresenzaDB)
+                if(controlloCampoDatiVaccinato || !checkPresenzaDB)
                     checkCampi.setVisible(true);
             else {
                 istanzaServer.server.setVaccinato(datiVaccinato);
