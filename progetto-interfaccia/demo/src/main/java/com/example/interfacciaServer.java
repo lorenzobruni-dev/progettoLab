@@ -20,7 +20,7 @@ public interface interfacciaServer extends Remote{
     
     boolean ApriConnessioneDB(String url, String username, String password) throws RemoteException, ClassNotFoundException;
     void ChiudiConnessioneDB() throws RemoteException, SQLException;
-    ArrayList<CittadinoVaccinato> getCittadiniVaccinati(String centro) throws RemoteException;
+    ArrayList<String> getCittadiniVaccinati(String centro) throws RemoteException;
     ArrayList<CentroVaccinale> getCentriVaccinaliByName(String nomeCentro) throws RemoteException;
     ArrayList<CentroVaccinale> getCentriVaccinaliByType(String comune, TipoCentro tipoCentro) throws RemoteException;
     ArrayList <loginCentro> getDatiLogin() throws RemoteException;
@@ -31,4 +31,5 @@ public interface interfacciaServer extends Remote{
     ArrayList <CentroVaccinale> getCentriVaccinali() throws RemoteException;
     void setVaccinato(ArrayList<String> datiVaccinato) throws RemoteException;
     void createTableDinamica(ArrayList<String> datiVaccinato) throws RemoteException;
+    ArrayList<EventoAvverso> getEventiAvversi(String codiceFiscale) throws RemoteException;
 }

@@ -13,13 +13,11 @@ import java.util.ArrayList;
 
 import com.example.models.CentroVaccinale;
 import com.example.models.CittadinoRegistrato;
-import com.example.models.CittadinoVaccinato;
 import com.example.models.EventoAvverso;
 import com.example.models.Indirizzo;
 import com.example.models.Qualificatore;
 import com.example.models.SigleProvince;
 import com.example.models.TipoCentro;
-import com.example.models.TipoVaccino;
 import com.example.models.loginCentro;
 
 
@@ -104,19 +102,18 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return centriVaccinali;
     }
 
-    public synchronized ArrayList<CittadinoVaccinato> getCittadiniVaccinati(String centro) throws RemoteException {
-        ArrayList<CittadinoVaccinato> cittadiniVaccinati = new ArrayList<>();
+    public synchronized ArrayList<String> getCittadiniVaccinati(String centro) throws RemoteException {
+        ArrayList<String> cittadiniVaccinati = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
 
-        String query = "SELECT * FROM CittadiniVaccinati WHERE nome_centro='" + centro + "'";
+        String query = "SELECT cod_fiscale FROM public.\"CittadiniRegistrati_" + centro + "\"";
 
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
-                cittadiniVaccinati.add(new CittadinoVaccinato(rs.getString(5), rs.getString(6), rs.getString(1), rs.getString(7),
-                        rs.getString(3), TipoVaccino.valueOf(rs.getString(2)), rs.getString(4)));
+                cittadiniVaccinati.add(rs.getString(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -275,5 +272,25 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
                 e.printStackTrace();
             }
         });
+    }
+
+    public synchronized ArrayList<EventoAvverso> getEventiAvversi(String codiceFiscale) throws RemoteException {
+        ArrayList<EventoAvverso> eventiAvversi = new ArrayList<>();
+        System.out.println("Recupero eventi avversi...");
+
+        String query = "SELECT * FROM public.\"EventiAvversi\" WHERE codice_fiscale='" + codiceFiscale + "' AND severità > 1";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                eventiAvversi.add(new EventoAvverso(rs.getString(2), rs.getInt(4), rs.getString(3)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return eventiAvversi;
     }
 }
