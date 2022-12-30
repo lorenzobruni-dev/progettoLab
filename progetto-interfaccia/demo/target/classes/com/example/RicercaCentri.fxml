@@ -35,7 +35,7 @@
          </cursor>
       </ComboBox>
       <Separator layoutX="270.0" layoutY="57.0" orientation="VERTICAL" prefHeight="546.0" prefWidth="14.0" />
-      <TableView fx:id="tabellaCentri" layoutX="291.0" layoutY="57.0" prefHeight="546.0" prefWidth="850.0">
+      <TableView fx:id="tabellaCentri" layoutX="291.0" layoutY="57.0" prefHeight="546.0" prefWidth="950.0">
         <columns>
           <TableColumn fx:id="colonnaNome" prefWidth="150.0" text="Nome" />
           <TableColumn fx:id="colonnaQualificatore" prefWidth="100.0" text="Qualificatore" />
@@ -45,6 +45,8 @@
           <TableColumn fx:id="colonnaProvincia" prefWidth="100.0" text="Provincia" />
           <TableColumn fx:id="colonnaCAP" prefWidth="100.0" text="CAP" />
           <TableColumn fx:id="colonnaTipologia" prefWidth="100.0" text="Tipologia" />
+          <TableColumn fx:id="colonnaEventi" prefWidth="50.0" text="Eventi" />
+          <TableColumn fx:id="colonnaMedia" prefWidth="50.0" text="Media" />
         </columns>
          <cursor>
             <Cursor fx:constant="HAND" />

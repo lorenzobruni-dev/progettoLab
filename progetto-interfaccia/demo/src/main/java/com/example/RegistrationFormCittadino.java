@@ -1,6 +1,7 @@
 package com.example;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import com.example.models.CittadinoRegistrato;
@@ -15,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 public class RegistrationFormCittadino {
 
     boolean isInvalid = false;
+    boolean isIdValid = false;
     CittadinoRegistrato cittadino;
     Alert a = new Alert(AlertType.INFORMATION);
 
@@ -56,24 +58,39 @@ public class RegistrationFormCittadino {
     private void registraCittadino() throws IOException {
 
         isInvalid = false;
+        isIdValid = false;
 
         ArrayList<String> dati = getDati();
 
         dati.forEach((d) -> {
-            if (d == "" || d == null) {
+            if (d.equals("") || d == null) {
                 isInvalid = true;
             }
         });
 
-        if ((dati.get(6) != "" && dati.get(6) != "")) {
+        if ((!dati.get(6).equals("") && !dati.get(7).equals(""))) {
             if (!dati.get(6).equals(dati.get(7))) {
                 isInvalid = true;
             }
         }
 
-        System.out.println(isInvalid);
+        istanzaServer.server.getCentriVaccinali().forEach((c) -> {
+            try {
+                istanzaServer.server.getCittadiniVaccinatiId(c.getNome()).forEach((id) -> {
+                    System.out.println(id);
+                    System.out.println(dati.get(3));
+                    if (id.substring(1).equals(dati.get(3)))
+                        isIdValid = true;
+                });;
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });;
 
-        if (isInvalid) {
+        System.out.println(isInvalid);
+        System.out.println(isIdValid);
+
+        if (isInvalid || !isIdValid) {
             campoCheckRegUtente.setVisible(true);
         } else {
             campoCheckRegUtente.setVisible(false);

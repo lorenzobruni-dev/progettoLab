@@ -19,8 +19,10 @@ import com.example.models.loginCentro;
 public interface interfacciaServer extends Remote{
     
     boolean ApriConnessioneDB(String url, String username, String password) throws RemoteException, ClassNotFoundException;
+    boolean isConnectionOpen() throws RemoteException, SQLException;
     void ChiudiConnessioneDB() throws RemoteException, SQLException;
     ArrayList<String> getCittadiniVaccinati(String centro) throws RemoteException;
+    ArrayList<String> getCittadiniVaccinatiId(String centro) throws RemoteException;
     ArrayList<CentroVaccinale> getCentriVaccinaliByName(String nomeCentro) throws RemoteException;
     ArrayList<CentroVaccinale> getCentriVaccinaliByType(String comune, TipoCentro tipoCentro) throws RemoteException;
     ArrayList <loginCentro> getDatiLogin() throws RemoteException;

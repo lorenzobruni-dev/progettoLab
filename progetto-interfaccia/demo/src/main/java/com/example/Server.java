@@ -53,6 +53,10 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return true;
     }
 
+    public synchronized boolean isConnectionOpen() throws RemoteException, SQLException {
+        return connection != null;
+    }
+
     public synchronized void ChiudiConnessioneDB() throws SQLException, RemoteException {
         System.out.println("Chiudo connessione db...");
         connection.close();
@@ -107,6 +111,27 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         System.out.println("Recupero elenco centri vaccinali...");
 
         String query = "SELECT cod_fiscale FROM public.\"CittadiniRegistrati_" + centro + "\"";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                cittadiniVaccinati.add(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(cittadiniVaccinati);
+        return cittadiniVaccinati;
+    }
+
+    public synchronized ArrayList<String> getCittadiniVaccinatiId(String centro) throws RemoteException {
+        ArrayList<String> cittadiniVaccinati = new ArrayList<>();
+        System.out.println("Recupero elenco centri vaccinali...");
+
+        String query = "SELECT id_vaccinazione FROM public.\"CittadiniRegistrati_" + centro + "\"";
 
         try {
             Statement statement = connection.createStatement();
@@ -290,6 +315,8 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        System.out.println(eventiAvversi);
 
         return eventiAvversi;
     }
