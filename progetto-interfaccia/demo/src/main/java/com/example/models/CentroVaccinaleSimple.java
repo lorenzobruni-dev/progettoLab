@@ -1,5 +1,6 @@
 package com.example.models;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -13,10 +14,12 @@ public class CentroVaccinaleSimple {
     private SimpleStringProperty provincia;
     private SimpleIntegerProperty cap;
     private SimpleStringProperty tipologia;
+    private SimpleIntegerProperty eventi;
+    private SimpleDoubleProperty media;
 
     public CentroVaccinaleSimple(String nome, String qualificatore,
             String indirizzo, Integer numCivico, String comune,
-            String provincia, Integer cap, String tipologia) {
+            String provincia, Integer cap, String tipologia, Integer eventi, Double media) {
         this.nome = new SimpleStringProperty(nome);
         this.qualificatore = new SimpleStringProperty(qualificatore);
         this.indirizzo = new SimpleStringProperty(indirizzo);
@@ -25,6 +28,8 @@ public class CentroVaccinaleSimple {
         this.provincia = new SimpleStringProperty(provincia);
         this.cap = new SimpleIntegerProperty(cap);
         this.tipologia = new SimpleStringProperty(tipologia);
+        this.eventi = new SimpleIntegerProperty(eventi);
+        this.media = new SimpleDoubleProperty(media);
     }
     
     public String getNome() {
@@ -89,5 +94,21 @@ public class CentroVaccinaleSimple {
 
     public void setTipologia(String tipologia) {
         this.tipologia = new SimpleStringProperty(tipologia);
+    }
+
+    public int getEventi() {
+        return eventi.get();
+    }
+
+    public void setEventi(int eventi) {
+        this.eventi = new SimpleIntegerProperty(eventi);
+    }
+
+    public double getMedia() {
+        return media.get();
+    }
+
+    public void setMedia(double media) {
+        this.media = new SimpleDoubleProperty(media);
     }
 }
