@@ -12,9 +12,11 @@ import com.example.models.TipoCentro;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class RegistrationFormCentroVaccinale implements Initializable {
 
@@ -23,6 +25,8 @@ public class RegistrationFormCentroVaccinale implements Initializable {
     boolean controlloCampoQualificatore = false;
     boolean controlloCampoTipoCentro = false;
     boolean controlloTipo = false;
+
+    Alert a = new Alert(AlertType.INFORMATION);
     @FXML
     private ComboBox<SigleProvince> ProvinciaCentroVaccinale;
     @FXML
@@ -85,6 +89,7 @@ public class RegistrationFormCentroVaccinale implements Initializable {
             else {
                 // System.out.print("Dati Centro :");
                 // datiCentro.forEach((d.) -> System.out.println(d));
+
                 System.out.print("Client : " + (datiCentro.get(0))
                         + " - " + datiCentro.get(1)
                         + " - " + datiQualificatore.get(0)
@@ -94,9 +99,12 @@ public class RegistrationFormCentroVaccinale implements Initializable {
                         + " - " + datiCentro.get(4)
                         + " - " + datiTipoCentro.get(0));
                 System.out.println(datiCentroProvincia.get(0));
+                a.setContentText("Centro Registrato con successo!");
+                a.show();
                 istanzaServer.server.setCentroVaccinale(datiCentro.get(0), datiCentro.get(1), datiCentro.get(2),
                         datiCentro.get(3), datiCentro.get(4), datiQualificatore.get(0), datiCentroProvincia.get(0),
                         datiTipoCentro.get(0));
+                App.setRoot("HubIniziale");
 
             }
         } catch (Exception e) {

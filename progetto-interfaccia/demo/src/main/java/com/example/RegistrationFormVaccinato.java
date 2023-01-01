@@ -16,11 +16,13 @@ import com.example.models.TipoCentro;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class RegistrationFormVaccinato implements Initializable {
 
@@ -31,6 +33,7 @@ public class RegistrationFormVaccinato implements Initializable {
 
     boolean controlloCampoDatiVaccinato = false;
     boolean checkPresenzaDB = false;
+    Alert a = new Alert(AlertType.INFORMATION);
 
     @FXML
     TextField nomeVaccinato;
@@ -72,7 +75,7 @@ public class RegistrationFormVaccinato implements Initializable {
     @FXML
     Button RegistraVaccinato;
 
-
+    
     @FXML
     private void registraVaccinato() throws IOException {
 
@@ -121,13 +124,14 @@ public class RegistrationFormVaccinato implements Initializable {
             else {
                 istanzaServer.server.createTableDinamica(datiVaccinato);
                 istanzaServer.server.setVaccinato(datiVaccinato);
+                a.setHeaderText("Registrato con successo!");
+                a.setContentText(datiVaccinato.get(7).toString());
+                a.show();
                 RegistraVaccinato.setDisable(true);
                 checkCampi.setVisible(false);
                 idUnivocoVaccinato.setVisible(true);
                 idUnivocoVaccinato.setText(datiVaccinato.get(7).toString());
-                System.out.println("Dati Centro :");
-                System.out.println(datiVaccinato);
-                System.out.println(datoSigla);
+                App.setRoot("HubIniziale");
             }
         }catch(Exception e){
             System.out.println(e);
