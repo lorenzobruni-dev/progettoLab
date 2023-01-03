@@ -1,5 +1,8 @@
 /*
- * 
+ * BRUNI LORENZO - MATRICOLA 744455 - VA 
+ * CLARY FRANCESCO - MATRICOLA 744768 - VA
+ * LUTSYSHYNA ANNA - MATRICOLA 745509 - VA
+ * PANARESE ALESSIO - MATRICOLA 750887 - VA
  */
 package com.example;
 
@@ -7,7 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 

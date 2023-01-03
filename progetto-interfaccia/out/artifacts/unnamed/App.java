@@ -1,10 +1,5 @@
-/*
- * BRUNI LORENZO - MATRICOLA 744455 - VA 
- * CLARY FRANCESCO - MATRICOLA 744768 - VA
- * LUTSYSHYNA ANNA - MATRICOLA 745509 - VA
- * PANARESE ALESSIO - MATRICOLA 750887 - VA
- */
 package com.example;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

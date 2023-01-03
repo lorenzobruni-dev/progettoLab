@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="unnamed">
+    <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
+    <root id="root">
+      <element id="file-copy" path="$PROJECT_DIR$/demo/src/main/java/com/example/App.java" />
+      <element id="file-copy" path="$PROJECT_DIR$/demo/src/main/java/com/example/Server.java" />
+    </root>
+  </artifact>
+</component>
