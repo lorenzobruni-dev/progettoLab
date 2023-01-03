@@ -1,1 +1,1 @@
-java --module-path C:\Program Files\Java\jdk-19 --add-modules javafx.controls,javafx.fxml,java.sql,java.rmi -jar app.jar
+java --module-path [PATH_TO_FIX]\lib --add-modules javafx.controls,javafx.fxml,java.sql,java.rmi -jar App.jar
