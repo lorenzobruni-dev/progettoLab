@@ -38,15 +38,6 @@ import javafx.scene.control.Alert.AlertType;
     */
 public class RegistrationFormVaccinato implements Initializable {
 
-    /**
-    Metodo che permette di far tornare indietro alla SceltaOperatore
-    @see RegistrationFormVaccinato
-    */
-    @FXML
-    private void backToHub() throws IOException {
-        App.setRoot("SceltaOperatore");
-    }
-
     boolean controlloCampoDatiVaccinato = false; //variabile di controllo sui campi del vaccinato
     boolean checkPresenzaDB = false; //variabile booleana che controlla se a DB è presente il centroSelezionato
     Alert a = new Alert(AlertType.INFORMATION); //alert di information che avvisa che il Vaccinato è stato registrato con successo
@@ -123,6 +114,14 @@ public class RegistrationFormVaccinato implements Initializable {
     @FXML
     Button RegistraVaccinato;
 
+    /**
+    Metodo che permette di far tornare indietro alla SceltaOperatore
+    @see RegistrationFormVaccinato
+    */
+    @FXML
+    private void backToHub() throws IOException {
+        App.setRoot("SceltaOperatore");
+    }
     /**
     Metodo che permette di registrare un vaccinato
     @see RegistrationFormVaccinato
