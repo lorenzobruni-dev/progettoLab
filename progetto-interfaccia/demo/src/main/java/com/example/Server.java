@@ -1,3 +1,11 @@
+/*
+ * BRUNI LORENZO - MATRICOLA 744455 - VA 
+ * CLARY FRANCESCO - MATRICOLA 744768 - VA
+ * LUTSYSHYNA ANNA - MATRICOLA 745509 - VA
+ * PANARESE ALESSIO - MATRICOLA 750887 - VA
+ */
+
+//package globale com.example
 package com.example;
 
 import java.rmi.RemoteException;
@@ -20,7 +28,9 @@ import com.example.models.SigleProvince;
 import com.example.models.TipoCentro;
 import com.example.models.loginCentro;
 
-
+/**
+ * Classe server che mette a disposizioni dei client le operazioni da effettuare sul db
+ */
 public class Server extends UnicastRemoteObject implements interfacciaServer {
 
     public Server() throws RemoteException {
@@ -29,6 +39,12 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
 
     private static Connection connection = null;
 
+    /**
+     * Il main si occupa di aggiungere il server al regisrty "ServerCentro" e di avviarlo.
+     *
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     * @param args Argomenti passati da linea di comando.
+     */
     public static void main(String[] args) throws RemoteException {
         try {
             Server server = new Server();
@@ -39,6 +55,16 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         }
     }
 
+    /**
+     * Questo metodo si occupa di aprire la connessione con il db.
+     *
+     * @param url url di connessione al db.
+     * @param user viene passato al db il nome utente.
+     * @param password viene passato al db la password.
+     * @return true se la connessione va a buon fine, false altrimenti.
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     * @throws ClassNotFoundException in caso di eccezioni sul nome della classe
+     */
     public synchronized boolean ApriConnessioneDB(String url, String user, String password) throws ClassNotFoundException, RemoteException {
         System.out.println("Provo a connettermi al db...");
         try {
@@ -53,15 +79,35 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return true;
     }
 
+    /**
+     * Questo metodo si occupa di effettuare un controllo sullo statiìo della connessione.
+     *
+     * @return true se la connessione è aperta, false altrimenti.
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     * @throws SQLException In caso il DB generi eccezioni.
+     */
     public synchronized boolean isConnectionOpen() throws RemoteException, SQLException {
         return connection != null;
     }
 
+    /**
+     * Questo metodo si occupa di chiudere la connessione con il db.
+     *
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     * @throws SQLException In caso il DB generi eccezioni.
+     */
     public synchronized void ChiudiConnessioneDB() throws SQLException, RemoteException {
         System.out.println("Chiudo connessione db...");
         connection.close();
     }
 
+    /**
+     * Questo metodo si occupa di recuperare tutti i centri dal db che contengano il parametro passato all'interno del proprio nome.
+     *
+     * @param nomeCentro indica il nome in base al quale verranno cercati i centri
+     * @return una lista di centri vaccinali.
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized ArrayList<CentroVaccinale> getCentriVaccinaliByName(String nomeCentro) throws RemoteException {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
@@ -84,6 +130,14 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return centriVaccinali;
     }
 
+    /**
+     * Questo metodo si occupa di recuperare tutti i centri dal db che rispecchino i parametri passati.
+     *
+     * @param comune nome del comune nel quale risiede il centro
+     * @param tipoCentro tipologia alla quale appartiene il centro
+     * @return una lista di centri vaccinali.
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized ArrayList<CentroVaccinale> getCentriVaccinaliByType(String comune, TipoCentro tipoCentro) throws RemoteException {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
@@ -106,6 +160,13 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return centriVaccinali;
     }
 
+    /**
+     * Questo metodo si occupa di recuperare i codici fiscali di tutti i cittadini vaccinati presso un preciso centro vaccinale.
+     *
+     * @param centro indica il nome della tabella dinamica su cui fare la ricerca
+     * @return una lista di codici fiscali.
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized ArrayList<String> getCittadiniVaccinati(String centro) throws RemoteException {
         ArrayList<String> cittadiniVaccinati = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
@@ -127,6 +188,13 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return cittadiniVaccinati;
     }
 
+    /**
+     * Questo metodo si occupa di recuperare i codici univoci di vaccinazione di tutti i cittadini vaccinati presso un preciso centro vaccinale.
+     *
+     * @param centro indica il nome della tabella dinamica su cui fare la ricerca
+     * @return una lista di codici univoci di vaccinazione.
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized ArrayList<String> getCittadiniVaccinatiId(String centro) throws RemoteException {
         ArrayList<String> cittadiniVaccinati = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
@@ -148,6 +216,12 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return cittadiniVaccinati;
     }
 
+    /**
+     * Questo metodo si occupa di recuperare i dati di login dall'apposito tabella a db.
+     *
+     * @return una lista di loginCentro (username e password).
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized ArrayList<loginCentro> getDatiLogin() throws RemoteException {
         System.out.println("Recupero dati login...");
         ArrayList<loginCentro> loginCentro = new ArrayList<>();
@@ -168,6 +242,12 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return loginCentro;
     }
 
+    /**
+     * Questo metodo si occupa di recuperare i cittadini registrati al sistema dal db.
+     *
+     * @return una lista di cittadini registrati.
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized ArrayList<CittadinoRegistrato> getCittadiniRegistrati() throws RemoteException {
         System.out.println("Recupero dati registrati...");
         ArrayList<CittadinoRegistrato> cittadiniRegistrati = new ArrayList<>();
@@ -190,6 +270,19 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return cittadiniRegistrati;
     }
 
+    /**
+     * Questo metodo si occupa di inserire nella tabella CentriVaccinali un nuovo centro vaccinale.
+     *
+     * @param nomCentro nome del centro.
+     * @param comuneCentro comune in cui risiede il centro.
+     * @param indirizzoCentroString indirizzo del centro.
+     * @param civicoCentro numero civico del centro.
+     * @param capCentro CAP del centro.
+     * @param qualCentro qualificatore dell'indirizzo.
+     * @param siglaCentro sigla della provincia.
+     * @param tipoCentro tipologia del centro.
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized void setCentroVaccinale(String nomCentro, String comuneCentro, String indirizzoCentroString,
                                                 String civicoCentro, String capCentro, Qualificatore qualCentro, SigleProvince siglaCentro, TipoCentro tipoCentro) throws RemoteException {
         System.out.println("I'm setting up Center Data...");
@@ -202,6 +295,12 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         }
     }
 
+    /**
+     * Questo metodo si occupa di inserire un cittadino vaccinato all'interno della tabella dinamica opportuna.
+     *
+     * @param datiVaccinato lista di dati del cittadino vaccinato
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized void setVaccinato(ArrayList<String> datiVaccinato) throws RemoteException {
         System.out.println("I'm setting up Center Data...");
         String query = "INSERT INTO public.\"CittadiniRegistrati_"+datiVaccinato.get(8)+"\"(nome,cognome,data_nascita,genere,cod_fiscale,data_somministrazione,nome_vaccino,nome_centro,id_vaccinazione)"+
@@ -222,6 +321,12 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         }
     } //TODO: Da inserire i dati del Vaccinato
 
+    /**
+     * Questo metodo si occupa di creare sul db uina tabella dinamica contenente i cittadini vaccinati a un centro indicato.
+     *
+     * @param datiVaccinato lista di dati del cittadino vaccinato
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized void createTableDinamica(ArrayList<String> datiVaccinato) throws RemoteException {
         System.out.println("I'm setting up Center Data...");
         String query = "CREATE TABLE IF NOT EXISTS public.\"CittadiniRegistrati_"+datiVaccinato.get(8)+"\""+
@@ -247,6 +352,12 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         }
     } 
 
+    /**
+     * Questo metodo si occupa di recuperare da db tutti i centri vaccinali registrati.
+     *
+     * @return lista di tutti i centri vaccinali registrati
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized ArrayList<CentroVaccinale> getCentriVaccinali() throws RemoteException {
         ArrayList<CentroVaccinale> centriVaccinali = new ArrayList<>();
         System.out.println("Recupero elenco centri vaccinali...");
@@ -268,6 +379,12 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         return centriVaccinali;
     }
 
+    /**
+     * Questo metodo si occupa di inserire a db nella tabella "CittadiniRegistrati" il cittadino passato come parametro.
+     *
+     * @param registrato dati del cittadino da registrare al sistema
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized void registraCittadino(CittadinoRegistrato registrato) throws RemoteException {
 
         System.out.println("Registro cittadino...");
@@ -282,6 +399,13 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         }
     }
 
+    /**
+     * Questo metodo si occupa di inserire a db nella tabella "EventiAvversi" gli eventi passati come parametro associandoli al codice fiscale.
+     *
+     * @param eventiAvversi lista di eventi avversi inseriti dall'utente
+     * @param codiceFiscale codice fiscale del cittadino registrato
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized void registraEventiAvversi(ArrayList<EventoAvverso> eventiAvversi, String codiceFiscale) throws RemoteException {
 
         System.out.println("Registro eventi avversi...");
@@ -298,6 +422,13 @@ public class Server extends UnicastRemoteObject implements interfacciaServer {
         });
     }
 
+    /**
+     * Questo metodo si occupa di recuperare da db la lista di eventi avversi associati al codice fiscale passato come parametro e che abbiano severità maggiore di 1.
+     *
+     * @param codiceFiscale codice fiscale del cittadino registrato
+     * @return lista di eventi avversi
+     * @throws RemoteException In caso di eccezioni dal lato del server.
+     */
     public synchronized ArrayList<EventoAvverso> getEventiAvversi(String codiceFiscale) throws RemoteException {
         ArrayList<EventoAvverso> eventiAvversi = new ArrayList<>();
         System.out.println("Recupero eventi avversi...");

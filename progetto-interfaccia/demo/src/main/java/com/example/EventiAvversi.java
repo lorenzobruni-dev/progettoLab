@@ -1,3 +1,11 @@
+/*
+ * BRUNI LORENZO - MATRICOLA 744455 - VA 
+ * CLARY FRANCESCO - MATRICOLA 744768 - VA
+ * LUTSYSHYNA ANNA - MATRICOLA 745509 - VA
+ * PANARESE ALESSIO - MATRICOLA 750887 - VA
+ */
+
+//package globale com.example
 package com.example;
 
 import java.io.IOException;
@@ -11,6 +19,9 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Classe che permette al cittadino di effettuare l'inserimento di eventi avversi
+ */
 public class EventiAvversi {
 
       @FXML
@@ -40,11 +51,21 @@ public class EventiAvversi {
 
       Alert a = new Alert(AlertType.INFORMATION);
 
+      /**
+     * Questo metodo si occupa di far tornare l'utente alla pagina iniziale alla pressione del bottone opportuno.
+     *
+     * @throws IOException In caso di eccezioni dovute a un input.
+     */
       @FXML
       private void backToHub() throws IOException {
          App.setRoot("HubIniziale");
       }
 
+      /**
+     * Questo metodo si occupa di richiamare la registrazione degli eventi avversi sul server.
+     *
+     * @throws IOException In caso di eccezioni dovute a un input.
+     */
       @FXML
       private void confirm() throws IOException {
          ArrayList<EventoAvverso> eventiAvversi = fillEventi();
@@ -57,6 +78,11 @@ public class EventiAvversi {
          App.setRoot("HubIniziale");
       }
 
+       /**
+     * Questo metodo si occupa di recuperare i dati inseriti dall'utente e inserirli in una lista di eventi avversi.
+     *
+     * @return Una lista di eventi avversi.
+     */
       private ArrayList<EventoAvverso> fillEventi() {
          ArrayList<EventoAvverso> eventiAvversi = new ArrayList<>();
 

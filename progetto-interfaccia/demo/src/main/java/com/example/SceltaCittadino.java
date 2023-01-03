@@ -1,3 +1,11 @@
+/*
+ * BRUNI LORENZO - MATRICOLA 744455 - VA 
+ * CLARY FRANCESCO - MATRICOLA 744768 - VA
+ * LUTSYSHYNA ANNA - MATRICOLA 745509 - VA
+ * PANARESE ALESSIO - MATRICOLA 750887 - VA
+ */
+
+//package globale com.example
 package com.example;
 
 import java.io.IOException;
@@ -10,6 +18,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * Classe che permette al cittadino di effettuare il login o fare il redirect sulle pagine di ricerca centri o registrazione
+ */
 public class SceltaCittadino {
 
     public static String codice_fiscale;
@@ -25,22 +36,42 @@ public class SceltaCittadino {
     @FXML
     Button registrationButton = new Button();
 
+     /**
+     * Questo metodo si occupa di far tornare l'utente alla pagina iniziale alla pressione del bottone opportuno.
+     *
+     * @throws IOException In caso di eccezioni dovute a un input.
+     */
     @FXML
     private void backToHub() throws IOException {
         App.setRoot("HubIniziale");
     }
     
+     /**
+     * Questo metodo si occupa di reindirizzare l'utente alla pagina di ricerca dei centri vaccinali.
+     *
+     * @throws IOException In caso di eccezioni dovute a un input.
+     */
     @FXML
     private void ricercaCentroInfo() throws IOException {
         App.setRoot("RicercaCentri");
     }
 
+     /**
+     * Questo metodo si occupa di reindirizzare l'utente alla pagina di registrazione.
+     *
+     * @throws IOException In caso di eccezioni dovute a un input.
+     */
     @FXML
     private void registrationButton() throws IOException{
         App.setRoot("RegistrationFormCittadino");
         System.out.println("Pressed");
     }
 
+    /**
+     * Questo metodo si occupa di effettuare il controllo sulle credenziali inserite in input e recuperate con chiamata al server per permettere all'utente di effettuare il login.
+     *
+     * @throws IOException In caso di eccezioni dovute a un input.
+     */
     @FXML
     private void loginEventiAvversi() throws IOException {
         ArrayList<CittadinoRegistrato> registrati = new ArrayList<>();

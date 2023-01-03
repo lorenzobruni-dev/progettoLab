@@ -1,3 +1,11 @@
+/*
+ * BRUNI LORENZO - MATRICOLA 744455 - VA 
+ * CLARY FRANCESCO - MATRICOLA 744768 - VA
+ * LUTSYSHYNA ANNA - MATRICOLA 745509 - VA
+ * PANARESE ALESSIO - MATRICOLA 750887 - VA
+ */
+
+//package globale com.example
 package com.example;
 
 import java.io.IOException;
@@ -13,6 +21,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Classe che permette al cittadino di registrarsi al sistema in modo da poter segnalare eventi avversi
+ */
 public class RegistrationFormCittadino {
 
     boolean isInvalid = false;
@@ -49,11 +60,21 @@ public class RegistrationFormCittadino {
     @FXML
     Label campoCheckRegUtente;
 
+     /**
+     * Questo metodo si occupa di far tornare l'utente alla pagina iniziale alla pressione del bottone opportuno.
+     *
+     * @throws IOException In caso di eccezioni dovute a un input.
+     */
     @FXML
     private void backToHub() throws IOException {
         App.setRoot("HubIniziale");
     }
 
+    /**
+     * Questo metodo si occupa, tramite apposita chiamata al server, di registrare un cittadino al sistema dopo aver effettuato controlli di nullità dei campi e un controllo specifico sul codice univoco di vaccinazione.
+     *
+     * @throws IOException In caso di eccezioni dovute a un input.
+     */
     @FXML
     private void registraCittadino() throws IOException {
 
@@ -108,6 +129,11 @@ public class RegistrationFormCittadino {
         }
     }
 
+    /**
+     * Questo metodo si occupa di leggere i dati inseriti in input dall'utente e inserirli all'interno di una lista per facilitarne il successivo controllo.
+     *
+     * @return Una lista di stringhe rappresentante tutti i dati inseriti dall'utente.
+     */
     private ArrayList<String> getDati() {
         ArrayList<String> dati = new ArrayList<>();
 

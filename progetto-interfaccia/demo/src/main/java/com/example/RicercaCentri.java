@@ -1,3 +1,11 @@
+/*
+ * BRUNI LORENZO - MATRICOLA 744455 - VA 
+ * CLARY FRANCESCO - MATRICOLA 744768 - VA
+ * LUTSYSHYNA ANNA - MATRICOLA 745509 - VA
+ * PANARESE ALESSIO - MATRICOLA 750887 - VA
+ */
+
+//package globale com.example
 package com.example;
 
 import java.io.IOException;
@@ -14,14 +22,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Classe che permette al cittadino di effettuare una ricerca dei centri vaccinali
+ */
 public class RicercaCentri {
 
     @FXML
@@ -29,7 +38,7 @@ public class RicercaCentri {
     @FXML
     TextField comuneCentroVaccinale;
     @FXML
-    ComboBox tipologiaCentroVaccinale;
+    ComboBox<String> tipologiaCentroVaccinale;
     @FXML
     Button cercaCentri;
     @FXML
@@ -58,19 +67,17 @@ public class RicercaCentri {
     TableColumn<CentroVaccinaleSimple, String> colonnaMedia;
 
     private ObservableList<CentroVaccinaleSimple> datiCentri = FXCollections.observableArrayList();
-    // private ObservableList<CentroVaccinaleSimple> selectedRow = FXCollections.observableArrayList();
-
-    // TableViewSelectionModel<CentroVaccinaleSimple> selectionModel;
 
     ArrayList<EventoAvverso> eventiAvversi = new ArrayList<>();
 
     int somma = 0;
     double media = 0;
  
+    /**
+     * Metodo initialize eseguito appunto all'inizializzazione della classe che imposta un listener sullo slider cambiando modalità di ricerca all'occorrenza e che inizializza i valori
+     * delle colonne della tabella e di quest'ultima affinchè si aggiornino in automatico all'avvenuta ricerca dei centri.
+     */
     public void initialize() {
-
-        // selectionModel = tabellaCentri.getSelectionModel();
-        // selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("slide");
@@ -105,11 +112,14 @@ public class RicercaCentri {
         App.setRoot("SceltaCittadino");
     }
 
+    /**
+     * Metodo che legge i dati opportuni in base al valore dello slider ed effettua la ricerca dei centri tramite chiamata al server,
+     * infine popola l'ObservableList per permettere la visualizzazione sulla tabella.
+     *
+     * @throws IOException Se non trova il file specificato.
+     */
     @FXML
     private void cercaCentri() throws IOException {
-
-        // if (selectionModel != null)
-        //     selectionModel.clearSelection();
 
         tabellaCentri.getItems().clear();
         
@@ -155,12 +165,5 @@ public class RicercaCentri {
 
         System.out.println("centri trovati " + centriVaccinaliSimple);
         datiCentri.addAll(centriVaccinaliSimple);
-        
-        // selectedRow = selectionModel.getSelectedItems();
-        
-        // do {
-        //     selectedRow = selectionModel.getSelectedItems();
-        //     System.out.println("riga selezionata" + selectedRow);
-        // } while (selectedRow.size() <= 0);
     }
 }
