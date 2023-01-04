@@ -27,7 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
     /**
-    Classe che specifica la form di registrazione del vaccinato ad un dato centro
+    Classe che specifica la form di registrazione del centro
     @author Team
     @see RegistrationFormCentroVaccinale
     */
@@ -110,18 +110,26 @@ public class RegistrationFormCentroVaccinale implements Initializable {
             datiCentroProvincia.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoProvincia = true;
+                else
+                    controlloCampoProvincia = false;
             });
             datiCentro.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoCentro = true;
+                    else
+                    controlloCampoCentro = false;
             });
             datiTipoCentro.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoTipoCentro = true;
+                    else
+                    controlloCampoTipoCentro = false;
             });
             datiQualificatore.forEach((e) -> {
                 if (e == null || e.equals(""))
                     controlloCampoQualificatore = true;
+                    else
+                    controlloCampoQualificatore = false;
             });
             
             //if che abilita alla scrittura a DB dei dati del CentroVaccinale
@@ -145,7 +153,7 @@ public class RegistrationFormCentroVaccinale implements Initializable {
                 istanzaServer.server.setCentroVaccinale(datiCentro.get(0), datiCentro.get(1), datiCentro.get(2),
                         datiCentro.get(3), datiCentro.get(4), datiQualificatore.get(0), datiCentroProvincia.get(0),
                         datiTipoCentro.get(0)); //chiamata a DB che abilita la insert di un CentroVaccinale
-                App.setRoot("HubIniziale");
+                App.setRoot("SceltaOperatore");
 
             }
         } catch (Exception e) {

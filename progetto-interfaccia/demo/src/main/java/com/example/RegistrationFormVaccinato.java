@@ -306,7 +306,7 @@ public class RegistrationFormVaccinato implements Initializable {
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        genereVaccinato.setItems(FXCollections.observableArrayList("Male", "Female", "Altro/a", "MUCCA"));
+        genereVaccinato.setItems(FXCollections.observableArrayList("Male", "Female", "Altro/a"));
         nomeVaccino.setItems(FXCollections.observableArrayList("AstraZeneca", "J&J", "Pfizer", "Moderna"));
         provinciaCentroVaccinale.setItems(FXCollections.observableArrayList(SigleProvince.values()));
         tipologiaCentroVaccinale.setItems(FXCollections.observableArrayList(TipoCentro.values()));
